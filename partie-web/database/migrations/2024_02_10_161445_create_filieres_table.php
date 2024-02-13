@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('filieres', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("type");
+            $table->integer("nbr_semestre");
             $table->unsignedBigInteger('id_professeur');
             $table->foreign('id_professeur')->references('id')->on('professeurs')->onDelete('cascade');
             $table->unsignedBigInteger('id_departement');
