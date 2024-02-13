@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('element_professeur', function (Blueprint $table) {
-            $table->primary(["id_professur","id_element"]);
-            $table->unsignedBigInteger('id_professur');
-            $table->foreign('id_professur')->references('id')->on('professeurs')->onDelete('cascade');
+            $table->primary(["id_professeur","id_element"]);
+            $table->unsignedBigInteger('id_professeur');
+            $table->foreign('id_professeur')->references('id')->on('professeurs')->onDelete('cascade');
             $table->unsignedBigInteger('id_element');
             $table->foreign('id_element')->references('id')->on('elements')->onDelete('cascade');
             $table->timestamps();

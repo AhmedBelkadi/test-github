@@ -11,8 +11,9 @@ class Justification extends Model
 
     public function absences()
     {
-        return $this->hasMany(Absence::class , "id_justification" );
+        return $this->belongsToMany(Absence::class , "absence_justification" ,  'id_justification', 'id_absence' );
     }
+
     public function etudiant()
     {
         return $this->belongsTo(Etudiant::class , "id_etudiant" );

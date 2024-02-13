@@ -33,9 +33,9 @@ class Filiere extends Model
         return $this->hasMany(Etudiant::class , "id_filiere");
     }
 
-    public function chef    ()
+    public function chef ()
     {
-        return $this->belongsTo(Professeur::class, 'id_professur');
+        return $this->belongsTo(Professeur::class, 'id_professeur');
     }
 
 }

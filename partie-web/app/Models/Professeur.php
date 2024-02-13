@@ -10,12 +10,12 @@ class Professeur extends Model
     use HasFactory;
     public function elements()
     {
-        return $this->belongsToMany(Element::class , 'element_professeur', 'id_professur', 'id_element' );
+        return $this->belongsToMany(Element::class , 'element_professeur', 'id_professeur', 'id_element' );
     }
 
-    public function department()
+    public function departement()
     {
-        return $this->hasOne(Departement::class, 'professur_id');
+        return $this->hasOne(Departement::class, 'id_professeur');
     }
 
     public function filiere()

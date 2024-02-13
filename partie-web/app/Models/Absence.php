@@ -18,9 +18,11 @@ class Absence extends Model
     {
         return $this->belongsTo(Etudiant::class , "id_etudiant" );
     }
-    public function justification()
+    public function justifications()
     {
-        return $this->belongsTo(Justification::class , "id_justification" );
+        return $this->belongsToMany(Justification::class , "absence_justification" ,  'id_absence', 'id_justification' );
     }
+
+
 
 }

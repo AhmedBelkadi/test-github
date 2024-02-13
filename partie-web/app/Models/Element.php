@@ -16,7 +16,7 @@ class Element extends Model
 
     public function professeurs()
     {
-        return $this->belongsToMany(Professeur::class , 'element_professeur', 'id_element', 'id_professur' );
+        return $this->belongsToMany(Professeur::class , 'element_professeur', 'id_element', 'id_professeur' );
     }
 
     public function seances()

@@ -16,7 +16,7 @@ class Departement extends Model
 
     public function chef()
     {
-        return $this->belongsTo(Professeur::class , "id_professur");
+        return $this->belongsTo(Professeur::class , "id_professeur");
     }
 
 
