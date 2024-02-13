@@ -11,21 +11,25 @@ class Seance extends Model
 
     public function periode()
     {
-        return $this->belongsTo(Periode::class);
+        return $this->belongsTo(Periode::class, "id_periode");
     }
 
     public function salle()
     {
-        return $this->belongsTo(Salle::class);
+        return $this->belongsTo(Salle::class, "id_salle");
     }
     public function element()
     {
-        return $this->belongsTo(Element::class);
+        return $this->belongsTo(Element::class, "id_element");
+    }
+    public function emploiDuTemps()
+    {
+        return $this->belongsTo(EmploiDuTemps::class, "id_emploi_du_temps");
     }
 
     public function absences()
     {
-        return $this->hasMany(Absence::class);
+        return $this->hasMany(Absence::class, "id_seance");
     }
 
 }

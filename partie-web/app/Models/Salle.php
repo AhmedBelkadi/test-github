@@ -13,7 +13,7 @@ class Salle extends Model
 
     public function seances()
     {
-        return $this->hasMany(Seance::class);
+        return $this->hasMany(Seance::class , "id_salle" );
     }
 
 }

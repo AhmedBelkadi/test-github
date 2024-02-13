@@ -43,21 +43,20 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
-    public function absences()
-    {
-        return $this->hasMany(Absence::class);
+    public function professeur(){
+        return $this->hasOne(Professeur::class);
     }
 
-    public function elements()
+    public function etudiant()
     {
-        return $this->hasMany(Element::class);
+        return $this->hasOne(Etudiant::class);
     }
 
-    public function filiere()
-    {
-        return $this->belongsTo(Filiere::class);
-    }
+
+
+
+
+
 
 
 

@@ -11,16 +11,16 @@ class Element extends Model
 
     public function module()
     {
-        return $this->belongsTo(Module::class);
+        return $this->belongsTo(Module::class , "id_module" );
     }
 
-    public function professeur()
+    public function professeurs()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(Professeur::class , 'element_professeur', 'id_element', 'id_professur' );
     }
 
     public function seances()
     {
-        return $this->hasMany(Seance::class);
+        return $this->hasMany(Seance::class , "id_element" );
     }
 }

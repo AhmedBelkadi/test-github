@@ -11,12 +11,16 @@ class EmploiDuTemps extends Model
 
     public function semestre()
     {
-        return $this->belongsTo(Semestre::class);
+        return $this->belongsTo(Semestre::class , "id_semestre" );
     }
 
     public function filiere()
     {
-        return $this->belongsTo(Filiere::class);
+        return $this->belongsTo(Filiere::class  , "id_filiere");
+    }
+    public function seances()
+    {
+        return $this->hasMany(Seance::class  , "id_emploi_du_temps");
     }
 
 }

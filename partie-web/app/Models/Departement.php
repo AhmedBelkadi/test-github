@@ -11,7 +11,14 @@ class Departement extends Model
 
     public function filieres()
     {
-        return $this->hasMany(Filiere::class);
+        return $this->hasMany(Filiere::class , "id_departement");
     }
+
+    public function chef()
+    {
+        return $this->belongsTo(Professeur::class , "id_professur");
+    }
+
+
 
 }

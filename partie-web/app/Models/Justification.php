@@ -11,11 +11,11 @@ class Justification extends Model
 
     public function absences()
     {
-        return $this->hasMany(Absence::class);
+        return $this->hasMany(Absence::class , "id_justification" );
     }
     public function etudiant()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Etudiant::class , "id_etudiant" );
     }
 
 }

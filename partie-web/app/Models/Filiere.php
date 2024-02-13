@@ -16,21 +16,26 @@ class Filiere extends Model
 
     public function modules()
     {
-        return $this->hasMany(Module::class);
+        return $this->hasMany(Module::class , "id_filiere" );
     }
 
     public function semestres()
     {
-        return $this->hasMany(Semestre::class);
+        return $this->hasMany(Semestre::class  , "id_filiere");
     }
 
     public function emploiDuTemps()
     {
-        return $this->hasMany(EmploiDuTemps::class);
+        return $this->hasMany(EmploiDuTemps::class , "id_filiere");
     }
     public function etudiants()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Etudiant::class , "id_filiere");
+    }
+
+    public function chef    ()
+    {
+        return $this->belongsTo(Professeur::class, 'id_professur');
     }
 
 }

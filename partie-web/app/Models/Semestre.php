@@ -11,12 +11,12 @@ class Semestre extends Model
 
     public function modules()
     {
-        return $this->hasMany(Module::class);
+        return $this->hasMany(Module::class, "id_semestre");
     }
 
     public function emploiDuTemps()
     {
-        return $this->hasMany(EmploiDuTemps::class);
+        return $this->hasMany(EmploiDuTemps::class, "id_semestre");
     }
 
 }

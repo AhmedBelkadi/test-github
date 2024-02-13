@@ -15,7 +15,7 @@ class Module extends Model
 
     public function elements()
     {
-        return $this->hasMany(Element::class , "id_element" );
+        return $this->hasMany(Element::class , "id_module" );
     }
 
     public function semestre()

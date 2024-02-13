@@ -17,16 +17,18 @@ return new class extends Migration
             $table->string("tele");
             $table->string("adresse");
             $table->string("cin");
-            $table->string("role");
-            $table->string("cne")->nullable();
-            $table->string("apogee")->nullable();
+            $table->enum('role', ['professeur', 'etudiant','admin']);
             $table->string('email')->unique();
-//            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
-            $table->unsignedBigInteger('id_filiere');
-            $table->foreign('id_filiere')->references('id')->on('filieres')->onDelete('cascade');
             $table->timestamps();
+//            $table->unsignedBigInteger('id_filiere');
+//            $table->foreign('id_filiere')->references('id')->on('filieres')->onDelete('cascade');
+
+//            $table->string("role");
+//            $table->string("cne")->nullable();
+//            $table->string("apogee")->nullable();
         });
     }
 

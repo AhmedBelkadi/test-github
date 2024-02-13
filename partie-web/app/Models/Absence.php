@@ -11,12 +11,16 @@ class Absence extends Model
 
     public function seance()
     {
-        return $this->belongsTo(Seance::class);
+        return $this->belongsTo(Seance::class , "id_seance");
     }
 
+    public function etudiant()
+    {
+        return $this->belongsTo(Etudiant::class , "id_etudiant" );
+    }
     public function justification()
     {
-        return $this->belongsTo(Justification::class);
+        return $this->belongsTo(Justification::class , "id_justification" );
     }
 
 }
