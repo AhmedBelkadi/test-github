@@ -9,6 +9,8 @@ class Filiere extends Model
 {
     use HasFactory;
 
+    protected $fillable = [ "id_departement" , "id_professeur" , "nbr_semestre" , "type" , "name"];
+
     public function departement()
     {
         return $this->belongsTo(Departement::class , "id_departement" );
