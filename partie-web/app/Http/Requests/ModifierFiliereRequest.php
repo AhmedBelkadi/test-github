@@ -4,13 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FiliereRequest extends FormRequest
+class ModifierFiliereRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
-    protected $redirect = '/filieres?openModal=1';
-
     public function authorize(): bool
     {
         return true;
@@ -31,7 +29,4 @@ class FiliereRequest extends FormRequest
             'id_departement' => 'required|exists:departements,id',
         ];
     }
-
-
-
 }

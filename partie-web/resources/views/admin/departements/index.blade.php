@@ -1,5 +1,7 @@
 @extends("layouts.index")
 
+@section( "departements-active" , "active" )
+
 @section("main")
 
 

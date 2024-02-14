@@ -69,68 +69,68 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active">
+        <li class="menu-item @yield("dashboard-active") ">
             <a href="/" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
 
-        <li class="menu-item ">
+        <li class="menu-item @yield("departements-active")">
             <a href="{{route("departements.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Departements</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield("filieres-active")">
             <a href="{{route("filieres.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Filieres</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield("elements-active")">
             <a href="{{route("elements.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Elements</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield("semestres-active")">
             <a href="{{route("semestres.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Semestres</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield("emplois-active")">
             <a href="{{route("emplois.index")}}"  class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Emplois du temps</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield("professeurs-active")">
             <a href="{{route("professeurs.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Professeurs</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield("etudiants-active")">
             <a href="{{route("etudiants.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Etudiants</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield("absences-active")">
             <a href="{{route("absences.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Absences</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield("salles-active")">
             <a href="{{route("salles.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Salles</div>
             </a>
         </li>
-        <li class="menu-item ">
+        <li class="menu-item @yield("modules-active")">
             <a href="{{route("modules.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Modules</div>

@@ -1,4 +1,7 @@
 @extends("layouts.index")
+
+@section( "dashboard-active" , "active" )
+
 @section("main")
     <!-- Navbar -->
     <nav

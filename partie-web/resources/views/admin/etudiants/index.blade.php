@@ -1,5 +1,8 @@
 @extends("layouts.index")
 
+@section( "etudiants-active" , "active" )
+
+
 @section("main")
     <!-- Basic Bootstrap Table -->
 
