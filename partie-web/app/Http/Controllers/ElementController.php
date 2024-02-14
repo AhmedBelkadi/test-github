@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\ElementRequest;
 use App\Models\Element;
+use App\Models\Module;
 use Illuminate\Http\Request;
 
 class ElementController extends Controller
@@ -13,7 +14,9 @@ class ElementController extends Controller
     public function index()
     {
         $elements = Element::paginate();
-        return view("admin.elements.index" ,compact("elements")  );
+        $modules = Module::all();
+
+        return view("admin.elements.index" ,compact("elements","modules")  );
     }
 
     /**
@@ -27,9 +30,9 @@ class ElementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ElementRequest $request)
     {
-        //
+        $validatedData = $request->validated();
     }
 
     /**
@@ -61,6 +64,6 @@ class ElementController extends Controller
      */
     public function destroy(Element $element)
     {
-   
+
     }
 }

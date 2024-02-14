@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\DepartementRequest;
 use App\Models\Departement;
+use App\Models\Professeur;
+use App\Models\Filiere;
 use Illuminate\Http\Request;
 
 class DepartementController extends Controller
@@ -12,8 +14,9 @@ class DepartementController extends Controller
      */
     public function index()
     {
-        $departements = Departement::paginate(5);
-        return view("admin.departements.index" ,compact("departements")  );
+        $departements = Departement::paginate(4);
+        $professeurs = Professeur::all();
+        return view("admin.departements.index" ,compact("departements","professeurs")  );
     }
 
     /**
@@ -27,9 +30,18 @@ class DepartementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DepartementRequest $request)
     {
-        dd("added successufully");
+        $validated = $request->validated();
+
+        // Create a new departement
+        $departement = new Departement();
+        $departement->name = $validated['name'];
+        $departement->id_professeur = $validated['id_professeur'];
+        $departement->save();
+
+        return redirect()->route('departements.index');
+
     }
 
     /**

@@ -40,8 +40,13 @@
                                <div class="row g-2">
                                    <div class="col mb-0">
                                        <label for="emailBasic" class="form-label">Module</label>
-                                       <input type="text" id="emailBasic"  name="module" class="form-control" placeholder="enter name" />
-                                       @error("module")
+                                       <select name="id_module" id="largeSelect" class="form-select form-select">
+                                        <option selected >select module</option>
+                                        @foreach($modules as $module )
+                                            <option value="{{old("id_module",$module->id)}}">{{$module->name}}</option>
+                                        @endforeach
+                                    </select>
+                                      @error("module")
                                        <span class="text-danger" >{{$message}}</span>
                                        @enderror
                                    </div>
@@ -50,8 +55,8 @@
                                <div class="row g-2">
                                 <div class="col mb-0">
                                     <label for="emailBasic" class="form-label">Professeur</label>
-                                    <input type="text" id="emailBasic"  name="prof" class="form-control" placeholder="enter name" />
-                                    @error("prof")
+                                    <input type="text" id="emailBasic"  name="professeur" class="form-control" placeholder="enter name" />
+                                    @error("professeur")
                                     <span class="text-danger" >{{$message}}</span>
                                     @enderror
                                 </div>
@@ -77,7 +82,7 @@
                 <tr>
                     <th class="text-center" >Element</th>
                     <th class="text-center" >Module</th>
-{{--                    <th class="text-center" >Professeur</th>--}}
+                   <th class="text-center" >Professeur</th>
                     <th  class="text-center"  >Actions</th>
                 </tr>
                 </thead>
@@ -86,7 +91,9 @@
                     <tr>
                         <td class="text-center" >{{$element->name}}</td>
                         <td class="text-center" >{{$element->module->name}}</td>
-{{--                        <td class="text-center" >{{$element->professeurs->name}}</td>--}}
+                        <td class="text-center">
+                            {{ implode(" / ", $element->professeurs->pluck('user.name')->toArray()) }}
+                        </td>
                         <td class="text-center" >
                             <button
                                 type="button"
@@ -128,6 +135,7 @@
                 </tbody>
             </table>
         </div>
+        {{$elements->links()}}
     </div>
 
 @endsection

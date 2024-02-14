@@ -93,6 +93,15 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row g-2">
+                                <div class="col mb-0">
+                                    <label for="emailBasic" class="form-label">Filiere</label>
+                                    <input type="text" id="emailBasic"  name="filiere" class="form-control" placeholder="enter filiere" />
+                                    @error("filiere")
+                                    <span class="text-danger" >{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
                         </div>
                         <div class="modal-footer">
@@ -119,6 +128,8 @@
                     <th class="text-center" >Email</th>
                     <th class="text-center" >Tele</th>
                     <th class="text-center" >Adresse</th>
+                    <th class="text-center" >Filiere</th>
+
                     <th  class="text-center"  >Actions</th>
 
                 </tr>
@@ -126,11 +137,14 @@
                 <tbody class="table-border-bottom-0">
                 @foreach( $etudiants as $etudiant )
                     <tr>
-                        <td class="text-center" >{{$etudiant->name}}</td>
-                        <td class="text-center" >{{$etudiant->name}}</td>
+                        <td class="text-center" >{{$etudiant->user->name}}</td>
+                        <td class="text-center" >{{$etudiant->user->cin}}</td>
                         <td class="text-center" >{{$etudiant->apogee}}</td>
-                        <td class="text-center" >{{$etudiant->name}}</td>
                         <td class="text-center" >{{$etudiant->cne}}</td>
+                        <td class="text-center" >{{$etudiant->user->email}}</td>
+                        <td class="text-center" >{{$etudiant->user->tele}}</td>
+                        <td class="text-center" >{{$etudiant->user->adresse}}</td>
+                        <td class="text-center" >{{$etudiant->filiere->name}}</td>
 
                         <td class="text-center" >
                             <button
