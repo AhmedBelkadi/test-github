@@ -12,7 +12,8 @@ class ElementController extends Controller
      */
     public function index()
     {
-        //
+        $elements = Element::paginate();
+        return view("admin.elements.index" ,compact("elements")  );
     }
 
     /**
@@ -60,6 +61,6 @@ class ElementController extends Controller
      */
     public function destroy(Element $element)
     {
-        //
+   
     }
 }

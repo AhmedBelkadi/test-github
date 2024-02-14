@@ -12,7 +12,8 @@ class EtudiantController extends Controller
      */
     public function index()
     {
-        //
+        $etudiants = Etudiant::paginate();
+        return view("admin.etudiants.index" ,compact("etudiants")  );
     }
 
     /**
@@ -28,7 +29,7 @@ class EtudiantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd("hhhhhhh");
     }
 
     /**

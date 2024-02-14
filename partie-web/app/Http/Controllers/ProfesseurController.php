@@ -12,7 +12,8 @@ class ProfesseurController extends Controller
      */
     public function index()
     {
-        //
+        $professeurs = Professeur::paginate();
+        return view("admin.professeurs.index" ,compact("professeurs")  );
     }
 
     /**

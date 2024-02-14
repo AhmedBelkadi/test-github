@@ -11,13 +11,13 @@
         data-bs-toggle="modal"
         data-bs-target="#basicModal"
     >
-        Ajouter un module
+        Ajouter un element
     </button>
     <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Ajouter un module</h5>
+                    <h5 class="modal-title" id="exampleModalLabel1">Ajouter un element</h5>
                     <button
                         type="button"
                         class="btn-close"
@@ -25,13 +25,13 @@
                         aria-label="Close"
                     ></button>
                 </div>
-                   <form method="post" action="{{route("modules.store")}}">
+                   <form method="post" action="{{route("elements.store")}}">
                        @csrf
                         <div class="modal-body">
                                <div class="row">
                                    <div class="col mb-3">
                                        <label for="nameBasic" class="form-label">Name</label>
-                                       <input type="text" name="name" id="nameBasic" class="form-control" placeholder="Enter Name" />
+                                       <input type="text" name="name" id="nameBasic" class="form-control" placeholder="Enter name" />
                                        @error("name")
                                        <span class="text-danger" >{{$message}}</span>
                                        @enderror
@@ -39,13 +39,23 @@
                                </div>
                                <div class="row g-2">
                                    <div class="col mb-0">
-                                       <label for="emailBasic" class="form-label">nbr-heure</label>
-                                       <input type="text" id="emailBasic"  name="nbr_heure" class="form-control" placeholder="enter nombre des heures" />
-                                       @error("nbr_heure")
+                                       <label for="emailBasic" class="form-label">Module</label>
+                                       <input type="text" id="emailBasic"  name="module" class="form-control" placeholder="enter name" />
+                                       @error("module")
                                        <span class="text-danger" >{{$message}}</span>
                                        @enderror
                                    </div>
                                </div>
+                               
+                               <div class="row g-2">
+                                <div class="col mb-0">
+                                    <label for="emailBasic" class="form-label">Professeur</label>
+                                    <input type="text" id="emailBasic"  name="prof" class="form-control" placeholder="enter name" />
+                                    @error("prof")
+                                    <span class="text-danger" >{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
                         </div>
                         <div class="modal-footer">
@@ -65,28 +75,26 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th class="text-center" >module</th>
-                    <th class="text-center" >nbr heure</th>
-                    <th class="text-center" >filiere</th>
-                    <th class="text-center" >semestre</th>
+                    <th class="text-center" >Element</th>
+                    <th class="text-center" >Module</th>
+                    <th class="text-center" >Professeur</th>
                     <th  class="text-center"  >Actions</th>
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                @foreach( $modules as $module )
+                @foreach( $elements as $element )
                     <tr>
-                        <td class="text-center" >{{$module->name}}</td>
-                        <td class="text-center" >{{$module->nbr_heure}}</td>
-                        <td class="text-center" >{{$module->filiere->name}}</td>
-                        <td class="text-center" >{{$module->semestre->name}}</td>
-                        <td class="text-center" >
+                        <td class="text-center" >{{$element->name}}</td>
+                        <td class="text-center" >{{$element->module->name}}</td>
+                        <td class="text-center" >{{$element->professeurs->name}}</td>
+                                                <td class="text-center" >
                             <button
                                 type="button"
                                 class="btn btn-danger text-white"
                                 data-bs-toggle="modal"
                                 data-bs-target="#basicModal"
                             >
-                                delete
+                                Delete
                             </button>
                                  <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -99,7 +107,7 @@
                         </div>
                         <div class="modal-footer">
 
-                            <form method="POST" class=" me-2" action="{{route("modules.destroy",$module)}}" >
+                            <form method="POST" class=" me-2" action="{{route("elements.destroy",$element)}}" >
                                 @csrf
                                 @method("DELETE")
                                 <input type="submit" class="btn btn-danger" value="Delete">
@@ -113,7 +121,7 @@
             </div>
         </div>
     </div>
-                            <a class="btn btn-success text-white" >modifier</a>
+                            <a class="btn btn-success text-white" >Modifier</a>
                         </td>
                     </tr>
                 @endforeach

@@ -77,7 +77,7 @@
         </li>
 
         <li class="menu-item ">
-            <a href="index.html" class="menu-link">
+            <a href="{{route("departements.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Departements</div>
             </a>
@@ -89,7 +89,7 @@
             </a>
         </li>
         <li class="menu-item ">
-            <a href="index.html" class="menu-link">
+            <a href="{{route("elements.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Elements</div>
             </a>
@@ -101,19 +101,19 @@
             </a>
         </li>
         <li class="menu-item ">
-            <a href="index.html" class="menu-link">
+            <a href="{{route("emplois.index")}}"  class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Emplois du temps</div>
             </a>
         </li>
         <li class="menu-item ">
-            <a href="index.html" class="menu-link">
+            <a href="{{route("professeurs.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Professeurs</div>
             </a>
         </li>
         <li class="menu-item ">
-            <a href="index.html" class="menu-link">
+            <a href="{{route("etudiants.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Etudiants</div>
             </a>

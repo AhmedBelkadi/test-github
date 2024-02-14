@@ -12,7 +12,8 @@ class DepartementController extends Controller
      */
     public function index()
     {
-        //
+        $departements = Departement::paginate(5);
+        return view("admin.departements.index" ,compact("departements")  );
     }
 
     /**
@@ -28,7 +29,7 @@ class DepartementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd("added successufully");
     }
 
     /**

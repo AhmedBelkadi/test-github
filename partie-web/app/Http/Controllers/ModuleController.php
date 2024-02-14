@@ -12,7 +12,7 @@ class ModuleController extends Controller
      */
     public function index()
     {
-        $modules = Module::all();
+        $modules = Module::paginate();
         return view("admin.modules.index" ,compact("modules")  );
     }
 

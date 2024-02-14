@@ -21,4 +21,11 @@ Route::resource("modules" , \App\Http\Controllers\ModuleController::class)->exce
 Route::resource("filieres" , \App\Http\Controllers\FiliereController::class)->except(["show","create","edit"]);
 Route::resource("emplois" , \App\Http\Controllers\EmploiDuTempsController::class)->except(["show","create","edit"]);
 Route::resource("salles" , \App\Http\Controllers\SalleController::class)->except(["show","create"]);
+Route::resource("departements" , \App\Http\Controllers\DepartementController::class);
+Route::resource("elements" , \App\Http\Controllers\ElementController::class);
+Route::resource("professeurs" , \App\Http\Controllers\ProfesseurController::class);
+Route::resource("etudiants" , \App\Http\Controllers\EtudiantController::class);
+
+
+
 
