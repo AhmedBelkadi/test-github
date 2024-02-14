@@ -60,27 +60,28 @@ Ajouter un departement
 
 <div class=" mt-5 col-md-6 col-lg-4">
 
-  {{--  @foreach($departements as $departement) --}}
+ {{--  @foreach($departements as $departement) --}}
 
   
 
     <div class="card text-center mb-3">
       <div class="card-body">
-        <h4 class="card-title"> Génie informatique et mathématique</h4>
-        <h5 class="card-text">Chef : Gounane</h5>
+      {{-- <h5 class="card-title"> {{$departement->name}}</h5> --}}
+    {{--  <p class="card-text">
+        Chef de Département: {{$departement->chef->professeur->user->name}} --}}
+        <h5 class="card-title"> genie informatique et mathematique</h5>
+        <h6 class="card-title"> Chef de Département: gounane</h6>
         <div class="p-2 bg-primary text-white rounded">
             3 filières
-        </div>
+            </div>
 
-     {{--   <h5 class="card-title"> {{$departement->name}}</h5> --}}
-
-       {{-- <p class="card-text">Chef de Departement : {{$departement->chef->name}}</p> --}}
-       {{-- <a href="javascript:void(0)" class="btn btn-primary">{{ count($departement->filieres) }} filières</a> --}}
-
+   {{-- </p>      <div class="p-2 bg-primary text-white rounded">
+        {{ count($departement->filieres) }} filières
+        </div> --}}
       </div>
     </div>
 
-   {{-- @endforeach --}}
+  {{-- @endforeach --}}
 
   </div>
 
