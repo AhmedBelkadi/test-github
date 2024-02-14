@@ -62,7 +62,7 @@ Ajouter un departement
 
  {{--  @foreach($departements as $departement) --}}
 
-  
+
 
     <div class="card text-center mb-3">
       <div class="card-body">
@@ -73,7 +73,7 @@ Ajouter un departement
         <h6 class="card-title"> Chef de Département: gounane</h6>
         <div class="p-2 bg-primary text-white rounded">
             3 filières
-            </div>
+        </div>
 
    {{-- </p>      <div class="p-2 bg-primary text-white rounded">
         {{ count($departement->filieres) }} filières

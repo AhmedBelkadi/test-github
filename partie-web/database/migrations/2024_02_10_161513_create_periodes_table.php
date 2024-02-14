@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string("libelle");
             $table->string("nbr_heure");
-
             $table->timestamps();
         });
     }

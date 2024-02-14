@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departement;
 use App\Models\Filiere;
+use App\Models\Professeur;
 use Illuminate\Http\Request;
 
 class FiliereController extends Controller
@@ -12,8 +14,11 @@ class FiliereController extends Controller
      */
     public function index()
     {
-        $filieres = Filiere::all();
-        return view("admin.filieres.index",compact("filieres"));
+        $filieres = Filiere::paginate(5);
+        $professeurs = Professeur::all();
+        $departements = Departement::all();
+
+        return view("admin.filieres.index",compact("filieres","professeurs","departements"));
     }
 
     /**

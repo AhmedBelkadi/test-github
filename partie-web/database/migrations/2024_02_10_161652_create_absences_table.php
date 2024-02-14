@@ -18,10 +18,10 @@ return new class extends Migration
             $table->foreign('id_seance')->references('id')->on('seances')->onDelete('cascade');
             $table->unsignedBigInteger('id_etudiant');
             $table->foreign('id_etudiant')->references('id')->on('etudiants')->onDelete('cascade');
-//            $table->unsignedBigInteger('id_justification');
-//            $table->foreign('id_justification')->references('id')->on('justifications')->onDelete('cascade');
             $table->timestamps();
         });
+//            $table->unsignedBigInteger('id_justification');
+//            $table->foreign('id_justification')->references('id')->on('justifications')->onDelete('cascade');
     }
 
     /**

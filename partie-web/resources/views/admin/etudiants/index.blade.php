@@ -46,7 +46,7 @@
                                        @enderror
                                    </div>
                                </div>
-                               
+
                                <div class="row g-2">
                                 <div class="col mb-0">
                                     <label for="emailBasic" class="form-label">Apogee</label>
@@ -115,7 +115,7 @@
                     <th class="text-center" >Name</th>
                     <th class="text-center" >CIN</th>
                     <th class="text-center" >Apogeer</th>
-                    <th  class="text-center"  >CNE</th>
+                    <th  class="text-center" >CNE</th>
                     <th class="text-center" >Email</th>
                     <th class="text-center" >Tele</th>
                     <th class="text-center" >Adresse</th>
@@ -127,8 +127,12 @@
                 @foreach( $etudiants as $etudiant )
                     <tr>
                         <td class="text-center" >{{$etudiant->name}}</td>
-                        
-                                                <td class="text-center" >
+                        <td class="text-center" >{{$etudiant->name}}</td>
+                        <td class="text-center" >{{$etudiant->apogee}}</td>
+                        <td class="text-center" >{{$etudiant->name}}</td>
+                        <td class="text-center" >{{$etudiant->cne}}</td>
+
+                        <td class="text-center" >
                             <button
                                 type="button"
                                 class="btn btn-danger text-white"
@@ -137,31 +141,30 @@
                             >
                                 Delete
                             </button>
-                                 <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="modal-header ">
-                            <h1 class="modal-title fs-5 w-100" id="exampleModalLabel">delete confirmation</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-footer">
+                             <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="modal-header ">
+                                                    <h1 class="modal-title fs-5 w-100" id="exampleModalLabel">delete confirmation</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-footer">
 
-                            <form method="POST" class=" me-2" action="{{route("etudiantss.destroy",$element)}}" >
-                                @csrf
-                                @method("DELETE")
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                            </form>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
+                                                    <form method="POST" class=" me-2" action="{{route("etudiants.destroy",$etudiant)}}" >
+                                                        @csrf
+                                                        @method("DELETE")
+                                                        <input type="submit" class="btn btn-danger" value="Delete">
+                                                    </form>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
                     </div>
 
                 </div>
-
-            </div>
-        </div>
-    </div>
+                                  </div>
+                             </div>
                             <a class="btn btn-success text-white" >Modifier</a>
                         </td>
                     </tr>

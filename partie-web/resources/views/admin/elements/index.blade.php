@@ -46,7 +46,7 @@
                                        @enderror
                                    </div>
                                </div>
-                               
+
                                <div class="row g-2">
                                 <div class="col mb-0">
                                     <label for="emailBasic" class="form-label">Professeur</label>
@@ -77,7 +77,7 @@
                 <tr>
                     <th class="text-center" >Element</th>
                     <th class="text-center" >Module</th>
-                    <th class="text-center" >Professeur</th>
+{{--                    <th class="text-center" >Professeur</th>--}}
                     <th  class="text-center"  >Actions</th>
                 </tr>
                 </thead>
@@ -86,8 +86,8 @@
                     <tr>
                         <td class="text-center" >{{$element->name}}</td>
                         <td class="text-center" >{{$element->module->name}}</td>
-                        <td class="text-center" >{{$element->professeurs->name}}</td>
-                                                <td class="text-center" >
+{{--                        <td class="text-center" >{{$element->professeurs->name}}</td>--}}
+                        <td class="text-center" >
                             <button
                                 type="button"
                                 class="btn btn-danger text-white"
@@ -97,8 +97,8 @@
                                 Delete
                             </button>
                                  <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+                                      <div class="modal-dialog" role="document">
+                                         <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
                         <div class="modal-header ">
@@ -117,7 +117,6 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
     </div>

@@ -46,7 +46,7 @@
                                        @enderror
                                    </div>
                                </div>
-                               
+
                                <div class="row g-2">
                                 <div class="col mb-0">
                                     <label for="emailBasic" class="form-label">Email</label>
@@ -104,8 +104,12 @@
                 <tbody class="table-border-bottom-0">
                 @foreach( $professeurs as $professeur )
                     <tr>
-                        <td class="text-center" >{{$professeurs->user->name}}</td>
-                       
+                        <td class="text-center" >{{$professeur->user->name}}</td>
+                        <td class="text-center" >{{$professeur->user->cin}}</td>
+                        <td class="text-center" >{{$professeur->user->email}}</td>
+                        <td class="text-center" >{{$professeur->user->tele}}</td>
+                        <td class="text-center" >{{$professeur->user->adresse}}</td>
+
                                                 <td class="text-center" >
                             <button
                                 type="button"
@@ -126,7 +130,7 @@
                         </div>
                         <div class="modal-footer">
 
-                            <form method="POST" class=" me-2" action="{{route("professeurs.destroy",$element)}}" >
+                            <form method="POST" class=" me-2" action="{{route("professeurs.destroy",$professeur)}}" >
                                 @csrf
                                 @method("DELETE")
                                 <input type="submit" class="btn btn-danger" value="Delete">

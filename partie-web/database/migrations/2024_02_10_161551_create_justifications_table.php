@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string("date");
             $table->string("libele");
             $table->string("etat");
-
             $table->timestamps();
         });
     }

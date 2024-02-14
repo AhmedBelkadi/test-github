@@ -70,7 +70,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item active">
-            <a href="index.html" class="menu-link">
+            <a href="/" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -95,7 +95,7 @@
             </a>
         </li>
         <li class="menu-item ">
-            <a href="index.html" class="menu-link">
+            <a href="{{route("semestres.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Semestres</div>
             </a>
@@ -119,13 +119,13 @@
             </a>
         </li>
         <li class="menu-item ">
-            <a href="index.html" class="menu-link">
+            <a href="{{route("absences.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Absences</div>
             </a>
         </li>
         <li class="menu-item ">
-            <a href="index.html" class="menu-link">
+            <a href="{{route("salles.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Salles</div>
             </a>

@@ -23,14 +23,14 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
+        });
+    }
 //            $table->unsignedBigInteger('id_filiere');
 //            $table->foreign('id_filiere')->references('id')->on('filieres')->onDelete('cascade');
 
 //            $table->string("role");
 //            $table->string("cne")->nullable();
 //            $table->string("apogee")->nullable();
-        });
-    }
 
     /**
      * Reverse the migrations.
