@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FiliereRequest;
 use App\Models\Departement;
 use App\Models\Filiere;
 use App\Models\Professeur;
+use App\Models\Qcm;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FiliereController extends Controller
 {
@@ -32,10 +35,16 @@ class FiliereController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FiliereRequest $request)
     {
-        //
-    }
+        Filiere::create([
+            "id_professeur" => $request->input("id_professeur"),
+            "id_departement" => $request->input("id_departement"),
+            "nbr_semestre" => $request->input("nbr_semestre"),
+            "type" => $request->input("type"),
+            "name" => $request->input("name"),
+        ]);
+        return to_route("filieres.index")->with("success","Filiere created successfully!");    }
 
     /**
      * Display the specified resource.

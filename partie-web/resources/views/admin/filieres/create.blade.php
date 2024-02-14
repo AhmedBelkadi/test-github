@@ -1,9 +1,9 @@
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filiereModal">
     Ajouter un filiere
 </button>
 
-<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="filiereModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Ajouter un filiere</h5>
@@ -19,19 +19,19 @@
                             @error("name")<span class="text-danger" >{{$message}}</span>@enderror
                         </div>
                     </div>
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <div class=" mt-2 mb-3">
-                                <label for="nameBasic" class="form-label">type</label>
-                                <select name="type" id="largeSelect" class="form-select form-select">
-                                    <option  selected >select type</option>
-                                        <option value="{{old("type","lp")}}">licence professionnelle</option>
-                                        <option value="{{old("type","dut")}}">Diplôme Universitaire de Technologie</option>
-                                </select>
-                                @error("type")<span class="text-danger" >{{$message}}</span>@enderror
+                        <div class="row g-2">
+                            <div class="col mb-0">
+                                <div class=" mt-2 mb-3">
+                                    <label for="nameBasic" class="form-label">type</label>
+                                    <select name="type" id="largeSelect" class="form-select form-select">
+                                        <option selected >select type</option>
+                                            <option value="lp" {{ old('type') == 'lp' ? 'selected' : '' }} >licence professionnelle</option>
+                                            <option value="dut" {{ old('type') == 'dut' ? 'selected' : '' }} >Diplôme Universitaire de Technologie</option>
+                                    </select>
+                                    @error("type")<span class="text-danger" >{{$message}}</span>@enderror
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">nombre de semestre</label>
@@ -42,36 +42,43 @@
                     <div class="row g-2">
                         <div class="col mb-0">
                             <div class=" mt-2 mb-3">
-                                <label for="nameBasic" class="form-label">chef de filiere</label>
-                                <select name="id_professeur" id="largeSelect" class="form-select form-select">
-                                    <option selected >select professeur</option>
-                                    @foreach( $professeurs as $professeur )
-                                        <option value="{{old("id_professeur",$professeur->id)}}">{{$professeur->user->name}}</option>
+                                <label for="nameBasic" class="form-label">Chef de filiere</label>
+                                <select name="id_professeur" id="id_professeur" class="form-select form-select">
+                                    <option value="">Select Professeur</option>
+                                    @foreach($professeurs as $professeur)
+                                        <option value="{{ $professeur->id }}" {{ old('id_professeur') == $professeur->id ? 'selected' : '' }}>
+                                            {{ $professeur->user->name }}
+                                        </option>
                                     @endforeach
                                 </select>
-                                @error("id_professeur")<span class="text-danger" >{{$message}}</span>@enderror
+                                @error('id_professeur')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>
                     <div class="row g-2">
                         <div class="col mb-0">
                             <div class=" mt-2 mb-3">
-                                <label for="nameBasic" class="form-label">departement</label>
-                                <select name="id_departement" id="largeSelect" class="form-select form-select">
-                                    <option selected >select departement</option>
-                                    @foreach( $departements as $departement )
-                                        <option value="{{old("id_departement",$departement->id)}}">{{$departement->name}}</option>
+                                <label for="nameBasic" class="form-label">Departement</label>
+                                <select name="id_departement" id="id_departement" class="form-select form-select">
+                                    <option value="">Select Departement</option>
+                                    @foreach($departements as $departement)
+                                        <option value="{{ $departement->id }}" {{ old('id_departement') == $departement->id ? 'selected' : '' }}>
+                                            {{ $departement->name }}
+                                        </option>
                                     @endforeach
                                 </select>
-                                @error("id_departement")<span class="text-danger" >{{$message}}</span>@enderror
+                                @error('id_departement')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        Close
-                    </button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">ajouter</button>
                 </div>
             </form>

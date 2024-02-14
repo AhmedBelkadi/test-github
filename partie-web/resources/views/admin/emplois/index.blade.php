@@ -72,7 +72,7 @@
                         {{$salle->name}}
                     </div>
 
-                        <a  href="{{route("salles.edit",$salle)}}" class="btn btn-primary text-white  btn-lg" >update</a>
+                        <a  href="{{route("salles.edit",[ 'salle'=>$salle , 'openModal' => true])}}" class="btn btn-primary text-white  btn-lg" >update</a>
                     <form method="POST" class="" action="{{route("salles.destroy",$salle)}}" >
                         @csrf
                         @method("DELETE")

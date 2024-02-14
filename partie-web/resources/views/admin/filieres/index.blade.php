@@ -6,17 +6,19 @@
 
     @include("admin.filieres.create")
 
+    @php
+        $openModal = request()->query('openModal');
+    @endphp
+
     <div class=" mt-3 row row-cols-2">
         @foreach($filieres as $index => $filiere)
-            <div class="col"> <div class="card text-center mb-3">
+            <div class="col">
+                <div class="card text-center mb-3">
                     <div class="card-body">
                         <h5 class="card-title">{{$filiere->name}}</h5>
-                        <h6 class="card-title">Chef de Filiere: {{$filiere->chef->user->name}}</h6>
+                        <h6 class="card-title">Chef de Filiere : {{$filiere->chef->user->name}}</h6>
                         <div class="p-2 bg-primary text-white rounded">
-                            @php
-                                $nbrDeEtudiants = count(App\Models\Etudiant::all()->where("id_filiere",$filiere->id))
-                            @endphp
-                            {{$nbrDeEtudiants}} etudiant
+                            {{count($filiere->etudiants)}} etudiant
                         </div>
                     </div>
                 </div>
@@ -30,7 +32,20 @@
 
 
 @endsection
-
+@section( "scripts" )
+    <script>
+        // Open the modal if the 'openModal' parameter is set in the URL
+        window.addEventListener('load', function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var openModal = urlParams.get('openModal');
+            if (openModal) {
+                var modal = document.getElementById('filiereModal');
+                var bootstrapModal = new bootstrap.Modal(modal);
+                bootstrapModal.show();
+            }
+        });
+    </script>
+@endsection
 
 
 
