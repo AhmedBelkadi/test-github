@@ -20,18 +20,18 @@
                         </div>
                     </div>
                     <div class="row g-2">
-                            <div class="col mb-0">
-                                <div class="  mb-3">
-                                    <label for="nameBasic" class="form-label">type</label>
-                                    <select name="type" id="largeSelect" class="form-select form-select">
-                                        <option selected >select type</option>
-                                            <option value="lp" {{ old('type') == 'lp' ? 'selected' : '' }} >licence professionnelle</option>
-                                            <option value="dut" {{ old('type') == 'dut' ? 'selected' : '' }} >Diplôme Universitaire de Technologie</option>
-                                    </select>
-                                    @error("type")<span class="text-danger" >{{$message}}</span>@enderror
-                                </div>
+                        <div class="col mb-0">
+                            <div class="  mb-3">
+                                <label for="nameBasic" class="form-label">type</label>
+                                <select name="type" id="largeSelect" class="form-select form-select">
+                                    <option selected >select type</option>
+                                    <option value="lp" {{ old('type') == 'lp' ? 'selected' : '' }} >licence professionnelle</option>
+                                    <option value="dut" {{ old('type') == 'dut' ? 'selected' : '' }} >Diplôme Universitaire de Technologie</option>
+                                </select>
+                                @error("type")<span class="text-danger" >{{$message}}</span>@enderror
                             </div>
                         </div>
+                    </div>
                     <div class="row g-2">
                         <div class="col mb-3">
                             <label for="emailBasic" class="form-label">nombre de semestre</label>
@@ -85,3 +85,4 @@
         </div>
     </div>
 </div>
+

@@ -1,7 +1,3 @@
-{{--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFiliereModal">--}}
-{{--    Ajouter un filiere--}}
-{{--</button>--}}
-
 <div class="modal fade" id="editFiliereModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content">
@@ -21,19 +17,19 @@
                         </div>
                     </div>
                     <div class="row g-2">
-                            <div class="col mb-0">
-                                <div class="  mb-3">
-                                    <label for="nameBasic" class="form-label">type</label>
-                                    <select name="type" id="largeSelect" class="form-select form-select">
-{{--                                        <option selected >select type</option>--}}
-                                            <option value="{{$filiere->type}}"  > {{$filiere->type == "lp" ? "licence professionnelle" : "Diplôme Universitaire de Technologie" }} </option>
-                                            <option value="lp" {{ old('type') == 'lp' ? 'selected' : '' }} >licence professionnelle</option>
-                                            <option value="dut" {{ old('type') == 'dut' ? 'selected' : '' }} >Diplôme Universitaire de Technologie</option>
-                                    </select>
-                                    @error("type")<span class="text-danger" >{{$message}}</span>@enderror
-                                </div>
+                        <div class="col mb-0">
+                            <div class="  mb-3">
+                                <label for="nameBasic" class="form-label">type</label>
+                                <select name="type" id="largeSelect" class="form-select form-select">
+                                    {{--                                        <option selected >select type</option>--}}
+                                    <option value="{{$filiere->type}}"  > {{$filiere->type == "lp" ? "licence professionnelle" : "Diplôme Universitaire de Technologie" }} </option>
+                                    <option value="lp" {{ old('type') == 'lp' ? 'selected' : '' }} >licence professionnelle</option>
+                                    <option value="dut" {{ old('type') == 'dut' ? 'selected' : '' }} >Diplôme Universitaire de Technologie</option>
+                                </select>
+                                @error("type")<span class="text-danger" >{{$message}}</span>@enderror
                             </div>
                         </div>
+                    </div>
                     <div class="row g-2">
                         <div class="col mb-3">
                             <label for="emailBasic" class="form-label">nombre de semestre</label>
@@ -46,13 +42,13 @@
                             <div class=" mt-2 mb-3">
                                 <label for="nameBasic" class="form-label">Chef de filiere</label>
                                 <select name="id_professeur" id="id_professeur" class="form-select form-select">
-{{--                                    <option value="">Select Professeur</option>--}}
+                                    {{--                                    <option value="">Select Professeur</option>--}}
                                     <option value="{{ $filiere->chef->user->id }}">{{ $filiere->chef->user->name }}</option>
-{{--                                    <option value="{{ $professeur->id }}" {{ old('id_professeur') == $professeur->id ? 'selected' : '' }}>--}}
-{{--                                        {{ $professeur->user->name }}--}}
-{{--                                        </option>--}}
+                                    {{--                                    <option value="{{ $professeur->id }}" {{ old('id_professeur') == $professeur->id ? 'selected' : '' }}>--}}
+                                    {{--                                        {{ $professeur->user->name }}--}}
+                                    {{--                                        </option>--}}
 
-                                @foreach($professeurs as $professeur)
+                                    @foreach($professeurs as $professeur)
                                         <option value="{{ $professeur->id }}" {{ old('id_professeur') == $professeur->id ? 'selected' : '' }}>
                                             {{ $professeur->user->name }}
                                         </option>
@@ -69,9 +65,9 @@
                             <div class=" mt-2 mb-0">
                                 <label for="nameBasic" class="form-label">Departement</label>
                                 <select name="id_departement" id="id_departement" class="form-select form-select">
-{{--                                    <option value="">Select Departement</option>--}}
+                                    {{--                                    <option value="">Select Departement</option>--}}
                                     <option value="{{ $filiere->departement->id }}">{{ $filiere->departement->name }}</option>
-                                @foreach($departements as $departement)
+                                    @foreach($departements as $departement)
                                         <option value="{{ $departement->id }}" {{ old('id_departement') == $departement->id ? 'selected' : '' }}>
                                             {{ $departement->name }}
                                         </option>
@@ -93,3 +89,4 @@
         </div>
     </div>
 </div>
+
