@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PeriodeRequest;
+use App\Models\Filiere;
 use App\Models\Periode;
+use App\Models\Salle;
+use App\Models\Semestre;
 use Illuminate\Http\Request;
 
 class PeriodeController extends Controller
@@ -26,9 +30,13 @@ class PeriodeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PeriodeRequest $request)
     {
-        //
+        Periode::create([
+            "libelle" => $request->input("libelle"),
+            "nbr_heure" => 90,
+        ]);
+        return to_route("emplois.index",['openModal2' => true])->with("success","Periode created successfully!");
     }
 
     /**
@@ -44,15 +52,26 @@ class PeriodeController extends Controller
      */
     public function edit(Periode $periode)
     {
-        //
+        $periodes = Periode::all();
+//        $semestres = Semestre::all();
+
+
+        $semestres = Semestre::all();
+        $filieres = Filiere::all();
+        $salles = Salle::all();
+        $urlParams = new \Illuminate\Http\Request();
+        $openModal2 = $urlParams->query('openModal2');
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periode","openModal2","periodes",) );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Periode $periode)
+    public function update(PeriodeRequest $request, Periode $periode)
     {
-        //
+        $periode->libelle = $request->input("libelle");
+        $periode->save();
+        return to_route("emplois.index",['openModal2' => true])->with("success","Periode alle updated successfully!");
     }
 
     /**
@@ -60,6 +79,8 @@ class PeriodeController extends Controller
      */
     public function destroy(Periode $periode)
     {
-        //
+        $periode->delete();
+        return to_route("emplois.index",['openModal2' => true])->with("success","Periode deleted successfully!");
+//        return back()->with("success", "Salle deleted successfully!");
     }
 }

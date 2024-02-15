@@ -22,8 +22,7 @@ class PeriodeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "libelle" => "required|string",
-            "nbr_heure" => "required"
+            "libelle" => "required|string"
         ];
     }
 }

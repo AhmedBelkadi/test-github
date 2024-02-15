@@ -50,12 +50,14 @@ class SalleController extends Controller
      */
     public function edit(Salle $salle)
     {
+        $periodes = Periode::all();
+
         $semestres = Semestre::all();
         $filieres = Filiere::all();
         $salles = Salle::all();
         $urlParams = new \Illuminate\Http\Request();
         $openModal = $urlParams->query('openModal');
-        return view("admin.emplois.index" ,compact("semestres","filieres","salles","salle","openModal") );
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","salle","openModal","periodes") );
 //        return view("admin.emplois.index" ,compact("salles","salle") );
     }
 

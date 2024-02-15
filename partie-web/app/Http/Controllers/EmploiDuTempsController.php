@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EmploiDuTemps;
 use App\Models\Filiere;
+use App\Models\Periode;
 use App\Models\Salle;
 use App\Models\Semestre;
 use Illuminate\Http\Request;
@@ -18,7 +19,9 @@ class EmploiDuTempsController extends Controller
         $semestres = Semestre::all();
         $filieres = Filiere::all();
         $salles = Salle::all();
-        return view("admin.emplois.index" ,compact("semestres","filieres","salles") );
+        $periodes = Periode::all();
+
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periodes") );
 //        return view("admin.emplois.index" ,compact("salles") );
     }
 
