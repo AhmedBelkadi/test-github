@@ -47,11 +47,12 @@ Ajouter un element
 
                        <div class="row g-2">
                         <div class="col mb-0">
-                            <label for="emailBasic" class="form-label">Professeur(s)</label>
-                            <select name="id_professeur" id="professeurs" class="form-select form-select">
+                            <label for="emailBasic" class="form-label">Professeur(s)     <span class="text-success">(control-click (Windows) or command-click (Mac) to select more than one.)</span>
+                            </label>
+                            <select name="id_professeur[]" id="professeurs" class="form-select form-select" multiple>
                                 <option selected >select professeur</option>
                                 @foreach($professeurs as $professeur)
-                                    <option value="{{old("id_professeur", $professeur->id) }}">{{ $professeur->user->name }}</option>
+                                    <option value="{{ $professeur->id }}" {{ in_array($professeur->id, old('id_professeur', [])) ? 'selected' : '' }}>{{ $professeur->user->name }}</option>
                                 @endforeach
                             </select>
                             @error("id_professeur")
@@ -59,6 +60,7 @@ Ajouter un element
                             @enderror
                         </div>
                     </div>
+
 
 
                 </div>

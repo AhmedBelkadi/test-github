@@ -39,12 +39,15 @@
                         <div class="row g-2">
                             <div class="col mb-0">
                               <label for="emailBasic" class="form-label">Professeur(s)</label>
-                              <select name="id_professeur" id="professeurs" class="form-select form-select">
-                                <option selected disabled>select professeur</option>
+                              <select name="id_professeur[]" id="professeurs" class="form-select form-select" multiple>
+                                <option value="">Select professeur(s)</option>
                                 @foreach($professeurs as $professeur)
-                                <option value="{{ $professeur->id }}" {{ $element->id_professeur== $professeur->id ? 'selected' : '' }}>{{$professeur->user->name}}</option>
+                                    <option value="{{ $professeur->id }}" {{ in_array($professeur->id, old('id_professeur', $element->professeurs->pluck('id')->toArray())) ? 'selected' : '' }}>
+                                        {{ $professeur->user->name }}
+                                    </option>
                                 @endforeach
-                              </select>
+                            </select>
+
                             </div>
                           </div>
                         </div>
