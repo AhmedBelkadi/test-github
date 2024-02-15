@@ -25,6 +25,8 @@ class ElementRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'id_module' => 'required|exists:modules,id',
+            'id_professeur' => 'required|exists:professeurs,id',
+
         ];
     }
 }

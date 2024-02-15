@@ -22,7 +22,7 @@
                 <tr>
                     <th class="text-center" >Element</th>
                     <th class="text-center" >Module</th>
-                   <th class="text-center" >Professeur</th>
+                   <th class="text-center" >Professeurs</th>
                     <th  class="text-center"  >Actions</th>
                 </tr>
                 </thead>
@@ -31,6 +31,7 @@
                     <tr>
                         <td class="text-center" >{{$element->name}}</td>
                         <td class="text-center" >{{$element->module->name}}</td>
+
                         <td class="text-center">
                             {{ implode(" / ", $element->professeurs->pluck('user.name')->toArray()) }}
                         </td>

@@ -36,11 +36,18 @@ class ElementController extends Controller
     public function store(ElementRequest $request)
     {
 
-       Element::create([
-            "id_module" => $request->input("id_module"),
+        $module = Module::find($request->input("id_module"));
 
+        // Create a new `Element` model and associate it with the `Module`.
+        $element = new Element([
             "name" => $request->input("name"),
         ]);
+
+        $module->elements()->save($element);
+
+        // Associate the `Element` with the `Professeur`.
+        $professeur = Professeur::find($request->input("id_professeur"));
+        $element->professeurs()->save($professeur);
 
         return to_route('elements.index')->with("success","Element created successfully!");
     }
@@ -60,7 +67,7 @@ class ElementController extends Controller
 
     {
 
-        return view('admin.elements.edit', compact('element'));
+        return view('admin.elements.index', compact('element'));
     }
 
     /**

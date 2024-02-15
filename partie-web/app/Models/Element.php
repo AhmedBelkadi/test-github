@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Element extends Model
 {
     use HasFactory;
-    protected $fillable = [ "id_module" ,"name"];
+    protected $fillable = [ "id_module" ,"name","id_professeur"];
 
     public function module()
     {

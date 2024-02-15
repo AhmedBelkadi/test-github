@@ -2,12 +2,12 @@
 type="button"
 class="btn btn-primary"
 data-bs-toggle="modal"
-data-bs-target="#departementModal"
+data-bs-target="#addDepartementModal"
 >
 Ajouter un Département
 </button>
 
-<div class="modal fade" id="departementModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="addDepartementModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

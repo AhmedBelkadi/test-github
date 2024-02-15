@@ -36,18 +36,17 @@
 
                             </div>
                         </div>
-
                         <div class="row g-2">
                             <div class="col mb-0">
-                                <label for="emailBasic" class="form-label">Professeur(s)</label>
-                                <select name="id_professeur" id="professeurs" class="form-select form-select">
-                                    <option selected disabled>select professeur</option>
-                                    @foreach($professeurs as $professeur)
-                                    <option value="{{ $module->id }}" {{ $element->id_professeur== $professeur->id ? 'selected' : '' }}>{{$professeur->name}}</option>
-                                    @endforeach
-                                </select>
-
+                              <label for="emailBasic" class="form-label">Professeur(s)</label>
+                              <select name="id_professeur" id="professeurs" class="form-select form-select">
+                                <option selected disabled>select professeur</option>
+                                @foreach($professeurs as $professeur)
+                                <option value="{{ $professeur->id }}" {{ $element->id_professeur== $professeur->id ? 'selected' : '' }}>{{$professeur->user->name}}</option>
+                                @endforeach
+                              </select>
                             </div>
+                          </div>
                         </div>
 
 

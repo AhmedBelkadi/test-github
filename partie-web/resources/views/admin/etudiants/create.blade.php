@@ -89,17 +89,38 @@ Ajouter un etudiant
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Filiere</label>
-                            <input type="text" id="emailBasic"  name="filiere" class="form-control" placeholder="enter filiere" />
-                            @error("filiere")
+                            <select name="id_filiere" id="largeSelect" class="form-select form-select">
+                                <option selected >select filiere</option>
+                                @foreach( $filieres as $filiere )
+                                    <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
+                                @endforeach
+                            </select>
+                            @error("id_filiere")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
                         </div>
                     </div>
                     <div class="row g-2">
                         <div class="col mb-0">
-                            <label for="emailBasic" class="form-label">Role</label>
-                            <input type="text" id="emailBasic"  name="role" class="form-control" placeholder="enter filiere" />
-                            @error("role")
+                            <div class="  mb-3">
+                                <label for="nameBasic" class="form-label">Role</label>
+                                <select name="role" id="largeSelect" class="form-select form-select">
+                                    <option selected >select role</option>
+                                    <option value="etudiant" {{ old('type') == 'etudiant' ? 'selected' : '' }} > Etudiant</option>
+                                    <option value="professeur" {{ old('type') == 'professeur' ? 'selected' : '' }} >  Professeur </option>
+                                    <option value="admin" {{ old('type') == 'admin' ? 'selected' : '' }} >  Admin</option>
+
+                                </select>
+                                @error("role")<span class="text-danger" >{{$message}}</span>@enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-2">
+                        <div class="col mb-0">
+                            <label for="emailBasic" class="form-label">Password</label>
+                            <input type="password" id="emailBasic"  name="password" class="form-control" placeholder="enter password" />
+                            @error("password")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
                         </div>
