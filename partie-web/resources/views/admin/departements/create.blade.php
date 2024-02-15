@@ -2,12 +2,12 @@
 type="button"
 class="btn btn-primary"
 data-bs-toggle="modal"
-data-bs-target="#basicModal"
+data-bs-target="#departementModal"
 >
 Ajouter un Département
 </button>
 
-<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="departementModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -25,7 +25,7 @@ Ajouter un Département
                            <div class="row">
                                <div class="col mb-3">
                                    <label for="nameBasic" class="form-label">Name</label>
-                                   <input type="text" name="name" id="nameBasic" class="form-control" placeholder="Enter Name" />
+                                   <input type="text" value="{{old("name")}}" name="name" id="nameBasic" class="form-control" placeholder="Enter Name" />
                                    @error("name")
                                    <span class="text-danger" >{{$message}}</span>
                                    @enderror
@@ -38,7 +38,7 @@ Ajouter un Département
                                     <select name="id_professeur" id="largeSelect" class="form-select form-select">
                                         <option selected >select professeur</option>
                                         @foreach( $professeurs as $professeur )
-                                            <option value="{{old("id_professeur",$professeur->id)}}">{{$professeur->user->name}}</option>
+                                            <option value="{{ $professeur->id }}" {{ old('id_professeur') == $professeur->id ? 'selected' : '' }}>{{$professeur->user->name}}</option>
                                         @endforeach
                                     </select>
                                     @error("id_professeur")<span class="text-danger" >{{$message}}</span>@enderror

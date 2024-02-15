@@ -5,77 +5,14 @@
 
 {{--    <a class="btn btn-primary" href="{{route("modules.store")}}">Ajouter </a>--}}
     <!-- Button trigger modal -->
-    <button
-        type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#basicModal"
-    >
-        Ajouter un element
-    </button>
-    <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel1">Ajouter un element</h5>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
-                </div>
-                   <form method="post" action="{{route("elements.store")}}">
-                       @csrf
-                        <div class="modal-body">
-                               <div class="row">
-                                   <div class="col mb-3">
-                                       <label for="nameBasic" class="form-label">Name</label>
-                                       <input type="text" name="name" id="nameBasic" class="form-control" placeholder="Enter name" />
-                                       @error("name")
-                                       <span class="text-danger" >{{$message}}</span>
-                                       @enderror
-                                   </div>
-                               </div>
-                               <div class="row g-2">
-                                   <div class="col mb-0">
-                                       <label for="emailBasic" class="form-label">Module</label>
-                                       <select name="id_module" id="largeSelect" class="form-select form-select">
-                                        <option selected >select module</option>
-                                        @foreach($modules as $module )
-                                            <option value="{{old("id_module",$module->id)}}">{{$module->name}}</option>
-                                        @endforeach
-                                    </select>
-                                      @error("module")
-                                       <span class="text-danger" >{{$message}}</span>
-                                       @enderror
-                                   </div>
-                               </div>
+    <div class="container-xxl flex-grow-1 container-p-y">
 
-                               <div class="row g-2">
-                                <div class="col mb-0">
-                                    <label for="emailBasic" class="form-label">Professeur</label>
-                                    <input type="text" id="emailBasic"  name="professeur" class="form-control" placeholder="enter name" />
-                                    @error("professeur")
-                                    <span class="text-danger" >{{$message}}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="submit" class="btn btn-primary">ajouter</button>
-                        </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-
+    @include('admin.elements.create')
     <div class="mt-3 card">
+
+    @php
+    $openModal = request()->query('openModal');
+@endphp
         <div class="table-responsive text-nowrap">
             <table class="table">
                 <thead>
@@ -99,35 +36,23 @@
                                 type="button"
                                 class="btn btn-danger text-white"
                                 data-bs-toggle="modal"
-                                data-bs-target="#basicModal"
+                                data-bs-target="#basicModal{{$element->id}}"
                             >
-                                Delete
+                              Supprimer
                             </button>
-                                 <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
-                                      <div class="modal-dialog" role="document">
-                                         <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="modal-header ">
-                            <h1 class="modal-title fs-5 w-100" id="exampleModalLabel">delete confirmation</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-footer">
+                                 @include('admin.elements.delete')
 
-                            <form method="POST" class=" me-2" action="{{route("elements.destroy",$element)}}" >
-                                @csrf
-                                @method("DELETE")
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                            </form>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-                            <a class="btn btn-success text-white" >Modifier</a>
+                            <button
+                            type="button"
+                            class="btn btn-warning text-white"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modifierModal{{$element->id}}"
+                        >
+                          Modifier
+                        </button>
+                        @include('admin.elements.edit')
+
                         </td>
                     </tr>
                 @endforeach
@@ -137,6 +62,24 @@
         </div>
         {{$elements->links()}}
     </div>
+    </div>
+
+
+    @section( "scripts" )
+<script>
+    // Open the modal if the 'openModal' parameter is set in the URL
+    window.addEventListener('load', function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var openModal = urlParams.get('openModal');
+        if (openModal) {
+            var modal = document.getElementById('elementtModal');
+            var bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.show();
+        }
+    });
+</script>
+@endsection
+
 
 @endsection
 

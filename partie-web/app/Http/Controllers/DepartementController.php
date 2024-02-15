@@ -40,7 +40,7 @@ class DepartementController extends Controller
         $departement->id_professeur = $validated['id_professeur'];
         $departement->save();
 
-        return redirect()->route('departements.index');
+        return to_route('departements.index')->with("success","Departements created successfully!");
 
     }
 
