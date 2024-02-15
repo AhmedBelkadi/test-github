@@ -4,13 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DepartementRequest extends FormRequest
+class ModuleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
-    protected $redirect = '/departements?openModal=1';
-
+    protected $redirect = '/modules?openModal=1';
 
     public function authorize(): bool
     {
@@ -24,9 +23,13 @@ class DepartementRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
-            'name' => 'required|string|max:255',
-            'id_professeur' => 'required|integer|exists:professeurs,id',
-        ];
+        'name' => 'required|string|max:255',
+        'id_filiere' => 'required|exists:filieres,id',
+        'id_semestre' => 'required|exists:semestres,id',
+        'nbr_heure' => 'required|numeric',
+
+    ];
     }
 }

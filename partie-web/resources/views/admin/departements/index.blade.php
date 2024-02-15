@@ -11,6 +11,10 @@
 
     @include('admin.departements.create')
 
+    @php
+        $openModal = request()->query('openModal');
+    @endphp
+
     <div class="mt-3 row row-cols-2">
 
  @foreach($departements as $index => $departement)
@@ -38,7 +42,20 @@
   {{$departements->links()}}
 </div>
 
-
+@section( "scripts" )
+<script>
+    // Open the modal if the 'openModal' parameter is set in the URL
+    window.addEventListener('load', function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var openModal = urlParams.get('openModal');
+        if (openModal) {
+            var modal = document.getElementById('departementModal');
+            var bootstrapModal = new bootstrap.Modal(modal);
+            bootstrapModal.show();
+        }
+    });
+</script>
+@endsection
 
 
 @endsection

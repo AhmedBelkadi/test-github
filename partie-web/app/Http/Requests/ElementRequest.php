@@ -9,9 +9,10 @@ class ElementRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+    protected $redirect = '/elements?openModal=1';
     public function authorize(): bool
     {
-        return true;
+        return true ;
     }
 
     /**
@@ -22,8 +23,8 @@ class ElementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:elements,name,NULL,id_module,id_module,'.$this->id_module,
-            'id_module' => 'exists:modules,id',
+            'name' => 'required|string|max:255',
+            'id_module' => 'required|exists:modules,id',
         ];
     }
 }

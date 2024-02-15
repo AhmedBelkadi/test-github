@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ElementRequest;
 use App\Models\Element;
 use App\Models\Module;
+use App\Models\Professeur;
+
 use Illuminate\Http\Request;
 
 class ElementController extends Controller
@@ -15,8 +17,9 @@ class ElementController extends Controller
     {
         $elements = Element::paginate();
         $modules = Module::all();
+        $professeurs = Professeur::all();
 
-        return view("admin.elements.index" ,compact("elements","modules")  );
+        return view("admin.elements.index" ,compact("elements","modules","professeurs")  );
     }
 
     /**
@@ -32,7 +35,14 @@ class ElementController extends Controller
      */
     public function store(ElementRequest $request)
     {
-        $validatedData = $request->validated();
+
+       Element::create([
+            "id_module" => $request->input("id_module"),
+
+            "name" => $request->input("name"),
+        ]);
+
+        return to_route('elements.index')->with("success","Element created successfully!");
     }
 
     /**
@@ -47,8 +57,10 @@ class ElementController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Element $element)
+
     {
-        //
+
+        return view('admin.elements.edit', compact('element'));
     }
 
     /**
@@ -56,7 +68,19 @@ class ElementController extends Controller
      */
     public function update(Request $request, Element $element)
     {
-        //
+
+        $validated = $request->validate([
+            'name' => 'required|unique:elements,name,'.$element->id,
+            'id_module' => 'required|exists:modules,id',
+
+
+
+        ]);
+
+        $element->update($validated);
+
+        return redirect()->route('elements.index')->with('success', 'Element updated successfully!');
+
     }
 
     /**
@@ -64,6 +88,10 @@ class ElementController extends Controller
      */
     public function destroy(Element $element)
     {
+        {
+            $element->delete();
 
+            return redirect()->route('elements.index')->with('success', 'Element deleted successfully!');
+        }
     }
 }

@@ -49,6 +49,15 @@
                                        @enderror
                                    </div>
                                </div>
+                               <div class="row g-2">
+                                <div class="col mb-0">
+                                    <label for="emailBasic" class="form-label">Role</label>
+                                    <input type="text" id="emailBasic"  name="role" class="form-control" placeholder="enter role" />
+                                    @error("role")
+                                    <span class="text-danger" >{{$message}}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
                                <div class="row g-2">
                                 <div class="col mb-0">
@@ -98,6 +107,7 @@
                 <tr>
                     <th class="text-center" >Name</th>
                     <th class="text-center" >CIN</th>
+                    <th class="text-center" >Role</th>
                     <th class="text-center" >Email</th>
                     <th class="text-center" >Tele</th>
                     <th class="text-center" >Adresse</th>
@@ -109,6 +119,7 @@
                     <tr>
                         <td class="text-center" >{{$professeur->user->name}}</td>
                         <td class="text-center" >{{$professeur->user->cin}}</td>
+                        <td class="text-center" >{{$professeur->user->role}}</td>
                         <td class="text-center" >{{$professeur->user->email}}</td>
                         <td class="text-center" >{{$professeur->user->tele}}</td>
                         <td class="text-center" >{{$professeur->user->adresse}}</td>
