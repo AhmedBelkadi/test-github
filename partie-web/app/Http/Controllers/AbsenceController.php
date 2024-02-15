@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absence;
+use App\Models\Element;
+use App\Models\Module;
+use App\Models\Professeur;
 use Illuminate\Http\Request;
 
 class AbsenceController extends Controller
@@ -12,7 +15,11 @@ class AbsenceController extends Controller
      */
     public function index()
     {
-        //
+        $absences = Absence::paginate();
+//        $modules = Module::all();
+//        $professeurs = Professeur::all();
+
+        return view("admin.absences.index" ,compact("absences")  );
     }
 
     /**

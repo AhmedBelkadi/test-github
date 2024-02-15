@@ -6,36 +6,115 @@
     @section("main")
 
 
-        <div class=" d-flex justify-content-around align-items-center" >
-               <form method="post"  class=" d-flex  justify-content-between align-items-center  w-75" >
-                   @csrf
-                <p class="fs-3 text-primary " >Emploi du Temps</p>
-                   <div class=" mt-2 mb-3">
-                       <select id="largeSelect" class="form-select form-select-lg">
-                           <option selected >select filiere</option>
-                           @foreach( $filieres as $filiere )
-                               <option value="{{$filiere->id}}">{{$filiere->name}}</option>
-                           @endforeach
-                       </select>               </div>
-                   <div class=" mt-2 mb-3">
-                       <select id="largeSelect" class="form-select form-select-lg">
-                           <option selected >select semestre</option>
+        <div class="row " >
+                    <p class="col-3 fs-3 text-primary  text-center" >Emploi du Temps</p>
+{{--            <div class="col-3" >--}}
+{{--            </div>--}}
+
+            <div class="col-6  pe-4" >
+                <form method="post"  class="row " >
+                    @csrf
+                    <div class="col-5 ">
+                        <select id="largeSelect" class="form-select form-select-lg">
+                            <option selected >select filiere</option>
+                            @foreach( $filieres as $filiere )
+                                <option value="{{$filiere->id}}">{{$filiere->name}}</option>
+                            @endforeach
+                        </select>               </div>
+                    <div class=" col-4">
+                        <select id="largeSelect" class="form-select form-select-lg">
+                            <option selected >select semestre</option>
                             @foreach( $semestres as $semestre )
-                               <option value="{{$semestre->id}}">{{$semestre->name}}</option>
-                           @endforeach
-                       </select>
-                   </div>
-                   <div class=" mt-2 mb-3">
-                       <button type="button" class=" btn btn-lg btn-primary">Rechercher</button>
-                   </div>
-               </form>
-
-
-            <div class="ms-2 " >
-                <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#periodesModal">Periodes</button>
-                <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#sallesModal">Salles</button>
+                                <option value="{{$semestre->id}}">{{$semestre->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="button" class=" btn btn-lg btn-primary col-3">Rechercher</button>
+                    {{--                   <div class=" ">--}}
+                    {{--                   </div>--}}
+                </form>
             </div>
+
+                <div class="col-3 " >
+                    <div class="row" >
+                        <button type="button" class="btn btn-lg btn-primary   col-5 me-2" data-bs-toggle="modal" data-bs-target="#periodesModal">Periodes</button>
+                        <button type="button" class="btn btn-lg btn-primary col-5"    data-bs-toggle="modal" data-bs-target="#sallesModal">Salles</button>
+                    </div>
+                </div>
+
+
+{{--            <div class="ms-2" >--}}
+{{--            </div>--}}
         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="container">
+            <h2 class="mt-4 mb-4">Weekly Timetable</h2>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>08:00 - 10:00</th>
+                    <th>10:30 - 12:00</th>
+                    <th>14:00 - 16:00</th>
+                    <th>16:30 - 18:00</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Monday</td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                </tr>
+                <tr>
+                    <td>Thursday</td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                    <td><button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+
 
         @php $openModal = request()->query('openModal'); @endphp
 
