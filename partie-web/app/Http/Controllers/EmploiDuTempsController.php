@@ -78,6 +78,9 @@ class EmploiDuTempsController extends Controller
         $emploises = EmploiDuTemps::where("id_semestre",$request->input("id_semestre"))
                                 ->where("id_filiere",$request->input("id_filiere"))
                                 ->paginate(5);
+        $emploi = EmploiDuTemps::where("id_semestre",$request->input("id_semestre"))
+                                ->where("id_filiere",$request->input("id_filiere"))
+                                ->first();
 
         $semestres = Semestre::all();
         $filieres = Filiere::all();
@@ -107,7 +110,7 @@ class EmploiDuTempsController extends Controller
             }
         }
 
-        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periodes","days","emploises","schedule") );
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periodes","days","emploises","schedule","emploi") );
 
     }
 
