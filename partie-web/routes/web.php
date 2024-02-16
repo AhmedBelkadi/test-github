@@ -32,6 +32,8 @@ Route::resource("semestres" , \App\Http\Controllers\SemestreController::class);
 Route::resource("periodes" , \App\Http\Controllers\PeriodeController::class);
 Route::resource("absences" , \App\Http\Controllers\AbsenceController::class);
 
+Route::post("/emplois/chercher",[\App\Http\Controllers\EmploiDuTempsController::class,"chercher"])->name("emplois.chercher");
+
 
 
 

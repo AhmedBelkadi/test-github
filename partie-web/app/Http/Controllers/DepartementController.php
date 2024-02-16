@@ -72,13 +72,13 @@ class DepartementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Departement $departement)
+    public function update(ModifierDepartementRequest $request, Departement $departement)
     {
         $departement->name = $request->input("name");
 
         $departement->id_professeur = $request->input("id_professeur");
 
-        $departement->update();
+        $departement->save();
 
         return to_route("departements.index")->with("success","departement updated successfully!");
     }

@@ -11,7 +11,7 @@ class EmploisRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class EmploisRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'id_filiere' => 'required|exists:filieres,id',
+            'id_semestre' => 'required|exists:semestres,id',
         ];
     }
 }

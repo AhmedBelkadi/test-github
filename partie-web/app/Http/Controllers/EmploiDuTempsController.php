@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EmploisRequest;
 use App\Models\EmploiDuTemps;
 use App\Models\Filiere;
 use App\Models\Periode;
@@ -20,8 +21,10 @@ class EmploiDuTempsController extends Controller
         $filieres = Filiere::all();
         $salles = Salle::all();
         $periodes = Periode::all();
+        $emploises = EmploiDuTemps::paginate(1);
+        $days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
 
-        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periodes") );
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periodes","days","emploises") );
 //        return view("admin.emplois.index" ,compact("salles") );
     }
 
@@ -31,6 +34,22 @@ class EmploiDuTempsController extends Controller
     public function create()
     {
         //
+    }
+
+    public function chercher(EmploisRequest $request)
+    {
+        $emploises = EmploiDuTemps::where("id_semestre",$request->input("id_semestre"))
+                                ->where("id_filiere",$request->input("id_filiere"))
+                                ->paginate(5);
+
+        $semestres = Semestre::all();
+        $filieres = Filiere::all();
+        $salles = Salle::all();
+        $periodes = Periode::all();
+//        $emploises = EmploiDuTemps::paginate(1);
+        $days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periodes","days","emploises") );
+
     }
 
     /**

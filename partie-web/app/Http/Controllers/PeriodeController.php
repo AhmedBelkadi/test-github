@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PeriodeRequest;
+use App\Models\EmploiDuTemps;
 use App\Models\Filiere;
 use App\Models\Periode;
 use App\Models\Salle;
@@ -59,9 +60,11 @@ class PeriodeController extends Controller
         $semestres = Semestre::all();
         $filieres = Filiere::all();
         $salles = Salle::all();
+        $emploises = EmploiDuTemps::paginate(1);
+        $days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
         $urlParams = new \Illuminate\Http\Request();
         $openModal2 = $urlParams->query('openModal2');
-        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periode","openModal2","periodes",) );
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periode","openModal2","periodes","days","emploises") );
     }
 
     /**

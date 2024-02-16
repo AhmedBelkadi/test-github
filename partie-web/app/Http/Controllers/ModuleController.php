@@ -63,20 +63,9 @@ class ModuleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Module $module)
+    public function update(ModuleRequest $request, Module $module)
     {
-        // Validate the request data
-        $validated = $request->validate([
-            'name' => 'required|unique:modules,name,' . $module->id,
-            'nbr_heure' => 'required|numeric|min:0',
-            'id_filiere' => 'required|exists:filieres,id',
-            'id_semestre' => 'required|exists:semestres,id',
-        ]);
-
-        // Update the module with the validated data
-        $module->update($validated);
-
-
+        $module->update($request->all());
         return redirect()->route('modules.index')->with('success', 'Module updated successfully!');
     }
 
@@ -88,8 +77,7 @@ class ModuleController extends Controller
     {
         {
             $module->delete();
-
-            return redirect()->route('modules.index')->with('success', 'Moduledeleted successfully!');
+            return to_route('modules.index')->with('success', 'Module deleted successfully!');
         }
     }
 }

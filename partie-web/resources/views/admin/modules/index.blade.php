@@ -49,7 +49,7 @@
 
                             <button
                             type="button"
-                            class="btn btn-warning text-white"
+                            class="btn btn-success text-white"
                             data-bs-toggle="modal"
                             data-bs-target="#modifierModal{{$module->id}}"
                         >
