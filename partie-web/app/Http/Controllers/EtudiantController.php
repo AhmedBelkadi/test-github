@@ -83,6 +83,7 @@ class EtudiantController extends Controller
      */
   public function update(Request $request, Etudiant $etudiant)
 {
+//    dd("hhh");
     $validated = $request->validate([
         // User fields
         'name' => 'required',
@@ -96,19 +97,23 @@ class EtudiantController extends Controller
     ]);
 
     $user = $etudiant->user;
-    $user->fill($validated);
+    $user->name = $request->input("name");
+    $user->tele = $request->input("tele");
+    $user->adresse = $request->input("adresse");
+    $user->cin = $request->input("cin");
+    $user->email = $request->input("email");
     dd($user);
+//    $user->pa = $request->name;
+//    $user->fill($validated);
+//    dd($user);
     $user->save();
 
+    $etudiant->cne = $request->input("cne");
+    $etudiant->apogee = $request->input("apogee");
     // Now update the etudiant model
-    $etudiant->update([
-        'cne' => $validated['cne'],
-        'apogee' => $validated['apogee'],
+    $etudiant->save();
 
-
-    ]);
-
-    return redirect()->route('etudiants.index');
+    return to_route('etudiants.index');
 }
 
 
