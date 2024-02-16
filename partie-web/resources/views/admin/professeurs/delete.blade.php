@@ -1,4 +1,4 @@
-<div class="modal fade" id="deletModal{{$etudiant->id}}" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="basiModal{{$professeur->id}}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
        <div class="modal-content">
 <div class="modal-body">
@@ -9,7 +9,7 @@
 </div>
 <div class="modal-footer">
 
-<form method="POST" class=" me-2" action="{{route("etudiants.destroy",$etudiant->id)}}" >
+<form method="POST" class=" me-2" action="{{route("professeurs.destroy",$professeur->id)}}" >
 @csrf
 @method("DELETE")
 <input type="submit" class="btn btn-danger" value="Delete">

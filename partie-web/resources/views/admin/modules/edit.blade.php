@@ -22,6 +22,7 @@
                            <div class="col mb-3">
                                <label for="nameBasic" class="form-label">Name</label>
                                <input type="text" name="name"  value="{{$module->name}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+                               </div>
 
                            </div>
                            <div class="row g-2">

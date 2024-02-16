@@ -2,11 +2,11 @@
 type="button"
 class="btn btn-primary"
 data-bs-toggle="modal"
-data-bs-target="#basicModal"
+data-bs-target="#etudiantsModal"
 >
 Ajouter un etudiant
 </button>
-<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="etudiantsModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -24,7 +24,7 @@ Ajouter un etudiant
                        <div class="row">
                            <div class="col mb-3">
                                <label for="nameBasic" class="form-label">Name</label>
-                               <input type="text" name="name" id="nameBasic" class="form-control" placeholder="Enter name" />
+                               <input type="text" value="{{ old("name") }}" name="name" id="nameBasic" class="form-control" placeholder="Enter name" />
                                @error("name")
                                <span class="text-danger" >{{$message}}</span>
                                @enderror
@@ -33,7 +33,7 @@ Ajouter un etudiant
                        <div class="row g-2">
                            <div class="col mb-0">
                                <label for="emailBasic" class="form-label">CIN</label>
-                               <input type="text" id="emailBasic"  name="cin" class="form-control" placeholder="enter cin" />
+                               <input type="text" value="{{ old("cin") }}" id="emailBasic"  name="cin" class="form-control" placeholder="enter cin" />
                                @error("cin")
                                <span class="text-danger" >{{$message}}</span>
                                @enderror
@@ -43,7 +43,7 @@ Ajouter un etudiant
                        <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Apogee</label>
-                            <input type="text" id="emailBasic"  name="apogee" class="form-control" placeholder="enter apogee" />
+                            <input type="text" value="{{ old("apogee") }}" id="emailBasic"  name="apogee" class="form-control" placeholder="enter apogee" />
                             @error("apogee")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
@@ -53,7 +53,7 @@ Ajouter un etudiant
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">CNE</label>
-                            <input type="text" id="emailBasic"  name="cne" class="form-control" placeholder="enter cne" />
+                            <input type="text" id="emailBasic" value="{{ old("cne") }}"  name="cne" class="form-control" placeholder="enter cne" />
                             @error("cne")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
@@ -62,7 +62,7 @@ Ajouter un etudiant
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Email</label>
-                            <input type="email" id="emailBasic"  name="email" class="form-control" placeholder="enter email" />
+                            <input type="email" id="emailBasic"  value="{{ old("email") }}" name="email" class="form-control" placeholder="enter email" />
                             @error("email")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
@@ -71,7 +71,7 @@ Ajouter un etudiant
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Tele</label>
-                            <input type="text" id="emailBasic"  name="tele" class="form-control" placeholder="enter tele" />
+                            <input type="text" id="emailBasic"   value="{{ old("tele") }}"name="tele" class="form-control" placeholder="enter tele" />
                             @error("tele")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
@@ -80,7 +80,7 @@ Ajouter un etudiant
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Adresse</label>
-                            <input type="text" id="emailBasic"  name="adresse" class="form-control" placeholder="enter adresse" />
+                            <input type="text" id="emailBasic" value="{{ old("adresse") }}"  name="adresse" class="form-control" placeholder="enter adresse" />
                             @error("adresse")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
@@ -100,31 +100,9 @@ Ajouter un etudiant
                             @enderror
                         </div>
                     </div>
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <div class="  mb-3">
-                                <label for="nameBasic" class="form-label">Role</label>
-                                <select name="role" id="largeSelect" class="form-select form-select">
-                                    <option selected >select role</option>
-                                    <option value="etudiant" {{ old('type') == 'etudiant' ? 'selected' : '' }} > Etudiant</option>
-                                    <option value="professeur" {{ old('type') == 'professeur' ? 'selected' : '' }} >  Professeur </option>
-                                    <option value="admin" {{ old('type') == 'admin' ? 'selected' : '' }} >  Admin</option>
 
-                                </select>
-                                @error("role")<span class="text-danger" >{{$message}}</span>@enderror
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <label for="emailBasic" class="form-label">Password</label>
-                            <input type="password" id="emailBasic"  name="password" class="form-control" placeholder="enter password" />
-                            @error("password")
-                            <span class="text-danger" >{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
+
 
                 </div>
                 <div class="modal-footer">

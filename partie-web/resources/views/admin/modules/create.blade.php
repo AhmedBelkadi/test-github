@@ -33,7 +33,7 @@ Ajouter un module
                        <div class="row g-2">
                            <div class="col mb-0">
                                <label for="emailBasic" class="form-label">nbr-heure</label>
-                               <input type="text" id="emailBasic"  name="nbr_heure" class="form-control" placeholder="enter nombre des heures" />
+                               <input type="text" id="emailBasic"   value="{{ old("nbr_heure") }}" name="nbr_heure" class="form-control" placeholder="enter nombre des heures" />
                                @error("nbr_heure")
                                <span class="text-danger" >{{$message}}</span>
                                @enderror

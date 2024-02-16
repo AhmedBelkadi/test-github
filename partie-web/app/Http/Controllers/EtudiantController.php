@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\AjouterEtudiantRequest;
+use App\Http\Requests\EtudiantRequest;
 use App\Models\Etudiant;
 use App\Models\Filiere;
 use App\Models\User;
@@ -18,9 +19,10 @@ class EtudiantController extends Controller
     {
         $etudiants = Etudiant::paginate(10);
         $filieres = Filiere::all();
-        $users = User::all();
 
-        return view("admin.etudiants.index" ,compact("etudiants","filieres","users")  );
+
+        return view("admin.etudiants.index" ,compact("etudiants","filieres")  );
+
     }
 
     /**
@@ -34,30 +36,27 @@ class EtudiantController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AjouterEtudiantRequest $request)
     {
-           // Validation
-    $request->validate([
-        'cne' => 'required',
-        'apogee' => 'required',
-        'id_filiere' => 'required',
-        'user_id' => 'required'
-    ]);
+        $user = User::create([
+            'name' => $request->input('name'),
+            'tele' => $request->input('tele'),
+            'adresse' => $request->input('adresse'),
+            'cin' => $request->input('cin'),
+            'email' => $request->input('email'),
+            'role' => 'Etudiant',
+            'password' => bcrypt('123'),
+        ]);
 
-    // Save etudiant
-    $etudiant = new Etudiant([
-        'cne' => $request->get('cne'),
-        'apogee' => $request->get('apogee'),
-        'id_filiere' => $request->get('id_filiere'),
-        'user_id' => $request->get('user_id')
-    ]);
-    $etudiant->save();
+        $etudiant = Etudiant::create([
+            'user_id' => $user->id,
+            "id_filiere" => $request->input("id_filiere"),
+            'cne' => $request->input('cne'),
+            'apogee' => $request->input('apogee'),
 
-    // Redirect back
-    return to_route('etudiants.index')->with("succes !");
+        ]);
 
-  }
-
+        return to_route('etudiants.index');}
 
 
     /**
@@ -73,26 +72,45 @@ class EtudiantController extends Controller
      */
     public function edit(Etudiant $etudiant)
     {
-        return view('admin.etudiants.edit', compact('etudiant'));
+        $user_id = $etudiant->user->user_id;
+
+        return view('admin.etudiants.index', compact('etudiant','user_id'));
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Etudiant $etudiant)
-    {
-        // Validate the request data
-        $validated = $request->validate([
-            'id_filiere' => 'required|exists:filieres,id',
-        ]);
+  public function update(Request $request, Etudiant $etudiant)
+{
+    $validated = $request->validate([
+        // User fields
+        'name' => 'required',
+        'tele' => 'required',
+        'adresse' => 'required',
+        'cin' => 'required',
+        'email' => 'required|email',
+        // Etudiant fields
+        'cne' => 'required',
+        'apogee' => 'required',
+    ]);
 
-        // Update the module with the validated data
-        $module->update($validated);
+    $user = $etudiant->user;
+    $user->fill($validated);
+    dd($user);
+    $user->save();
+
+    // Now update the etudiant model
+    $etudiant->update([
+        'cne' => $validated['cne'],
+        'apogee' => $validated['apogee'],
 
 
-        return redirect()->route('modules.index')->with('success', 'Module updated successfully!');
-    }
+    ]);
+
+    return redirect()->route('etudiants.index');
+}
+
 
     /**
      * Remove the specified resource from storage.

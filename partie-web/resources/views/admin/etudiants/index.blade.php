@@ -12,6 +12,9 @@
 
 
     @include('admin.etudiants.create')
+    @php
+        $openModal = request()->query('openModal');
+    @endphp
 
 
     <div class="mt-3 card">
@@ -27,8 +30,6 @@
                     <th class="text-center" >Tele</th>
                     <th class="text-center" >Adresse</th>
                     <th class="text-center" >Filiere</th>
-                    <th class="text-center" >Role</th>
-                    <th class="text-center" >Password</th>
 
                     <th  class="text-center"  >Actions</th>
 
@@ -45,31 +46,32 @@
                         <td class="text-center" >{{$etudiant->user->tele}}</td>
                         <td class="text-center" >{{$etudiant->user->adresse}}</td>
                         <td class="text-center" >{{$etudiant->filiere->name}}</td>
-                        <td class="text-center" >{{$etudiant->user->role}}</td>
-                        <td class="text-center" >{{$etudiant->user->password}}</td>
+
+
 
 
                         <td class="text-center" >
-                            @include('admin.etudiants.delete')
+
                             <button
                                 type="button"
                                 class="btn btn-danger text-white"
                                 data-bs-toggle="modal"
-                                data-bs-target="#basicModal"
+                                data-bs-target="#deletModal{{ $etudiant->id }}"
                             >
                                 Supprimer
                             </button>
+                            @include('admin.etudiants.delete')
 
 
                             <button
                             type="button"
                             class="btn btn-warning text-white"
                             data-bs-toggle="modal"
-                            data-bs-target="#modifierModal{{$etudiant->id}}"
+                            data-bs-target="#modifieModal{{$etudiant->id}}"
                         >
                           Modifier
                         </button>
-                        {{-- @include('admin.etudiants.edit') --}}
+                        @include('admin.etudiants.edit')
 
                         </td>
                     </tr>
