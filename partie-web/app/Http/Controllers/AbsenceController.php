@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RechercherAbsenceRequest;
+use App\Http\Requests\SearchAbsencesByStudentRequest;
 use App\Models\Absence;
 use App\Models\Element;
+use App\Models\Filiere;
 use App\Models\Module;
+use App\Models\Periode;
 use App\Models\Professeur;
+use App\Models\Semestre;
 use Illuminate\Http\Request;
 
 class AbsenceController extends Controller
@@ -16,10 +21,81 @@ class AbsenceController extends Controller
     public function index()
     {
         $absences = Absence::paginate();
-//        $modules = Module::all();
-//        $professeurs = Professeur::all();
+        $filieres = Filiere::all();
+        $elements = Element::all();
+        $periodes = Periode::all();
+        $semestres = Semestre::all();
 
-        return view("admin.absences.index" ,compact("absences")  );
+        return view("admin.absences.index" ,compact("absences","filieres","periodes","elements","semestres")  );
+    }
+
+
+    public function chercher(RechercherAbsenceRequest $request)
+    {
+        $results = Absence::query();
+
+        if ($request->filled('id_filiere')) {
+            $results->whereHas('seance.emploiDuTemps.filiere', function ($query) use ($request) {
+                $query->where('id', $request->id_filiere);
+            });
+        }
+
+        if ($request->filled('id_semestre')) {
+            $results->whereHas('seance.emploiDuTemps.semestre', function ($query) use ($request) {
+                $query->where('id', $request->id_semestre);
+            });
+        }
+
+        if ($request->filled('id_element')) {
+            $results->whereHas('seance.element', function ($query) use ($request) {
+                $query->where('id', $request->id_element);
+            });
+        }
+
+        if ($request->filled('date')) {
+            $results->where('date', $request->date);
+        }
+
+        if ($request->filled('id_periode')) {
+            $results->whereHas('seance.periode', function ($query) use ($request) {
+                $query->where('id', $request->id_periode);
+            });
+        }
+
+        $absences = $results->get();
+        $filieres = Filiere::all();
+        $elements = Element::all();
+        $periodes = Periode::all();
+        $semestres = Semestre::all();
+
+        return view("admin.absences.index" ,compact("absences","filieres","periodes","elements","semestres")  );
+
+
+
+    }
+
+    public function searchByStudent(SearchAbsencesByStudentRequest $request)
+    {
+        $results = Absence::query();
+
+        if ($request->filled('query')) {
+            $query = $request->input("query");
+
+            $results->whereHas('etudiant', function ($query) use ($request) {
+                $query->where('cne', $request->input("query"))
+                    ->orWhere('apogee', $request->input("query"));
+            });
+        }
+
+        $absences = $results->get();
+        $filieres = Filiere::all();
+        $elements = Element::all();
+        $periodes = Periode::all();
+        $semestres = Semestre::all();
+
+        return view("admin.absences.index" ,compact("absences","filieres","periodes","elements","semestres")  );
+
+
     }
 
     /**

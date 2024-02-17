@@ -40,3 +40,6 @@ Route::post("/emplois/chercher",[\App\Http\Controllers\EmploiDuTempsController::
 
 
 
+Route::post("/absences/chercher",[\App\Http\Controllers\AbsenceController::class,"chercher"])->name("absences.chercher");
+Route::post('/absences/search-by-student', [\App\Http\Controllers\AbsenceController::class, 'searchByStudent'])->name('absences.searchByStudent');
+
