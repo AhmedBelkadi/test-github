@@ -6,20 +6,31 @@
 @section("main")
 <div class="container-xxl flex-grow-1 container-p-y">
 
-    @include('admin.professeurs.create')
+
+
     @php $openModal = request()->query('openModal');@endphp
+
+    @include('admin.professeurs.create')
+
+
 
     <form method="post" class=" row mt-3  " action="{{ route('professeurs.search') }}">
         @csrf
         <div class="row px-0  " >
             <div class=" col-11 ">
                 <input type="text" name="cin" id="cin" class="form-control" placeholder="Enter CIN" >
+                @error("cin")
+                <span class="text-danger" >{{$message}}</span>
+                @enderror
             </div>
             <div class=" col-1 ">
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </div>
     </form>
+
+
+
     <div class="row " >
         <div class=" col-12 mt-3   card">
             <div class="table-responsive text-nowrap">

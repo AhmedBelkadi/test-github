@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\ProfesseurRequest;
 use App\Http\Requests\AjouterProfesseurRequest;
+use App\Http\Requests\SearchProfesseurRequest;
+
 
 use App\Models\Professeur;
 use App\Models\User;
@@ -32,36 +34,51 @@ class ProfesseurController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(AjouterProfesseurRequest $request)
-{
-
-
-    $user = User::create([
-        'name' => $request->input('name'),
-        'tele' => $request->input('tele'),
-        'adresse' => $request->input('adresse'),
-        'cin' => $request->input('cin'),
-        'email' => $request->input('email'),
-        'role' => 'professeur',
-        'password' => bcrypt('123'),
-    ]);
-
-    $professeurs = Professeur::create([
-        'user_id' => $user->id,
-    ]);
-
-    return to_route('professeurs.index');
-
-}
-
-
-
-    public function search(Request $request)
     {
-        $cin = $request->input('cin'); // Change query to input
+        $user = User::create([
+            'name' => $request->input('name'),
+            'tele' => $request->input('tele'),
+            'adresse' => $request->input('adresse'),
+            'cin' => $request->input('cin'),
+            'email' => $request->input('email'),
+            'role' => 'professeur',
+            'password' => bcrypt('123'),
+        ]);
 
-        $professeurs = Professeur::whereHas('user', function ($query) use ($cin) {
-            $query->where('cin', 'LIKE', '%' . $cin . '%');
-        })->get();
+        $professeurs = Professeur::create([
+            'user_id' => $user->id,
+        ]);
+
+        return to_route('professeurs.index');
+
+
+
+    }
+
+
+
+
+    public function search(SearchProfesseurRequest $request)
+    {
+        $results=Professeur::query();
+
+        if($request->filled("cin")){
+
+        $cin = $request->input('cin');
+
+
+        $results->whereHas('user',function ($query) use ($cin) {
+            $query->where('cin', "$cin");
+
+            })->get();
+
+            $professeurs = $results->get();
+
+            return view('admin.professeurs.index', compact('professeurs'));
+        }
+
+            $professeurs = Professeur::paginate(10);
+
 
         return view('admin.professeurs.index', compact('professeurs'));
     }

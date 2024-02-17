@@ -25,13 +25,15 @@ class AjouterEtudiantRequest extends FormRequest
     {
         return [
 
-            'name' => 'required',
+            'name' => 'required:users',
             'email' => 'required|email|unique:users',
-            'tele' => 'required',
-            'adresse' => 'required',
-            'cin' => 'required',
-            'cne' => 'required',
-            'apogee' => 'required',
+            'tele' => 'required:users',
+            'adresse' => 'required:users',
+            'cin' => 'required|unique:users',
+            'cne' => 'required|unique:etudiants',
+            'apogee' => 'required:etudiants',
+            'id_filiere' => 'required:filieres,id_filiere',
+
     ];
 }
 }

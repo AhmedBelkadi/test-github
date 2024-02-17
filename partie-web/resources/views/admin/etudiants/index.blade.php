@@ -16,6 +16,24 @@
         $openModal = request()->query('openModal');
     @endphp
 
+<form method="post" class="row mt-3" action="{{ route('etudiants.search') }}">
+    @csrf
+    <div class="row px-2.2">
+        <div class="col-11">
+            <input type="text" name="cin_cne" id="search" class="form-control" placeholder="Enter CIN or CNE">
+            @error('cin_cne')
+                <span class="text-danger">{{$message}}</span>
+            @enderror
+        </div>
+        <div class="col-1">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+
+
+
 
     <div class="mt-3 card">
         <div class="table-responsive text-nowrap">
@@ -83,7 +101,7 @@
     </div>
 
 
-    {{$etudiants->links()}}
+    {{-- {{$etudiants->links()}} --}}
     </div>
 
 @endsection

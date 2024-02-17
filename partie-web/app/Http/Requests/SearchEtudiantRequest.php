@@ -4,15 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AjouterProfesseurRequest extends FormRequest
+class SearchEtudiantRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
-
-     protected $redirect = '/professeurs?openModal=1';
-
-
     public function authorize(): bool
     {
         return true;
@@ -26,15 +22,8 @@ class AjouterProfesseurRequest extends FormRequest
     public function rules(): array
     {
         return [
-
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
-                'tele' => 'required',
-                'adresse' => 'required',
-                'cin' => 'required|unique:users',
-
-
-
+            'cin_cne' => 'nullable|string|max:255',
         ];
     }
+
 }

@@ -26,6 +26,7 @@ Route::resource("elements" , \App\Http\Controllers\ElementController::class);
 Route::resource("professeurs" , \App\Http\Controllers\ProfesseurController::class);
 Route::post("/professeurs/search", [\App\Http\Controllers\ProfesseurController::class, "search"])->name("professeurs.search");
 Route::resource("etudiants" , \App\Http\Controllers\EtudiantController::class);
+Route::post("/etudiants/search", [\App\Http\Controllers\EtudiantController::class, "search"])->name("etudiants.search");
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\AjouterEtudiantRequest;
+use App\Http\Requests\SearchEtudiantRequest;
 use App\Http\Requests\EtudiantRequest;
 use App\Models\Etudiant;
 use App\Models\Filiere;
@@ -59,6 +60,34 @@ class EtudiantController extends Controller
         return to_route('etudiants.index');}
 
 
+        public function search(SearchEtudiantRequest $request)
+        {
+
+            $results=Etudiant::query();
+            if($request->filled("cin_cne")){
+
+                $cin_cne = $request->input('cin_cne');
+
+                 $results->where(function ($query) use ($cin_cne) {
+                    $query->where('apogee', "$cin_cne")
+                    ->orWhere('cne',  "$cin_cne");
+                })->get();
+                $etudiants = $results->get();
+                $filieres = Filiere::all();
+
+                return view('admin.etudiants.index', compact('etudiants', 'filieres'));
+
+            }
+
+
+            $etudiants = Etudiant::paginate(10);
+
+            $filieres = Filiere::all();
+
+            return view('admin.etudiants.index', compact('etudiants', 'filieres'));
+
+        }
+
     /**
      * Display the specified resource.
      */
@@ -81,40 +110,39 @@ class EtudiantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-  public function update(Request $request, Etudiant $etudiant)
-{
-//    dd("hhh");
-    $validated = $request->validate([
-        // User fields
-        'name' => 'required',
-        'tele' => 'required',
-        'adresse' => 'required',
-        'cin' => 'required',
-        'email' => 'required|email',
-        // Etudiant fields
-        'cne' => 'required',
-        'apogee' => 'required',
-    ]);
+    public function update(Request $request, Etudiant $etudiant)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'tele' => 'required',
+            'adresse' => 'required',
+            'cin' => 'required',
+            'email' => 'required|email',
+            'cne' => 'required',
+            'apogee' => 'required',
+        ]);
 
-    $user = $etudiant->user;
-    $user->name = $request->input("name");
-    $user->tele = $request->input("tele");
-    $user->adresse = $request->input("adresse");
-    $user->cin = $request->input("cin");
-    $user->email = $request->input("email");
-    dd($user);
-//    $user->pa = $request->name;
-//    $user->fill($validated);
-//    dd($user);
-    $user->save();
+        $user = $etudiant->user;
+        // dd($user,$request);
 
-    $etudiant->cne = $request->input("cne");
-    $etudiant->apogee = $request->input("apogee");
-    // Now update the etudiant model
-    $etudiant->save();
+        $user->name = $request->input("name");
+        $user->cin = $request->input("cin");
+        $etudiant->apogee = $request->input("apogee");
+        $etudiant->cne = $request->input("cne");
+        $etudiant->id_filiere = $request->input("id_filiere");
+        $user->email = $request->input("email");
+        $user->tele = $request->input("tele");
+        $user->adresse = $request->input("adresse");
 
-    return to_route('etudiants.index');
-}
+
+        $user->save();
+        $etudiant->save();
+
+        return to_route('etudiants.index');
+        // dd("kkkk");
+    }
+
+
 
 
     /**

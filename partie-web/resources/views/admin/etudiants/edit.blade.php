@@ -61,14 +61,83 @@
  <div class="row">
     <div class="col mb-3">
         <label for="nameBasic" class="form-label">CNE</label>
-        <input type="text" name="adresse"  value="{{$etudiant->cne}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+        <input type="text" name="cne"  value="{{$etudiant->cne}}" id="nameBasic" class="form-control" placeholder="Enter name" />
 </div>
 </div>
 <div class="row">
     <div class="col mb-3">
         <label for="nameBasic" class="form-label">Apogee</label>
-        <input type="text" name="adresse"  value="{{$etudiant->apogee}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+        <input type="text" name="apogee"  value="{{$etudiant->apogee}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+
+    </div>
+
+    {{-- <div class="row g-2">
+        <div class="col mb-0">
+            <label for="emailBasic" class="form-label">Filiere</label>
+            <select name="id_filiere" id="largeSelect" class="form-select form-select">
+                @foreach( $filieres as $filiere )
+                    <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
+                @endforeach
+            </select>
+            @error("id_filiere")
+            <span class="text-danger" >{{$message}}</span>
+            @enderror
+        </div>
+    </div> --}}
+
+
+
+
+
+
+
+
+
+
 </div>
+<div class="row g-2">
+    <div class="col mb-0">
+        <div class=" mt-2 mb-3">
+            <label for="nameBasic" class="form-label">Filiere</label>
+            <select name="id_filiere" id="id_filiere" class="form-select form-select">
+                <option value="{{ $etudiant->filiere->id }}">{{ $etudiant->filiere->name }}</option>
+                    @foreach($filieres as $filiere)
+                    @if($filiere->id==$etudiant->filiere->id)
+                        @continue
+                    @endif
+                <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>
+                        {{ $filiere->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('id_filiere')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+    </div>
+
+{{--
+    <div class="row g-2">
+        <div class="col mb-0">
+            <label for="emailBasic" class="form-label">Filiere</label>
+            <select name="id_filiere" id="filierees" class="form-select form-select">
+                <option selected disabled>select Filiere</option> --}}
+                {{-- @foreach($filieres as $filiere) --}}
+                {{-- <option value="{{ $filiere->id }}" {{ $module->id_filiere== $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option> --}}
+                {{-- <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>
+                    {{ $filiere->name }}
+                </option>
+                @endforeach
+            </select>
+
+        </div>
+    </div> --}}
+
+
+
+
+
+
 </div>
 
 
