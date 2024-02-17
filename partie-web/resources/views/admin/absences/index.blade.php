@@ -2,18 +2,8 @@
 
 @section( "absences-active" , "active" )
 
-
 @section("main")
-    <!-- Basic Bootstrap Table -->
-
-    {{--    <a class="btn btn-primary" href="{{route("modules.store")}}">Ajouter </a>--}}
-    <!-- Button trigger modal -->
     <div class="container-xxl  container">
-
-{{--        @include('admin.elements.create')--}}
-
-
-
         <div class="row mt-2 " >
             <div class="col p-0" >
                <div class="" >
@@ -136,13 +126,10 @@
                        {{--                    </div>--}}
                    </form>
                    <div class="row  p-0  mx-0 mb-4" >
-                       <div class="row  w-100">
-                           <div class="col  w-100  p-0"  >
-                               <div>
-{{--                                   <label for="nameBasic" class="form-label">date</label>--}}
-                                   <input type="text" value="{{old("name")}}" name="date" id="nameBasic" class="form-control " placeholder="Rechercher par CIN ou CNE"  />
-                                   @error("date")<span class="text-danger" >{{$message}}</span>@enderror
-                               </div>
+                       <div class="col-12  p-0"  >
+                           <div>
+                               <input type="text" value="{{old("name")}}" name="date" id="nameBasic" class="form-control " placeholder="Rechercher par CIN ou CNE"  />
+                               @error("date")<span class="text-danger" >{{$message}}</span>@enderror
                            </div>
                        </div>
                    </div>
@@ -159,7 +146,7 @@
                                    <th  class="text-center"  >periode</th>
                                    <th  class="text-center"  >type seance</th>
                                    <th  class="text-center"  >justifier</th>
-                                   {{--                                <th  class="text-center"  ></th>--}}
+                                                                   <th  class="text-center"  ></th>
                                </tr>
                                </thead>
                                <tbody class="table-border-bottom-0">
@@ -167,13 +154,20 @@
                                    <tr>
                                        <td class="text-center" >{{$absence->etudiant->user->name}}</td>
                                        {{--                            <td class="text-center" >{{$absence->seance->element->professeurs}}</td>--}}
-                                       <td class="text-center" >hhh</td>
+
+                                       <td class="text-center" >                                                                       {{ implode(" / ", $absence->professeurs->pluck('user.name')->toArray()) }}</td>
                                        <td class="text-center" >{{$absence->seance->element->name}}</td>
                                        <td class="text-center" >{{$absence->seance->element->module->filiere->name}}</td>
                                        <td class="text-center" >{{$absence->date}}</td>
                                        <td class="text-center" >{{$absence->seance->periode->libelle}}</td>
                                        <td class="text-center" >{{$absence->seance->type}}</td>
                                        <td class="text-center" >hh</td>
+                                       <td class="text-center" >
+                                           <div class="d-flex" >
+                                               <button class="btn btn-success me-1" >Accepter</button>
+                                               <button class="btn btn-danger" >Reffuser</button>
+                                           </div>
+                                       </td>
                                        {{--                            <td class="text-center" >{{$absence->justifications}}</td>--}}
                                        {{--                            <td class="text-center" >{{$absence->module->name}}</td>--}}
                                        {{--                            <td class="text-center">--}}
@@ -213,23 +207,17 @@
                </div>
             </div>
         </div>
-
-
     </div>
-
-
-    @endsection
-
+@endsection
 
 @section( "scripts" )
         <script>
-            // Open the modal if the 'openModal' parameter is set in the URL
             window.addEventListener('load', function() {
-                var urlParams = new URLSearchParams(window.location.search);
-                var openModal = urlParams.get('openModal');
+                let urlParams = new URLSearchParams(window.location.search);
+                let openModal = urlParams.get('openModal');
                 if (openModal) {
-                    var modal = document.getElementById('elementtModal');
-                    var bootstrapModal = new bootstrap.Modal(modal);
+                    let modal = document.getElementById('elementtModal');
+                    let bootstrapModal = new bootstrap.Modal(modal);
                     bootstrapModal.show();
                 }
             });

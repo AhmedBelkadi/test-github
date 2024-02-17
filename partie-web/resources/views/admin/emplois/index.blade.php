@@ -84,17 +84,25 @@
                         <h2 class="mt-4 mb-4">{{ $emploi->filiere->name }} - {{ $emploi->semestre->name }}</h2>
                         <table class="table table-bordered">
                             <thead>
-                            <tr>
+                            <tr class="bg-danger " >
                                 <th></th>
                                 @foreach ($periodes as $periode)
-                                    <th>{{ $periode->libelle }}</th>
+                                    <th class="bg-primary " >
+                                        <div class="bg-info text-center px-1 py-2 w-50 border border-2 rounded-3" >
+                                        {{ $periode->libelle }}
+                                        </div>
+                                    </th>
                                 @endforeach
                             </tr>
                             </thead>
                             <tbody>
                             @foreach ($days as $day)
                                 <tr class="" >
-                                    <td class=" " >{{ $day }}</td>
+                                    <td class=" w-px-75" >
+                                        <div class="bg-primary text-white py-4 px-3 border border-2 rounded-3 text-center" >
+                                        {{ $day }}
+                                        </div>
+                                    </td>
                                     @foreach ($periodes as $periode)
                                         <td class=" " >
                                             {{--                                    @if (isset($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id]))--}}
