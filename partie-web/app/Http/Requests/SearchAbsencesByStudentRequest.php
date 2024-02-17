@@ -22,7 +22,7 @@ class SearchAbsencesByStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'query' => 'required|string|max:255', // Example validation rules for the search query
+            'query' => 'nullable||string|max:255', // Example validation rules for the search query
         ];
     }
 }

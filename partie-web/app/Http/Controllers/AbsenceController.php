@@ -7,9 +7,7 @@ use App\Http\Requests\SearchAbsencesByStudentRequest;
 use App\Models\Absence;
 use App\Models\Element;
 use App\Models\Filiere;
-use App\Models\Module;
 use App\Models\Periode;
-use App\Models\Professeur;
 use App\Models\Semestre;
 use Illuminate\Http\Request;
 
@@ -20,7 +18,7 @@ class AbsenceController extends Controller
      */
     public function index()
     {
-        $absences = Absence::paginate();
+        $absences = Absence::paginate(10);
         $filieres = Filiere::all();
         $elements = Element::all();
         $periodes = Periode::all();
@@ -85,9 +83,17 @@ class AbsenceController extends Controller
                 $query->where('cne', $request->input("query"))
                     ->orWhere('apogee', $request->input("query"));
             });
-        }
 
         $absences = $results->get();
+            $filieres = Filiere::all();
+            $elements = Element::all();
+            $periodes = Periode::all();
+            $semestres = Semestre::all();
+
+            return view("admin.absences.index" ,compact("absences","filieres","periodes","elements","semestres")  );
+        }
+
+        $absences = Absence::paginate(10);
         $filieres = Filiere::all();
         $elements = Element::all();
         $periodes = Periode::all();
