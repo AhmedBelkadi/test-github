@@ -12,8 +12,38 @@
     <div class="container-xxl flex-grow-1 container-p-y">
 
 
+
     @include('admin.professeurs.create')
-    @php $openModal = request()->query('openModal'); @endphp
+    @php
+    $openModal = request()->query('openModal');
+@endphp
+
+
+
+    <form method="post" action="{{ route('professeurs.search') }}">
+        @csrf
+        <div class="row align-items-end">
+             <!-- Input for CIN -->
+             <div class="col-md-8 mt-3">
+                <input type="text" name="cin" id="cin" class="form-control" placeholder="Enter CIN" required>
+            </div>
+
+            <!-- Submit button -->
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+
+        </div>
+    </form>
+
+
+
+
+
+
+
+
+
 
     <div class="mt-3 card">
         <div class="table-responsive text-nowrap">
@@ -67,7 +97,7 @@
             </table>
         </div>
     </div>
-    {{ $professeurs->links() }}
+    {{-- {{ $professeurs->links() }} --}}
 
     </div>
 

@@ -24,7 +24,10 @@ Route::resource("salles" , \App\Http\Controllers\SalleController::class);
 Route::resource("departements" , \App\Http\Controllers\DepartementController::class);
 Route::resource("elements" , \App\Http\Controllers\ElementController::class);
 Route::resource("professeurs" , \App\Http\Controllers\ProfesseurController::class);
+Route::post("/professeurs/search", [\App\Http\Controllers\ProfesseurController::class, "search"])->name("professeurs.search");
 Route::resource("etudiants" , \App\Http\Controllers\EtudiantController::class);
+
+
 
 
 Route::resource("seances" , \App\Http\Controllers\SeanceController::class);

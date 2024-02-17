@@ -15,7 +15,7 @@ class ProfesseurController extends Controller
      */
     public function index()
     {
-        $professeurs = Professeur::paginate(10);
+        $professeurs = Professeur::paginate(15);
 
         return view("admin.professeurs.index" ,compact("professeurs")  );
     }
@@ -45,11 +45,32 @@ class ProfesseurController extends Controller
         'password' => bcrypt('123'),
     ]);
 
-    $professeur = Professeur::create([
+    $professeurs = Professeur::create([
         'user_id' => $user->id,
     ]);
 
-    return to_route('professeurs.index');}
+    return to_route('professeurs.index');
+
+}
+
+
+
+    public function search(Request $request)
+    {
+        $cin = $request->input('cin'); // Change query to input
+
+        $professeurs = Professeur::whereHas('user', function ($query) use ($cin) {
+            $query->where('cin', 'LIKE', '%' . $cin . '%');
+        })->get();
+
+        return view('admin.professeurs.index', compact('professeurs'));
+    }
+
+
+
+
+
+
 
 
     /**

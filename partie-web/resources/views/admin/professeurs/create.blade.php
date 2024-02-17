@@ -1,6 +1,6 @@
 <button
 type="button"
-class="btn btn-primary"
+class="btn btn-primary mt-2"
 data-bs-toggle="modal"
 data-bs-target="#professeursModal"
 >

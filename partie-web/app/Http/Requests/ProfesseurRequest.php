@@ -9,6 +9,8 @@ class ProfesseurRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+    protected $redirect = '/professeurs?openModal=1';
+
     public function authorize(): bool
     {
         return true;
