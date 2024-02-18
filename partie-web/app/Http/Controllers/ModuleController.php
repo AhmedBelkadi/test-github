@@ -65,6 +65,14 @@ class ModuleController extends Controller
      */
     public function update(ModuleRequest $request, Module $module)
     {
+
+        $request->validate([
+        'name' => 'required|string|max:255',
+        'id_filiere' => 'required|exists:filieres,id',
+        'id_semestre' => 'required|exists:semestres,id',
+        'nbr_heure' => 'required|numeric',
+    ]);
+
         $module->update($request->all());
         return redirect()->route('modules.index')->with('success', 'Module updated successfully!');
     }

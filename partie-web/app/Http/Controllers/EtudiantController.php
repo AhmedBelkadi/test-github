@@ -7,6 +7,9 @@ use App\Http\Requests\EtudiantRequest;
 use App\Models\Etudiant;
 use App\Models\Filiere;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendEmail;
+use Illuminate\Support\Str;
 
 
 use Illuminate\Http\Request;
@@ -46,7 +49,7 @@ class EtudiantController extends Controller
             'cin' => $request->input('cin'),
             'email' => $request->input('email'),
             'role' => 'Etudiant',
-            'password' => bcrypt('123'),
+            'password' =>'123',
         ]);
 
         $etudiant = Etudiant::create([
@@ -56,6 +59,13 @@ class EtudiantController extends Controller
             'apogee' => $request->input('apogee'),
 
         ]);
+
+
+    // Send an email to the student with their email and password
+    Mail::to($user->email)->send(new SendEmail($user->email, $user->password));
+
+
+
 
         return to_route('etudiants.index');}
 

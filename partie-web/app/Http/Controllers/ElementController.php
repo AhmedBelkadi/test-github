@@ -62,7 +62,7 @@ $element->professeurs()->attach($request->input("id_professeur"));
 
     {
 
-        return view('admin.elements.index', compact('element'));
+        return view('admin.elements.index', compact('elements'));
     }
 
     /**
@@ -74,6 +74,7 @@ $element->professeurs()->attach($request->input("id_professeur"));
         $validated = $request->validate([
             'name' => 'required|unique:elements,name,'.$element->id,
             'id_module' => 'required|exists:modules,id',
+            // 'id_professeur[]' => 'required|exists:professeurs,id',
 
 
 
@@ -83,7 +84,8 @@ $element->professeurs()->attach($request->input("id_professeur"));
         $element->professeurs()->sync($request->input("id_professeur"));
 
 
-        return redirect()->route('elements.index')->with('success', 'Element updated successfully!');
+        return to_route('elements.index');
+
 
     }
 

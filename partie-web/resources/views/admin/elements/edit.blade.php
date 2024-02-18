@@ -21,7 +21,8 @@
                        <div class="row">
                            <div class="col mb-3">
                                <label for="nameBasic" class="form-label">Name</label>
-                               <input type="text" name="name"  value="{{$element->name}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+                               <input type="text" value="{{!old("name") ? $element->name : old("name") }}" name="name" id="nameBasic" class="form-control" placeholder="Enter Name" />
+                               @error("name")<span class="text-danger" >{{$message}}</span>@enderror
 
                            </div>
                            <div class="row g-2">
@@ -30,9 +31,14 @@
                                 <select name="id_module" id="largeSelect" class="form-select form-select">
                                  <option selected disabled >select module</option>
                                  @foreach($modules as $module )
+                                 {{-- @if($module->id==$elements->module->id)
+                                  @continue
+                                  @endif --}}
                                  <option value="{{ $module->id }}" {{ $element->id_module== $module->id ? 'selected' : '' }}>{{$module->name}}</option>
                                  @endforeach
                              </select>
+                             @error("id_module")<span class="text-danger" >{{$message}}</span>@enderror
+
 
                             </div>
                         </div>
@@ -43,10 +49,15 @@
                                 <option value="">Select professeur(s)</option>
                                 @foreach($professeurs as $professeur)
                                     <option value="{{ $professeur->id }}" {{ in_array($professeur->id, old('id_professeur', $element->professeurs->pluck('id')->toArray())) ? 'selected' : '' }}>
+
+
                                         {{ $professeur->user->name }}
                                     </option>
                                 @endforeach
+
                             </select>
+                            @error("id_professeur[]")<span class="text-danger" >{{$message}}</span>@enderror
+
 
                             </div>
                           </div>

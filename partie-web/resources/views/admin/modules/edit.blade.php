@@ -18,47 +18,68 @@
         @method('PUT')
                @csrf
                 <div class="modal-body">
-                       <div class="row">
-                           <div class="col mb-3">
-                               <label for="nameBasic" class="form-label">Name</label>
-                               <input type="text" name="name"  value="{{$module->name}}" id="nameBasic" class="form-control" placeholder="Enter name" />
-                               </div>
-
-                           </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="nameBasic" class="form-label">Name</label>
+                            <input type="text"  name="name"  value="{{!old("name") ? $module->name : old("name") }}" id="nameBasic" class="form-control" placeholder="Enter Name" />
+                            @error("name")<span class="text-danger" >{{$message}}</span>@enderror
+                        </div>
+                    </div>
                            <div class="row g-2">
                             <div class="col mb-0">
                                 <label for="emailBasic" class="form-label">Nbr_heure</label>
-                                <input type="text" name="nbr_heure"  value="{{$module->nbr_heure}}" id="nameBasic" class="form-control" placeholder="Entrer le nombre des heures" />
-
-
-                            </div>
-                        </div>
-
-                        <div class="row g-2">
-                            <div class="col mb-0">
-                                <label for="emailBasic" class="form-label">Filiere</label>
-                                <select name="id_filiere" id="filierees" class="form-select form-select">
-                                    <option selected disabled>select Filiere</option>
-                                    @foreach($filieres as $filiere)
-                                    <option value="{{ $filiere->id }}" {{ $module->id_filiere== $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text"  name="nbr_heure" value="{{!old("nbr_heure") ? $module->nbr_heure : old("nbr_heure") }} " id="nameBasic" class="form-control" placeholder="Enter le nombre des heures" />
+                                @error('nbr_heure')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
 
                             </div>
                         </div>
 
                         <div class="row g-2">
                             <div class="col mb-0">
-                                <label for="emailBasic" class="form-label">Semestre</label>
-                                <select name="id_semestre" id="semestre" class="form-select form-select">
-                                    <option selected disabled>select Semestre</option>
-                                    @foreach($semestres as $semestre)
-                                    <option value="{{ $semestre->id }}" {{ $module->id_semestre== $semestre->id ? 'selected' : '' }}>{{$semestre->name}}</option>
-                                    @endforeach
-                                </select>
-
+                                <div class=" mt-2 mb-3">
+                                    <label for="nameBasic" class="form-label">Filiere</label>
+                                    <select name="id_filiere" id="id_filiere" class="form-select form-select">
+                                        <option value="{{ $module->filiere->id }}">{{ $module->filiere->name }}</option>
+                                            @foreach($filieres as $filiere)
+                                            @if($filiere->id==$module->filiere->id)
+                                                @continue
+                                            @endif
+                                        <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>
+                                                {{ $filiere->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_filiere')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
+                            </div>
+
+
+                            <div class="row g-2">
+                                <div class="col mb-0">
+                                    <div class=" mt-2 mb-3">
+                                        <label for="nameBasic" class="form-label">Semestre</label>
+                                        <select name="id_semestre" id="id_semestre" class="form-select form-select">
+                                            <option value="{{ $module->semestre->id }}">{{ $module->semestre->name }}</option>
+                                                @foreach($semestres as $semestre)
+                                                @if($semestre->id==$module->semestre->id)
+                                                    @continue
+                                                @endif
+                                            <option value="{{ $semestre->id }}" {{ old('id_semestre') == $semestre->id ? 'selected' : '' }}>
+                                                    {{ $semestre->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('id_semestre')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                </div>
 
 
                 </div>

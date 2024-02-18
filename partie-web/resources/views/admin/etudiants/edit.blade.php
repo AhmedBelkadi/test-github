@@ -18,21 +18,27 @@
 
 
 
-    <form method="post" action="{{route("etudiants.update",$etudiant)}}">
+    <form method="post" action="{{route("etudiants.update",$etudiant->id)}}">
         @method('PUT')
                @csrf
                     <div class="modal-body">
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameBasic" class="form-label">Name</label>
-                                <input type="text" name="name"  value="{{$etudiant->user->name}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+                                <input type="text" name="name"  value="{{!old("name") ? $etudiant->user->name : old("name")}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+                                @error('name')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                  </div>
                  </div>
 
                      <div class="row">
                          <div class="col mb-3">
                              <label for="nameBasic" class="form-label">CIN</label>
-                             <input type="text" name="cin"  value="{{$etudiant->user->cin}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+                             <input type="text" name="cin"  value="{{!old("cin") ? $etudiant->user->cin : old("cin")}}" id="nameBasic" class="form-control" placeholder="Enter cin" />
+                             @error('cin')
+                             <span class="text-danger">{{ $message }}</span>
+                             @enderror
               </div>
               </div>
 
@@ -41,51 +47,50 @@
              <div class="row">
                  <div class="col mb-3">
                      <label for="nameBasic" class="form-label">Email</label>
-                     <input type="email" name="email"  value="{{$etudiant->user->email}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+                     <input type="text" name="email"  value="{{!old("email") ? $etudiant->user->email : old("email")}}" id="emailBasic" class="form-control" placeholder="Enter email" />
+                     @error('email')
+                     <span class="text-danger">{{ $message }}</span>
+                     @enderror
       </div>
       </div>
 
          <div class="row">
              <div class="col mb-3">
                  <label for="nameBasic" class="form-label">Tele</label>
-                 <input type="text" name="tele"  value="{{$etudiant->user->tele}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+                 <input type="text" name="tele"  value="{{!old("tele") ? $etudiant->user->tele : old("tele")}}" id="nameBasic" class="form-control" placeholder="Enter tele" />
+                 @error('tele')
+                 <span class="text-danger">{{ $message }}</span>
+                 @enderror
   </div>
   </div>
 
      <div class="row">
          <div class="col mb-3">
              <label for="nameBasic" class="form-label">Adresse</label>
-             <input type="text" name="adresse"  value="{{$etudiant->user->adresse}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+             <input type="text" name="adresse"  value="{{!old("adresse") ? $etudiant->user->adresse : old("adresse")}}" id="nameBasic" class="form-control" placeholder="Enter adresse" />
+             @error('adresse')
+             <span class="text-danger">{{ $message }}</span>
+             @enderror
  </div>
  </div>
  <div class="row">
     <div class="col mb-3">
         <label for="nameBasic" class="form-label">CNE</label>
-        <input type="text" name="cne"  value="{{$etudiant->cne}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+        <input type="text" name="cne"  value="{{!old("cne") ? $etudiant->cne : old("cne")}}" id="nameBasic" class="form-control" placeholder="Enter cne" />
+        @error('cne')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
 </div>
 </div>
 <div class="row">
     <div class="col mb-3">
         <label for="nameBasic" class="form-label">Apogee</label>
-        <input type="text" name="apogee"  value="{{$etudiant->apogee}}" id="nameBasic" class="form-control" placeholder="Enter name" />
+        <input type="text" name="apogee"  value="{{!old("apogee") ? $etudiant->apogee : old("apogee")}}" id="nameBasic" class="form-control" placeholder="Enter apogee" />
+        @error('apogee')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
 
     </div>
-
-    {{-- <div class="row g-2">
-        <div class="col mb-0">
-            <label for="emailBasic" class="form-label">Filiere</label>
-            <select name="id_filiere" id="largeSelect" class="form-select form-select">
-                @foreach( $filieres as $filiere )
-                    <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
-                @endforeach
-            </select>
-            @error("id_filiere")
-            <span class="text-danger" >{{$message}}</span>
-            @enderror
-        </div>
-    </div> --}}
-
-
 
 
 
@@ -116,22 +121,7 @@
         </div>
     </div>
 
-{{--
-    <div class="row g-2">
-        <div class="col mb-0">
-            <label for="emailBasic" class="form-label">Filiere</label>
-            <select name="id_filiere" id="filierees" class="form-select form-select">
-                <option selected disabled>select Filiere</option> --}}
-                {{-- @foreach($filieres as $filiere) --}}
-                {{-- <option value="{{ $filiere->id }}" {{ $module->id_filiere== $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option> --}}
-                {{-- <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>
-                    {{ $filiere->name }}
-                </option>
-                @endforeach
-            </select>
 
-        </div>
-    </div> --}}
 
 
 

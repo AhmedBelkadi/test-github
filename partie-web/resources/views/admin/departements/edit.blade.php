@@ -21,7 +21,7 @@
                     <div class="row g-2">
                         <div class="col mb-0">
                             <div class=" mt-2 mb-3">
-                                <label for="nameBasic" class="form-label">Chef de departement</label>
+                                <label for="nameBasic" class="form-label">Chef de Departement</label>
                                 <select name="id_professeur" id="id_professeur" class="form-select form-select">
                                     {{--                                    <option value="">Select Professeur</option>--}}
                                     <option value="{{ $departement->chef->user->id }}">{{ $departement->chef->user->name }}</option>
@@ -30,6 +30,9 @@
                                     {{--                                        </option>--}}
 
                                     @foreach($professeurs as $professeur)
+                                    @if($professeur->id==$departement->chef->user->professeur->id)
+                                          @continue
+                                      @endif
                                         <option value="{{ $professeur->id }}" {{ old('id_professeur') == $professeur->id ? 'selected' : '' }}>
                                             {{ $professeur->user->name }}
                                         </option>
@@ -41,6 +44,17 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
                 </div>
