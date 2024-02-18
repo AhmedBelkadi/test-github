@@ -41,6 +41,7 @@
             </div>
 
             @if( isset($emplois) )
+
                 <h2 class="mt-4 mb-4">{{ $emplois->filiere->name }} - {{ $emplois->semestre->name }}</h2>
                 <table class="table table-bordered">
                     <thead>
@@ -77,7 +78,6 @@
                     @endforeach
                     </tbody>
                 </table>
-
             @else
                 <div class="container">
                     @foreach ($emploises as $emploi)
@@ -130,7 +130,7 @@
                 </div>
             @endif
 
-            @php $openModal = request()->query('openModal'); $openModal = request()->query('openModal2');  @endphp
+            @php $openModal = request()->query('openModal');   @endphp
 
             <x-crud-modal stl="fade" idModal="sallesModal" >
                 <div>
@@ -141,87 +141,63 @@
                         @endif
                         <label for="nameBasic" class="form-label">nom</label>
                         <div class="  d-flex justify-content-between align-items-center" >
-
                             <div class="row w-100">
                                 <div class="col ">
-                                    <input type="text" name="name"
-                                           id="nameBasic" class="form-control"
-                                           placeholder="Enter Name"
-                                           value="{{ isset($salle) ? $salle->name : old("name") }}"
-                                    />
-                                    @error("name")
-                                    <span class="text-danger" >{{$message}}</span>
-                                    @enderror
+                                    <input type="text" name="name" id="nameBasic" class="form-control" placeholder="Enter Name" value="{{ isset($salle) ? $salle->name : old("name") }}"/>
+                                    @error("name")<span class="text-danger" >{{$message}}</span>@enderror
                                 </div>
                             </div>
-                            <button type="submit" class="ms-2 btn {{ isset($salle) ? "btn-success" : "btn-primary" }}">{{ isset($salle) ? "Update" : "Add" }}</button>
+                            <button type="submit" class="ms-2 btn {{ isset($salle) ? "btn-success" : "btn-primary" }}">{{ isset($salle) ? "modifier" : "ajouter" }}</button>
                         </div>
                      </form>
-
                     <label for="nameBasic" class="form-label mt-3">salles</label>
                     @foreach( $salles as $salle )
-
                       <div class="d-flex justify-content-center mb-2" >
                         <div style="width: 50%;height: 52px" class="bg-white border border-2 rounded-2 d-flex align-items-center ps-2 me-2" >
                             {{$salle->name}}
                         </div>
-
-                            <a  href="{{route("salles.edit",[ 'salle'=>$salle , 'openModal' => true])}}" class="btn btn-primary text-white  btn-lg" >update</a>
+                        <a  href="{{route("salles.edit",[ 'salle'=>$salle , 'openModal' => true])}}" class="btn btn-primary text-white  btn-lg" >modifier</a>
                         <form method="POST" class="" action="{{route("salles.destroy",$salle)}}" >
                             @csrf
                             @method("DELETE")
-                            <button type="submit" class=" ms-2 btn btn-danger btn-lg">delete</button>
+                            <button type="submit" class=" ms-2 btn btn-danger btn-lg">supprimer</button>
                         </form>
-
                     </div>
-
                     @endforeach
                 </div>
             </x-crud-modal>
 
-{{--            @php  @endphp--}}
+            @php $openModal2 = request()->query('openModal2'); @endphp
 
             <x-crud-modal stl="fade" idModal="periodesModal" >
                 <div>
-                    <form method="post" action="{{ isset($periode) ? route("periodes.update", $periode) : route("periodes.store") }}" class="">
+                    <form method="post" action="{{ isset($p) ? route("periodes.update", $p) : route("periodes.store") }}" class="">
                         @csrf
-                        @if(isset($periode))  @method("PUT")  @endif
+                        @if(isset($p))  @method("PUT")  @endif
                         <label for="nameBasic" class="form-label">nom</label>
                         <div class="  d-flex justify-content-between align-items-center" >
-
                             <div class="row w-100">
                                 <div class="col ">
-                                    <input type="text" name="libelle"
-                                           id="libelleBasic" class="form-control"
-                                           placeholder="Enter Name"
-                                           value="{{ isset($periode) ? $periode->libelle : old("libelle") }}"
-                                    />
+                                    <input type="text" name="libelle" id="libelleBasic" class="form-control" placeholder="Enter Name" value="{{ isset($p) ? $p->libelle : old("libelle") }}"/>
                                     @error("libelle") <span class="text-danger" >{{$message}}</span> @enderror
                                 </div>
                             </div>
-                            <button type="submit" class="ms-2 btn {{ isset($periode) ? "btn-success" : "btn-primary" }}">{{ isset($periode) ? "modifier" : "ajouter" }}</button>
+                            <button type="submit" class="ms-2 btn {{ isset($p) ? "btn-success" : "btn-primary" }}">{{ isset($p) ? "modifier" : "ajouter" }}</button>
                         </div>
                     </form>
-
                     <label for="nameBasic" class="form-label mt-3">periodes</label>
-                    @foreach( $periodes as $periode )
-
+                    @foreach( $periodes as $p )
                         <div class="d-flex justify-content-center mb-2" >
                             <div style="width: 50%;height: 52px" class="bg-white border border-2 rounded-2 d-flex align-items-center ps-2 me-2" >
-                                {{$periode->libelle}}
+                                {{$p->libelle}}
                             </div>
-
-
-                            <a  href="{{route("periodes.edit",[ 'periode'=>$periode , 'openModal2' => true])}}" class="btn btn-primary text-white  btn-lg" >modifier</a>
-
-                                <form method="POST" class="" action="{{route("periodes.destroy",$periode)}}" >
+                            <a  href="{{route("periodes.edit",[ 'periode'=>$p , 'openModal2' => true])}}" class="btn btn-primary text-white  btn-lg" >modifier</a>
+                                <form method="POST" class="" action="{{route("periodes.destroy",$p)}}" >
                                     @csrf
                                     @method("DELETE")
-                                    <button type="submit" class=" ms-2 btn btn-danger btn-lg">delete</button>
+                                    <button type="submit" class=" ms-2 btn btn-danger btn-lg">supprimer</button>
                                 </form>
-
                         </div>
-
                     @endforeach
                 </div>
             </x-crud-modal>
@@ -229,7 +205,6 @@
 
     @section( "scripts" )
         <script>
-            // Open the modal if the 'openModal' parameter is set in the URL
             window.addEventListener('load', function() {
                 let urlParams = new URLSearchParams(window.location.search);
                 let openModal = urlParams.get('openModal');

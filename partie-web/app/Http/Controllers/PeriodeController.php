@@ -53,10 +53,8 @@ class PeriodeController extends Controller
      */
     public function edit(Periode $periode)
     {
+        $p = $periode;
         $periodes = Periode::all();
-//        $semestres = Semestre::all();
-
-
         $semestres = Semestre::all();
         $filieres = Filiere::all();
         $salles = Salle::all();
@@ -64,7 +62,7 @@ class PeriodeController extends Controller
         $days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
         $urlParams = new \Illuminate\Http\Request();
         $openModal2 = $urlParams->query('openModal2');
-        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periode","openModal2","periodes","days","emploises") );
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","p","openModal2","periodes","days","emploises") );
     }
 
     /**

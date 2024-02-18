@@ -53,7 +53,6 @@ class SalleController extends Controller
     public function edit(Salle $salle)
     {
         $periodes = Periode::all();
-
         $semestres = Semestre::all();
         $filieres = Filiere::all();
         $salles = Salle::all();

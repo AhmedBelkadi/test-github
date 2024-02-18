@@ -9,6 +9,8 @@ class PeriodeRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+    protected $redirect = '/emplois?openModal2=1';
+
     public function authorize(): bool
     {
         return true;
