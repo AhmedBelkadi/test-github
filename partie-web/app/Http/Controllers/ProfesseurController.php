@@ -9,6 +9,9 @@ use App\Http\Requests\SearchProfesseurRequest;
 use App\Models\Professeur;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ProfesseurEmail;
+use Illuminate\Support\Str;
 
 class ProfesseurController extends Controller
 {
@@ -35,6 +38,9 @@ class ProfesseurController extends Controller
      */
     public function store(AjouterProfesseurRequest $request)
     {
+
+        $password = substr($request->input('cin'), -4). '@' . substr($request->input('name'), 0);
+
         $user = User::create([
             'name' => $request->input('name'),
             'tele' => $request->input('tele'),
@@ -48,6 +54,9 @@ class ProfesseurController extends Controller
         $professeurs = Professeur::create([
             'user_id' => $user->id,
         ]);
+
+        Mail::to($user->email)->send(new ProfesseurEmail($request->input('email'), $password));
+
 
         return to_route('professeurs.index');
 

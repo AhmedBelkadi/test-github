@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>App Account Information</title>
+    <title>Account Information</title>
 </head>
 <body>
     <p>Your account has been created with the following details:</p>

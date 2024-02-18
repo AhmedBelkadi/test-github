@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendEmail extends Mailable
+class ProfesseurEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -47,7 +47,7 @@ class SendEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'admin.etudiants.email',
+            view: 'admin.professeurs.email',
 
         );
     }

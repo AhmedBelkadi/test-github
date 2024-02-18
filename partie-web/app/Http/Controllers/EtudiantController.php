@@ -12,6 +12,7 @@ use App\Mail\SendEmail;
 use Illuminate\Support\Str;
 
 
+
 use Illuminate\Http\Request;
 
 class EtudiantController extends Controller
@@ -42,6 +43,11 @@ class EtudiantController extends Controller
      */
     public function store(AjouterEtudiantRequest $request)
     {
+        // $password = substr($request->input('name'), 0, 1) . '.' . substr($request->input('cne'), -4);
+        $password = substr($request->input('cne'), -4). '@' . substr($request->input('name'), 0);
+
+
+
         $user = User::create([
             'name' => $request->input('name'),
             'tele' => $request->input('tele'),
@@ -49,7 +55,7 @@ class EtudiantController extends Controller
             'cin' => $request->input('cin'),
             'email' => $request->input('email'),
             'role' => 'etudiant',
-            'password' =>'123',
+            'password' =>bcrypt($password),
         ]);
 
         $etudiant = Etudiant::create([
@@ -62,7 +68,7 @@ class EtudiantController extends Controller
 
 
     // Send an email to the student with their email and password
-    Mail::to($user->email)->send(new SendEmail($user->email, $user->password));
+    Mail::to($user->email)->send(new SendEmail($request->input('email'), $password));
 
 
 
