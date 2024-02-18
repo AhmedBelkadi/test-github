@@ -45,7 +45,8 @@ class FiliereController extends Controller
             "type" => $request->input("type"),
             "name" => $request->input("name"),
         ]);
-        return to_route("filieres.index")->with("success","Filiere created successfully!");    }
+        return to_route("filieres.index")->with("success","Filiere created successfully!");
+    }
 
     /**
      * Display the specified resource.

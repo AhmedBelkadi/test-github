@@ -42,6 +42,7 @@
 
             @if( isset($emplois) )
 
+{{--                @include("admin.seances.create")--}}
                 <h2 class="mt-4 mb-4">{{ $emplois->filiere->name }} - {{ $emplois->semestre->name }}</h2>
                 <table class="table table-bordered">
                     <thead>
@@ -81,6 +82,7 @@
             @else
                 <div class="container">
                     @foreach ($emploises as $emploi)
+                        @include("admin.seances.create")
                         <h2 class="mt-4 mb-4">{{ $emploi->filiere->name }} - {{ $emploi->semestre->name }}</h2>
                         <table class="table table-bordered">
                             <thead>
@@ -117,7 +119,7 @@
 
                                                 @endforeach
                                             @else
-                                                <button type="button" class="btn btn-primary add-session" data-toggle="modal" data-target="#exampleModal">+</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSeanceModal">+</button>
                                             @endif
                                         </td>
                                     @endforeach
@@ -129,6 +131,7 @@
                     {{ $emploises->links() }}
                 </div>
             @endif
+
 
             @php $openModal = request()->query('openModal');   @endphp
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EmploisRequest;
+use App\Models\Element;
 use App\Models\EmploiDuTemps;
 use App\Models\Filiere;
 use App\Models\Periode;
@@ -14,10 +15,12 @@ class EmploiDuTempsController extends Controller
 {
     public function index()
     {
+
         $semestres = Semestre::all();
         $filieres = Filiere::all();
         $salles = Salle::all();
         $periodes = Periode::all();
+        $elements = Element::all();
         $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
         $emploises = EmploiDuTemps::with(['filiere', 'semestre', 'seances'])->paginate(1);
         $schedule = [];
@@ -35,7 +38,7 @@ class EmploiDuTempsController extends Controller
                 }
             }
         }
-        return view("admin.emplois.index", compact("periodes", "days", "schedule", "emploises","salles","filieres","semestres"));
+        return view("admin.emplois.index", compact("periodes", "days", "schedule", "emploises","salles","filieres","semestres","elements"));
     }
     public function chercher(EmploisRequest $request)
     {
@@ -49,6 +52,7 @@ class EmploiDuTempsController extends Controller
         $filieres = Filiere::all();
         $salles = Salle::all();
         $periodes = Periode::all();
+        $elements = Element::all();
         $days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
         $schedule = [];
         foreach ($emploises as $emploi) {
@@ -65,7 +69,7 @@ class EmploiDuTempsController extends Controller
                 }
             }
         }
-        return view("admin.emplois.index" ,compact("semestres","filieres","salles","periodes","days","emploises","schedule","emploi") );
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","elements","periodes","days","emploises","schedule","emploi") );
 
     }
 

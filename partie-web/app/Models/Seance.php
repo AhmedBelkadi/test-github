@@ -9,6 +9,7 @@ class Seance extends Model
 {
     use HasFactory;
 
+    protected $fillable = ["id_emploi_du_temps","id_element","id_periode","id_salle","type","day"];
     public function periode()
     {
         return $this->belongsTo(Periode::class, "id_periode");
