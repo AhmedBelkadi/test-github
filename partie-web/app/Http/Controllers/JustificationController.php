@@ -12,23 +12,20 @@ class JustificationController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(["data"=>"index"]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        return response()->json(["data"=>"store"]);
     }
 
     /**
@@ -36,23 +33,18 @@ class JustificationController extends Controller
      */
     public function show(Justification $justification)
     {
-        //
+        return response()->json(["data"=>"show"]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Justification $justification)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Justification $justification)
     {
-        //
+        return response()->json(["data"=>"update"]);
+
     }
 
     /**
@@ -60,6 +52,7 @@ class JustificationController extends Controller
      */
     public function destroy(Justification $justification)
     {
-        //
+        return response()->json(["data"=>"destroy"]);
+
     }
 }

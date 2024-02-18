@@ -48,7 +48,7 @@ class EtudiantController extends Controller
             'adresse' => $request->input('adresse'),
             'cin' => $request->input('cin'),
             'email' => $request->input('email'),
-            'role' => 'Etudiant',
+            'role' => 'etudiant',
             'password' =>'123',
         ]);
 
