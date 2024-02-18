@@ -2,7 +2,7 @@
 {{--    Ajouter un seance--}}
 {{--</button>--}}
 
-<div class="modal fade" id="addSeanceModal" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="addSeanceModal_{{ $day }}_{{ $periode->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog " role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -43,22 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <div class=" mt-2 mb-0">
-                                <label for="id_periode" class="form-label">Periode</label>
-                                <select name="id_periode" id="id_periode" class="form-select form-select">
-                                    <option value="">Select Periode</option>
-                                    @foreach($periodes as $periode)
-                                        <option value="{{ $periode->id }}" {{ old('id_periode') == $periode->id ? 'selected' : '' }}>
-                                            {{ $periode->libelle }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('id_periode')<span class="text-danger">{{ $message }}</span>@enderror
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="row g-2">
                         <div class="col mb-0">
                             <div class=" mt-2 mb-0">
@@ -79,20 +64,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <div class=" mt-2 mb-0">
-                                <label for="day" class="form-label">Jour</label>
-                                <select name="day" id="day" class="form-select form-select">
-                                    <option value="">Select Element</option>
-                                            @foreach($days as $day)
-                                                <option value="{{$day}}" >{{ $day }}</option>
-                                            @endforeach
-                                </select>
-                                @error('id_element')<span class="text-danger">{{ $message }}</span>@enderror
-                            </div>
-                        </div>
-                    </div>
+                    <input type="hidden" name="day" class="form-control" value="{{$day}}"  >
+                    <input type="hidden" name="id_periode" class="form-control" value="{{$periode->id}}"  >
                     <input type="hidden" value="{{$emploi->id}}" name="id_emploi_du_temps" >
 
                 </div>
@@ -105,3 +78,25 @@
     </div>
 </div>
 
+{{--<select name="day" id="day" class="form-select form-select">--}}
+{{--    <option value="">Select jour</option>--}}
+{{--    @foreach($days as $day)--}}
+{{--        <option value="{{$day}}" >--}}
+{{--            {{ $day }}--}}
+{{--        </option>--}}
+{{--    @endforeach--}}
+{{--</select>--}}
+
+
+{{--<select name="id_periode" id="id_periode" class="form-select form-select">--}}
+
+{{--</select>--}}
+{{--                                    <option value="">Select Periode</option>--}}
+{{--                                    @foreach($periodes as $periode)--}}
+{{--                                    <option value="{{$seance->periode->id}}" selected disabled > {{$seance->periode->libelle}} </option>--}}
+{{--                                    <option value="{{$periode->id}}" selected  > {{$periode->libelle}} </option>--}}
+
+{{--                                        <option value="{{ $periode->id }}" {{ old('id_periode') == $periode->id ? 'selected' : '' }}>--}}
+{{--                                            {{ $periode->libelle }}--}}
+{{--                                        </option>--}}
+{{--                                    @endforeach--}}

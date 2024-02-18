@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SeanceRequest;
+
 use App\Models\Seance;
 use Illuminate\Http\Request;
 
@@ -19,17 +19,16 @@ class SeanceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(SeanceRequest $request)
+    public function store(Request $request)
     {
-
         Seance::create([
             "id_emploi_du_temps" => $request->input("id_emploi_du_temps"),
             "id_element" => $request->input("id_element"),
@@ -62,7 +61,19 @@ class SeanceController extends Controller
      */
     public function update(Request $request, Seance $seance)
     {
-        //
+        $request->validate([
+            'type' => 'required|string',
+            'id_salle' => 'required|exists:salles,id',
+            'id_element' => 'required|exists:elements,id',
+        ]);
+        $seance->update([
+            'type' => $request->type,
+            'id_salle' => $request->id_salle,
+            'id_element' => $request->id_element,
+        ]);
+
+        return redirect()->back()->with('success', 'Seance updated successfully.');
+
     }
 
     /**
@@ -70,6 +81,7 @@ class SeanceController extends Controller
      */
     public function destroy(Seance $seance)
     {
-        //
+        $seance->delete();
+        return redirect()->back()->with('success', 'seance deleted successfully!');
     }
 }

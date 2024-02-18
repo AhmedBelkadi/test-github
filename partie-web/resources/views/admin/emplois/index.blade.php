@@ -82,7 +82,6 @@
             @else
                 <div class="container">
                     @foreach ($emploises as $emploi)
-                        @include("admin.seances.create")
                         <h2 class="mt-4 mb-4">{{ $emploi->filiere->name }} - {{ $emploi->semestre->name }}</h2>
                         <table class="table table-bordered">
                             <thead>
@@ -107,19 +106,22 @@
                                     </td>
                                     @foreach ($periodes as $periode)
                                         <td class=" " >
-                                            {{--                                    @if (isset($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id]))--}}
                                             @if (isset($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id]) && count($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id]) > 0)
                                                 @foreach ($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id] as $seance)
-                                                    @foreach($seance->element->professeurs as $prof)
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateSeanceModal_{{ $seance->id }}">Update</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSeanceModal_{{ $seance->id }}">delete</button><br>
+                                                    @include("admin.seances.edit")
+                                                    @include("admin.seances.delete")
+                                                @foreach($seance->element->professeurs as $prof)
                                                         professeurs:   {{$prof->user->name}} /
                                                     @endforeach
                                                     <br>type:   {{ $seance->type }}<br>
                                                     salle:  {{ $seance->salle->name }}<br>
                                                     element:  {{ $seance->element->name }}<br>
-
                                                 @endforeach
                                             @else
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSeanceModal">+</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSeanceModal_{{ $day }}_{{ $periode->id }}">+</button>
+                                                @include("admin.seances.create")
                                             @endif
                                         </td>
                                     @endforeach
