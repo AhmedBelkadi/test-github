@@ -45,9 +45,16 @@ class EmploiDuTempsController extends Controller
         $emploises = EmploiDuTemps::where("id_semestre",$request->input("id_semestre"))
                                 ->where("id_filiere",$request->input("id_filiere"))
                                 ->paginate(5);
-        $emploi = EmploiDuTemps::where("id_semestre",$request->input("id_semestre"))
-                                ->where("id_filiere",$request->input("id_filiere"))
-                                ->first();
+        $s = Semestre::where("id_filiere",$request->input("id_filiere"))
+                ->where("name",$request->input("id_semestre"))->get()->first();
+//dd($s->filiere->name,$s->id);
+            $emplois = EmploiDuTemps::where("id_semestre",$s->id)
+                ->where("id_filiere",$request->input("id_filiere"))
+                ->get()->first();
+//            dd($emploi);
+//        if ( !is_null($s) ){
+//        }
+
         $semestres = Semestre::all();
         $filieres = Filiere::all();
         $salles = Salle::all();
@@ -69,7 +76,7 @@ class EmploiDuTempsController extends Controller
                 }
             }
         }
-        return view("admin.emplois.index" ,compact("semestres","filieres","salles","elements","periodes","days","emploises","schedule","emploi") );
+        return view("admin.emplois.index" ,compact("semestres","filieres","salles","elements","periodes","days","emploises","schedule","emplois") );
 
     }
 

@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('filieres', function (Blueprint $table) {
-            $table->id();
-            $table->string("name");
-            $table->string("type");
-            $table->integer("nbr_semestre");
-            $table->unsignedBigInteger('id_professeur');
-            $table->foreign('id_professeur')->references('id')->on('professeurs')->onDelete('cascade');
-            $table->unsignedBigInteger('id_departement');
-            $table->foreign('id_departement')->references('id')->on('departements')->onDelete('cascade');
-            $table->timestamps();
-        });
+            Schema::create('filieres', function (Blueprint $table) {
+                $table->id();
+                $table->string("name");
+                $table->string("type");
+                $table->integer("nbr_semestre");
+                $table->unsignedBigInteger('id_professeur');
+                $table->foreign('id_professeur')->references('id')->on('professeurs')->onDelete('cascade');
+                $table->unsignedBigInteger('id_departement');
+                $table->foreign('id_departement')->references('id')->on('departements')->onDelete('cascade');
+                $table->timestamps();
+            });
     }
 
     /**

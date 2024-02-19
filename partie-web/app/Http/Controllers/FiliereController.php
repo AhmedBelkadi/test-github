@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AjouterFiliereRequest;
 use App\Http\Requests\ModifierFiliereRequest;
 use App\Models\Departement;
+use App\Models\EmploiDuTemps;
 use App\Models\Filiere;
 use App\Models\Professeur;
 use App\Models\Qcm;
+use App\Models\Semestre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,17 +38,43 @@ class FiliereController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+//        Filiere::create([
+//            "id_professeur" => $request->input("id_professeur"),
+//            "id_departement" => $request->input("id_departement"),
+//            "nbr_semestre" => $request->input("nbr_semestre"),
+//            "type" => $request->input("type"),
+//            "name" => $request->input("name"),
+//        ]);
     public function store(AjouterFiliereRequest $request)
     {
-        Filiere::create([
+        $filiere = Filiere::create([
             "id_professeur" => $request->input("id_professeur"),
             "id_departement" => $request->input("id_departement"),
-            "nbr_semestre" => $request->input("nbr_semestre"),
+            "nbr_semestre" => $request->input("type") ==="dut" ? 4 : 2,
             "type" => $request->input("type"),
             "name" => $request->input("name"),
         ]);
+
+        // Create semestres
+        for ($i = 1; $i <= $filiere->nbr_semestre; $i++) {
+            Semestre::create([
+                'id_filiere' => $filiere->id,
+                'name' => "Semestre " . ($i + (($filiere->type === "dut") ? 0 : 4)),
+            ]);
+        }
+
+        // Create schedules for each semestre
+        foreach ($filiere->semestres as $semestre) {
+                $schedule = new EmploiDuTemps();
+                $schedule->id_semestre = $semestre->id;
+                $schedule->id_filiere = $filiere->id;
+                $schedule->save();
+        }
+
         return to_route("filieres.index")->with("success","Filiere created successfully!");
     }
+        // Save the filiere
+//        $filiere->save();
 
     /**
      * Display the specified resource.

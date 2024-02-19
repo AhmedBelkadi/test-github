@@ -26,7 +26,7 @@ class AjouterFiliereRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'type' => 'required|string|max:255|in:dut,lp',
-            'nbr_semestre' => 'required|integer|min:2',
+//            'nbr_semestre' => 'required|integer|min:2',
             'id_professeur' => 'required|exists:professeurs,id',
             'id_departement' => 'required|exists:departements,id',
         ];

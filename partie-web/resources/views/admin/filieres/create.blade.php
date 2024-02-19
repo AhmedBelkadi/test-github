@@ -32,13 +32,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row g-2">
-                        <div class="col mb-3">
-                            <label for="emailBasic" class="form-label">nombre de semestre</label>
-                            <input type="number" value="{{old("nbr_semestre")}}" id="emailBasic"  name="nbr_semestre" class="form-control" placeholder="entrer nembre de semestre" />
-                            @error("nbr_semestre")<span class="text-danger" >{{$message}}</span>@enderror
-                        </div>
-                    </div>
+{{--                    <div class="row g-2">--}}
+{{--                        <div class="col mb-3">--}}
+{{--                            <label for="emailBasic" class="form-label">nombre de semestre</label>--}}
+{{--                            <input type="number" value="{{old("nbr_semestre")}}" id="emailBasic"  name="nbr_semestre" class="form-control" placeholder="entrer nembre de semestre" />--}}
+{{--                            @error("nbr_semestre")<span class="text-danger" >{{$message}}</span>@enderror--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="row g-2">
                         <div class="col mb-0">
                             <div class=" mt-2 mb-3">

@@ -23,7 +23,7 @@ class EmploisRequest extends FormRequest
     {
         return [
             'id_filiere' => 'required|exists:filieres,id',
-            'id_semestre' => 'required|exists:semestres,id',
+//            'id_semestre' => 'required|exists:semestres,id',
         ];
     }
 }

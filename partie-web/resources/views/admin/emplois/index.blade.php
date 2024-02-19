@@ -15,16 +15,21 @@
                         <div class="col-5 ">
                             <select name="id_filiere" id="largeSelect" class="form-select form-select-lg">
                                 @foreach( $filieres as $filiere )
-                                    <option value="{{$filiere->id}}" {{ old('id_filiere') == $filiere->id || isset($emplois) ? 'selected' : '' }} >{{$filiere->name}}</option>
+                                    <option value="{{$filiere->id}}" {{ old('id_filiere') == $filiere->id || isset($emplois) ? 'selected' : '' }} >{{$filiere->name}}
+
+                                    </option>
                                 @endforeach
                             </select>
                              @error('id_filiere')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class=" col-4">
                             <select name="id_semestre" id="largeSelect" class="form-select form-select-lg">
-                            @foreach( $semestres as $semestre )
-                                    <option value="{{$semestre->id}}" {{ old('id_semestre') == $semestre->id || isset($emplois) ? 'selected' : '' }} >{{$semestre->name}}</option>
-                                @endforeach
+                                    @for($i = 1; $i <= 6; $i++)
+                                        <option value="Semestre {{$i}}">Semestre {{$i}}</option>
+                                    @endfor
+{{--                                @foreach( $semestres as $semestre )--}}
+{{--                                    <option value="{{$semestre->id}}" {{ old('id_semestre') == $semestre->id || isset($emplois) ? 'selected' : '' }} >{{$semestre->name}}</option>--}}
+{{--                                @endforeach--}}
                             </select>
                         @error('id_semestre')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
