@@ -17,7 +17,7 @@ class SendEmail extends Mailable
 
     public $email;
     public $password;
-    // public $name;
+    public $name;
 
 
 
