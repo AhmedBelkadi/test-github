@@ -35,8 +35,12 @@ class ModuleController extends Controller
      */
     public function store(ModuleRequest $request)
     {
+        $s = Semestre::where("id_filiere", $request->input("id_filiere"))
+            ->where("name", $request->input("name_semestre"))
+            ->first();
+
         Module::create([
-            "id_semestre" => $request->input("id_semestre"),
+            "id_semestre" => $s->id,
             "id_filiere" => $request->input("id_filiere"),
             "nbr_heure" => $request->input("nbr_heure"),
             "name" => $request->input("name"),
@@ -66,12 +70,14 @@ class ModuleController extends Controller
     public function update(ModuleRequest $request, Module $module)
     {
 
+
+
         $request->validate([
         'name' => 'required|string|max:255',
         'id_filiere' => 'required|exists:filieres,id',
         'id_semestre' => 'required|exists:semestres,id',
         'nbr_heure' => 'required|numeric',
-    ]);
+        ]);
 
         $module->update($request->all());
         return redirect()->route('modules.index')->with('success', 'Module updated successfully!');

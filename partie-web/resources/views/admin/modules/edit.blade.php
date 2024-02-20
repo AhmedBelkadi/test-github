@@ -54,6 +54,16 @@
                                     @error('id_filiere')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
+
+{{--                                    <select name="id_filiere" id="filiere" class="form-select form-select">--}}
+{{--                                        <option selected disabled>select filiere</option>--}}
+{{--                                        @foreach( $filieres as $filiere )--}}
+{{--                                            <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                    @error("id_filiere")--}}
+{{--                                    <span class="text-danger" >{{$message}}</span>--}}
+{{--                                    @enderror--}}
                                 </div>
                             </div>
                             </div>

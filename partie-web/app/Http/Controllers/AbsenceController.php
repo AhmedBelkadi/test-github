@@ -38,9 +38,12 @@ class AbsenceController extends Controller
             });
         }
 
-        if ($request->filled('id_semestre')) {
+        if ($request->filled('name_semestre')) {
             $results->whereHas('seance.emploiDuTemps.semestre', function ($query) use ($request) {
-                $query->where('id', $request->id_semestre);
+                $sw = Semestre::where("id_filiere", $request->input("id_filiere"))
+                    ->where("name", $request->input("name_semestre"))
+                    ->first();
+                $query->where('id', $sw->id);
             });
         }
 

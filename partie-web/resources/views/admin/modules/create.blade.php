@@ -42,29 +42,28 @@ Ajouter un module
                        <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Filiere</label>
-                            <select name="id_filiere" id="largeSelect" class="form-select form-select">
-                                <option selected >select filiere</option>
+                            <select name="id_filiere" id="filiere" class="form-select form-select">
+                                <option selected disabled>select filiere</option>
                                 @foreach( $filieres as $filiere )
-                                    <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
+                                    <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
                                 @endforeach
                             </select>
                             @error("id_filiere")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
+
                         </div>
                     </div>
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Semestre</label>
-                            <select name="id_semestre" id="largeSelect" class="form-select form-select">
-                                <option selected >select semestre</option>
-                                @foreach( $semestres as $semestre )
-                                    <option value="{{ $semestre->id }}" {{ old('id_semestre') == $semestre->id ? 'selected' : '' }}>{{$semestre->name}}</option>
-                                @endforeach
-                            </select>
-                            @error("id_semestre")
-                            <span class="text-danger" >{{$message}}</span>
-                            @enderror
+                            <div class=" px-0 mb-3">
+                                <select name="name_semestre" id="semestre" class="form-select form-select">
+                                    <option value="" selected disabled>Select Semestre</option>
+                                </select>
+                                @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror
+                            </div>
+
                         </div>
                     </div>
 

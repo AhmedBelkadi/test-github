@@ -16,16 +16,15 @@
                                    <div class="row g-2">
                                        <div class="col px-0 mb-0">
                                            <div class=" px-0 mb-3">
-                                               <select name="id_filiere" id="id_filiere" class="form-select form-select">
-                                                   <option value="">Select Filiere</option>
+                                               <select name="id_filiere" id="filiere" class="form-select form-select">
+                                                   <option value="" selected disabled>Select Filiere</option>
                                                    @foreach($filieres as $filiere)
-                                                       <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>
-                                                           {{ $filiere->name }}
-                                                       </option>
+                                                       <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}" >{{ $filiere->name }}</option>
                                                    @endforeach
                                                </select>
                                                @error("id_filiere")<span class="text-danger" >{{$message}}</span>@enderror
                                            </div>
+
                                        </div>
                                    </div>
                                </div>
@@ -33,17 +32,10 @@
                                    <div class="row g-2">
                                        <div class="col px-0  mb-0">
                                            <div class=" px-0 mb-3">
-                                               <select name="id_semestre" id="id_semestre" class="form-select form-select">
-                                                   <option value="">Select Semestre</option>
-                                                   @foreach($semestres as $semestre)
-                                                       <option value="{{ $semestre->id }}" {{ old('id_semestre') == $semestre->id ? 'selected' : '' }}>
-                                                           {{ $semestre->name }}
-                                                       </option>
-                                                   @endforeach
+                                               <select name="name_semestre" id="semestre" class="form-select form-select">
+                                                   <option value="" selected disabled>Select Semestre</option>
                                                </select>
-                                               @error('id_semestre')
-                                               <span class="text-danger">{{ $message }}</span>
-                                               @enderror
+                                               @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror
                                            </div>
                                        </div>
                                    </div>
@@ -201,6 +193,39 @@
                     bootstrapModal.show();
                 }
             });
+            document.addEventListener('DOMContentLoaded', function () {
+                const filiereSelect = document.getElementById('filiere');
+                const semestreSelect = document.getElementById('semestre');
+                semestreSelect.disabled = true;
+
+                filiereSelect.addEventListener('change', function () {
+                    const selectedFiliereId = filiereSelect.value;
+                    const selectedFiliereOption = filiereSelect.options[filiereSelect.selectedIndex];
+                    const selectedFiliereType = selectedFiliereOption.getAttribute('data-type');
+                    semestreSelect.innerHTML = ''; // Clear previous options
+
+                    if (selectedFiliereType === 'dut') {
+                        semestreSelect.disabled = false;
+
+                        for (let i = 1; i <= 4; i++) {
+                            const option = document.createElement('option');
+                            option.value = 'Semestre ' + i;
+                            option.textContent = 'Semestre ' + i;
+                            semestreSelect.appendChild(option);
+                        }
+                    } else if (selectedFiliereType === 'lp') {
+                        semestreSelect.disabled = false;
+
+                        for (let i = 5; i <= 6; i++) {
+                            const option = document.createElement('option');
+                            option.value = 'Semestre ' + i;
+                            option.textContent = 'Semestre ' + i;
+                            semestreSelect.appendChild(option);
+                        }
+                    }
+                });
+            });
+
         </script>
 @endsection
 

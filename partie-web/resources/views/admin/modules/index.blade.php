@@ -85,6 +85,39 @@
             bootstrapModal.show();
         }
     });
+    document.addEventListener('DOMContentLoaded', function () {
+        const filiereSelect = document.getElementById('filiere');
+        const semestreSelect = document.getElementById('semestre');
+        semestreSelect.disabled = true;
+
+        filiereSelect.addEventListener('change', function () {
+            const selectedFiliereId = filiereSelect.value;
+            const selectedFiliereOption = filiereSelect.options[filiereSelect.selectedIndex];
+            const selectedFiliereType = selectedFiliereOption.getAttribute('data-type');
+            semestreSelect.innerHTML = ''; // Clear previous options
+
+            if (selectedFiliereType === 'dut') {
+                semestreSelect.disabled = false;
+
+                for (let i = 1; i <= 4; i++) {
+                    const option = document.createElement('option');
+                    option.value = 'Semestre ' + i;
+                    option.textContent = 'Semestre ' + i;
+                    semestreSelect.appendChild(option);
+                }
+            } else if (selectedFiliereType === 'lp') {
+                semestreSelect.disabled = false;
+
+                for (let i = 5; i <= 6; i++) {
+                    const option = document.createElement('option');
+                    option.value = 'Semestre ' + i;
+                    option.textContent = 'Semestre ' + i;
+                    semestreSelect.appendChild(option);
+                }
+            }
+        });
+    });
+
 </script>
 @endsection
 
