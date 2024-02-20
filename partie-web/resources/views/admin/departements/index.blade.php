@@ -35,9 +35,9 @@
             }
 
             @if(isset($departement))
-            let editDepartementModal = document.getElementById('editDepartementModal');
-            let bootstrapModal2 = new bootstrap.Modal(editDepartementModal);
-            bootstrapModal2.show();
+                let editDepartementModal = document.getElementById('editDepartementModal');
+                let bootstrapModal2 = new bootstrap.Modal(editDepartementModal);
+                bootstrapModal2.show();
             @endif
         });
     </script>

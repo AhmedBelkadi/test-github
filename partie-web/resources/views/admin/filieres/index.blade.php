@@ -35,9 +35,9 @@
             }
 
             @if(isset($filiere))
-            let editFiliereModal = document.getElementById('editFiliereModal');
-            let bootstrapModal2 = new bootstrap.Modal(editFiliereModal);
-            bootstrapModal2.show();
+                let editFiliereModal = document.getElementById('editFiliereModal');
+                let bootstrapModal2 = new bootstrap.Modal(editFiliereModal);
+                bootstrapModal2.show();
             @endif
         });
     </script>

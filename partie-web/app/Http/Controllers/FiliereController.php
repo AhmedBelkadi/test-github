@@ -98,8 +98,6 @@ class FiliereController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ModifierFiliereRequest $request, Filiere $filiere)
-    {
 //        dd("hh");
 //        $request->validate([
 //            'name' => 'required|string|max:255',
@@ -109,14 +107,50 @@ class FiliereController extends Controller
 //            'id_departement' => 'required|exists:departements,id',
 //        ]);
 //        dd($request->validated());
+    public function update(ModifierFiliereRequest $request, Filiere $filiere)
+    {
         $filiere->name = $request->input("name");
-        $filiere->type = $request->input("type");
-        $filiere->nbr_semestre = $request->input("nbr_semestre");
+//        $filiere->type = $request->input("type");
+//        $filiere->nbr_semestre = $request->input("nbr_semestre");
         $filiere->id_departement = $request->input("id_departement");
         $filiere->id_professeur = $request->input("id_professeur");
         $filiere->save();
         return to_route("filieres.index")->with("success","Filiere updated successfully!");
     }
+//    public function update(ModifierFiliereRequest $request, Filiere $filiere)
+//    {
+//        // Validate the incoming request data
+//        $validatedData = $request->validated();
+//
+//        // Update the Filiere record with the validated data
+//        $filiere->update([
+//            "id_professeur" => $validatedData["id_professeur"],
+//            "id_departement" => $validatedData["id_departement"],
+//            "nbr_semestre" => $validatedData["type"] === "dut" ? 4 : 2,
+//            "type" => $validatedData["type"],
+//            "name" => $validatedData["name"],
+//        ]);
+//
+//        // Update the number of semestres if necessary
+//        $semestresCount = $filiere->nbr_semestre;
+//        $currentSemestresCount = $filiere->semestres()->count();
+//
+//        if ($semestresCount > $currentSemestresCount) {
+//            $additionalSemesters = $semestresCount - $currentSemestresCount;
+//            for ($i = 1; $i <= $additionalSemesters; $i++) {
+//                $semestreNumber = $currentSemestresCount + $i;
+//                Semestre::create([
+//                    'id_filiere' => $filiere->id,
+//                    'name' => "Semestre " . ($semestreNumber + (($filiere->type === "dut") ? 0 : 4)),
+//                ]);
+//            }
+//        } elseif ($semestresCount < $currentSemestresCount) {
+//            // You may need to handle deletion of semestres here if required
+//        }
+//
+//        return redirect()->route("filieres.index")->with("success", "Filiere updated successfully!");
+//    }
+
 
     /**
      * Remove the specified resource from storage.

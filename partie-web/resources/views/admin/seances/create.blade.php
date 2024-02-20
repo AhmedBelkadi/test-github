@@ -1,6 +1,7 @@
 {{--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSeanceModal">--}}
 {{--    Ajouter un seance--}}
 {{--</button>--}}
+@php $openModal3 = request()->query('openModal3'); @endphp
 
 <div class="modal fade" id="addSeanceModal_{{ $day }}_{{ $periode->id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog " role="document">

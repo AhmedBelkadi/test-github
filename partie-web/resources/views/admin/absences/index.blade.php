@@ -121,6 +121,7 @@
                            <table class="table table-hover">
                                <thead>
                                <tr>
+                                   <th class="text-center" >cne</th>
                                    <th class="text-center" >Etudiant</th>
                                    <th class="text-center" >Par mr (mme)</th>
                                    <th class="text-center" >Element</th>
@@ -135,6 +136,7 @@
                                <tbody class="table-border-bottom-0">
                                @foreach( $absences as $absence )
                                    <tr>
+                                       <td class="text-center" >{{$absence->etudiant->cne}}</td>
                                        <td class="text-center" >{{$absence->etudiant->user->name}}</td>
 
                                        <td class="text-center" >{{ implode(" / ", $absence->seance->element->professeurs->pluck('user.name')->toArray()) }}</td>

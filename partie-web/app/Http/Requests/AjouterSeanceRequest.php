@@ -4,8 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SeanceRequest extends FormRequest
+class AjouterSeanceRequest extends FormRequest
 {
+
+    protected $redirect = '/emplois?openModal3=1';
+
     /**
      * Determine if the user is authorized to make this request.
      */

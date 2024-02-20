@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\AjouterSeanceRequest;
+use App\Http\Requests\ModifierSeanceRequest;
 use App\Models\EmploiDuTemps;
 use App\Models\Seance;
 use Illuminate\Http\Request;
@@ -20,13 +22,13 @@ class SeanceController extends Controller
         ])->with('success', 'Seance deleted successfully!');
     }
 
-    public function update(Request $request, Seance $seance)
+    public function update(ModifierSeanceRequest $request, Seance $seance)
     {
-        $request->validate([
-            'type' => 'required|string',
-            'id_salle' => 'required|exists:salles,id',
-            'id_element' => 'required|exists:elements,id',
-        ]);
+//        $request->validate([
+//            'type' => 'required|string',
+//            'id_salle' => 'required|exists:salles,id',
+//            'id_element' => 'required|exists:elements,id',
+//        ]);
 
         $seance->update([
             'type' => $request->type,
@@ -40,7 +42,7 @@ class SeanceController extends Controller
         ])->with('success', 'Seance updated successfully.');
     }
 
-    public function store(Request $request)
+    public function store(AjouterSeanceRequest $request)
     {
         Seance::create([
             "id_emploi_du_temps" => $request->input("id_emploi_du_temps"),

@@ -16,27 +16,27 @@
                             @error("name")<span class="text-danger" >{{$message}}</span>@enderror
                         </div>
                     </div>
-                    <div class="row g-2">
-                        <div class="col mb-0">
-                            <div class="  mb-3">
-                                <label for="nameBasic" class="form-label">type</label>
-                                <select name="type" id="largeSelect" class="form-select form-select">
-                                    {{--                                        <option selected >select type</option>--}}
-                                    <option value="{{$filiere->type}}"  > {{$filiere->type == "lp" ? "licence professionnelle" : "Diplôme Universitaire de Technologie" }} </option>
-                                    <option value="lp" {{ old('type') == 'lp' ? 'selected' : '' }} >licence professionnelle</option>
-                                    <option value="dut" {{ old('type') == 'dut' ? 'selected' : '' }} >Diplôme Universitaire de Technologie</option>
-                                </select>
-                                @error("type")<span class="text-danger" >{{$message}}</span>@enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-2">
-                        <div class="col mb-3">
-                            <label for="emailBasic" class="form-label">nombre de semestre</label>
-                            <input type="number" value="{{ !old("nbr_semestre") ? $filiere->nbr_semestre : old("nbr_semestre")  }}" id="emailBasic"  name="nbr_semestre" class="form-control" placeholder="entrer nembre de semestre" />
-                            @error("nbr_semestre")<span class="text-danger" >{{$message}}</span>@enderror
-                        </div>
-                    </div>
+{{--                    <div class="row g-2">--}}
+{{--                        <div class="col mb-0">--}}
+{{--                            <div class="  mb-3">--}}
+{{--                                <label for="nameBasic" class="form-label">type</label>--}}
+{{--                                <select name="type" id="largeSelect" class="form-select form-select">--}}
+{{--                                    --}}{{--                                        <option selected >select type</option>--}}
+{{--                                    <option value="{{$filiere->type}}"  > {{$filiere->type == "lp" ? "licence professionnelle" : "Diplôme Universitaire de Technologie" }} </option>--}}
+{{--                                    <option value="lp" {{ old('type') == 'lp' ? 'selected' : '' }} >licence professionnelle</option>--}}
+{{--                                    <option value="dut" {{ old('type') == 'dut' ? 'selected' : '' }} >Diplôme Universitaire de Technologie</option>--}}
+{{--                                </select>--}}
+{{--                                @error("type")<span class="text-danger" >{{$message}}</span>@enderror--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="row g-2">--}}
+{{--                        <div class="col mb-3">--}}
+{{--                            <label for="emailBasic" class="form-label">nombre de semestre</label>--}}
+{{--                            <input type="number" value="{{ !old("nbr_semestre") ? $filiere->nbr_semestre : old("nbr_semestre")  }}" id="emailBasic"  name="nbr_semestre" class="form-control" placeholder="entrer nembre de semestre" />--}}
+{{--                            @error("nbr_semestre")<span class="text-danger" >{{$message}}</span>@enderror--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="row g-2">
                         <div class="col mb-0">
                             <div class=" mt-2 mb-3">
@@ -49,6 +49,9 @@
                                     {{--                                        </option>--}}
 
                                     @foreach($professeurs as $professeur)
+                                        @if($professeur->user->id==$filiere->chef->user->id)
+                                            @continue
+                                        @endif
                                         <option value="{{ $professeur->id }}" {{ old('id_professeur') == $professeur->id ? 'selected' : '' }}>
                                             {{ $professeur->user->name }}
                                         </option>
@@ -57,6 +60,10 @@
                                 @error('id_professeur')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -68,6 +75,9 @@
                                     {{--                                    <option value="">Select Departement</option>--}}
                                     <option value="{{ $filiere->departement->id }}">{{ $filiere->departement->name }}</option>
                                     @foreach($departements as $departement)
+                                        @if($departement->id==$filiere->departement->id)
+                                            @continue
+                                        @endif
                                         <option value="{{ $departement->id }}" {{ old('id_departement') == $departement->id ? 'selected' : '' }}>
                                             {{ $departement->name }}
                                         </option>

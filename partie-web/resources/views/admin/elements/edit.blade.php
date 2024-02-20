@@ -29,11 +29,11 @@
                             <div class="col mb-0">
                                 <label for="emailBasic" class="form-label">Module</label>
                                 <select name="id_module" id="largeSelect" class="form-select form-select">
-                                 <option selected disabled >select module</option>
+                                 <option  value="{{$element->module->id}}" >{{$element->module->name}}</option>
                                  @foreach($modules as $module )
-                                 {{-- @if($module->id==$elements->module->id)
-                                  @continue
-                                  @endif --}}
+                                      @if($module->id==$element->module->id)
+                                        @continue
+                                      @endif
                                  <option value="{{ $module->id }}" {{ $element->id_module== $module->id ? 'selected' : '' }}>{{$module->name}}</option>
                                  @endforeach
                              </select>

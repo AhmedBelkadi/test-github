@@ -12,7 +12,7 @@
                     <form method="post"  class="row " action="{{route("emplois.chercher")}}" >
                         @csrf
                         <div class="col-5 ">
-                            <select name="id_filiere" id="filiere" class="form-select form-select-lg" >
+                            <select name="id_filiere" id="filiere"  class="form-select form-select-lg" >
                                 <option value="" selected disabled>Select Filiere</option>
                                 @foreach($filieres as $filiere)
                                         <option value="{{ $filiere->id }}" data-type="{{ $filiere->type }}">{{ $filiere->name }}</option>
@@ -88,86 +88,19 @@
 
 
 
-            @php $openModal = request()->query('openModal');   @endphp
+           @include("admin.salles.index")
+           @include("admin.periodes.index")
 
-            <x-crud-modal stl="fade" idModal="sallesModal" >
-                <div>
-                    <form method="post" action="{{ isset($salle) ? route("salles.update", $salle) : route("salles.store") }}" class="">
-                        @csrf
-                        @if(isset($salle))
-                            @method("PUT")
-                        @endif
-                        <label for="nameBasic" class="form-label">nom</label>
-                        <div class="  d-flex justify-content-between align-items-center" >
-                            <div class="row w-100">
-                                <div class="col ">
-                                    <input type="text" name="name" id="nameBasic" class="form-control" placeholder="Enter Name" value="{{ isset($salle) ? $salle->name : old("name") }}"/>
-                                    @error("name")<span class="text-danger" >{{$message}}</span>@enderror
-                                </div>
-                            </div>
-                            <button type="submit" class="ms-2 btn {{ isset($salle) ? "btn-success" : "btn-primary" }}">{{ isset($salle) ? "modifier" : "ajouter" }}</button>
-                        </div>
-                     </form>
-                    <label for="nameBasic" class="form-label mt-3">salles</label>
-                    @foreach( $salles as $salle )
-                      <div class="d-flex justify-content-center mb-2" >
-                        <div style="width: 50%;height: 52px" class="bg-white border border-2 rounded-2 d-flex align-items-center ps-2 me-2" >
-                            {{$salle->name}}
-                        </div>
-                        <a  href="{{route("salles.edit",[ 'salle'=>$salle , 'openModal' => true])}}" class="btn btn-primary text-white  btn-lg" >modifier</a>
-                        <form method="POST" class="" action="{{route("salles.destroy",$salle)}}" >
-                            @csrf
-                            @method("DELETE")
-                            <button type="submit" class=" ms-2 btn btn-danger btn-lg">supprimer</button>
-                        </form>
-                    </div>
-                    @endforeach
-                </div>
-            </x-crud-modal>
 
-            @php $openModal2 = request()->query('openModal2'); @endphp
-
-            <x-crud-modal stl="fade" idModal="periodesModal" >
-                <div>
-                    <form method="post" action="{{ isset($p) ? route("periodes.update", $p) : route("periodes.store") }}" class="">
-                        @csrf
-                        @if(isset($p))  @method("PUT")  @endif
-                        <label for="nameBasic" class="form-label">nom</label>
-                        <div class="  d-flex justify-content-between align-items-center" >
-                            <div class="row w-100">
-                                <div class="col ">
-                                    <input type="text" name="libelle" id="libelleBasic" class="form-control" placeholder="Enter Name" value="{{ isset($p) ? $p->libelle : old("libelle") }}"/>
-                                    @error("libelle") <span class="text-danger" >{{$message}}</span> @enderror
-                                </div>
-                            </div>
-                            <button type="submit" class="ms-2 btn {{ isset($p) ? "btn-success" : "btn-primary" }}">{{ isset($p) ? "modifier" : "ajouter" }}</button>
-                        </div>
-                    </form>
-                    <label for="nameBasic" class="form-label mt-3">periodes</label>
-                    @foreach( $periodes as $p )
-                        <div class="d-flex justify-content-center mb-2" >
-                            <div style="width: 50%;height: 52px" class="bg-white border border-2 rounded-2 d-flex align-items-center ps-2 me-2" >
-                                {{$p->libelle}}
-                            </div>
-                            <a  href="{{route("periodes.edit",[ 'periode'=>$p , 'openModal2' => true])}}" class="btn btn-primary text-white  btn-lg" >modifier</a>
-                                <form method="POST" class="" action="{{route("periodes.destroy",$p)}}" >
-                                    @csrf
-                                    @method("DELETE")
-                                    <button type="submit" class=" ms-2 btn btn-danger btn-lg">supprimer</button>
-                                </form>
-                        </div>
-                    @endforeach
-                </div>
-            </x-crud-modal>
     @endsection
 
     @section( "scripts" )
         <script>
 
-
             document.addEventListener('DOMContentLoaded', function () {
                 const filiereSelect = document.getElementById('filiere');
                 const semestreSelect = document.getElementById('semestre');
+                semestreSelect.disabled = true;
 
                 filiereSelect.addEventListener('change', function () {
                     const selectedFiliereId = filiereSelect.value;
@@ -176,6 +109,8 @@
                     semestreSelect.innerHTML = ''; // Clear previous options
 
                     if (selectedFiliereType === 'dut') {
+                        semestreSelect.disabled = false;
+
                         for (let i = 1; i <= 4; i++) {
                             const option = document.createElement('option');
                             option.value = 'Semestre ' + i;
@@ -183,6 +118,8 @@
                             semestreSelect.appendChild(option);
                         }
                     } else if (selectedFiliereType === 'lp') {
+                        semestreSelect.disabled = false;
+
                         for (let i = 5; i <= 6; i++) {
                             const option = document.createElement('option');
                             option.value = 'Semestre ' + i;
@@ -192,11 +129,11 @@
                     }
                 });
             });
-
             window.addEventListener('load', function() {
                 let urlParams = new URLSearchParams(window.location.search);
                 let openModal = urlParams.get('openModal');
                 let openModal2 = urlParams.get('openModal2');
+                let openModal3 = urlParams.get('openModal3');
                 if (openModal) {
                     let modal = document.getElementById('sallesModal');
                     let bootstrapModal = new bootstrap.Modal(modal);
@@ -207,7 +144,15 @@
                     let bootstrapModal = new bootstrap.Modal(modal);
                     bootstrapModal.show();
                 }
+                if (openModal3) {
+                    let modal = document.getElementById('addSeanceModal_{{ $day }}_{{ $periode->id }}');
+                    let bootstrapModal = new bootstrap.Modal(modal);
+                    bootstrapModal.show();
+                }
             });
+
+
+
         </script>
     @endsection
 
