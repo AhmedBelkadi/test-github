@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Route::resource("modules" , \App\Http\Controllers\ModuleController::class);
 Route::resource("filieres" , \App\Http\Controllers\FiliereController::class);
+Route::resource("seances" , \App\Http\Controllers\SeanceController::class);
+Route::post("/emplois/chercher",[\App\Http\Controllers\EmploiDuTempsController::class,"chercher"])->name("emplois.chercher");
+
 Route::resource("emplois" , \App\Http\Controllers\EmploiDuTempsController::class);
 Route::resource("salles" , \App\Http\Controllers\SalleController::class);
 Route::resource("departements" , \App\Http\Controllers\DepartementController::class);
@@ -31,12 +34,10 @@ Route::post("/etudiants/search", [\App\Http\Controllers\EtudiantController::clas
 
 
 
-Route::resource("seances" , \App\Http\Controllers\SeanceController::class);
 Route::resource("semestres" , \App\Http\Controllers\SemestreController::class);
 Route::resource("periodes" , \App\Http\Controllers\PeriodeController::class);
 Route::resource("absences" , \App\Http\Controllers\AbsenceController::class);
 
-Route::post("/emplois/chercher",[\App\Http\Controllers\EmploiDuTempsController::class,"chercher"])->name("emplois.chercher");
 
 
 
