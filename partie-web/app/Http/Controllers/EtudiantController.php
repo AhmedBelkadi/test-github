@@ -44,31 +44,31 @@ class EtudiantController extends Controller
     public function store(AjouterEtudiantRequest $request)
     {
         // $password = substr($request->input('name'), 0, 1) . '.' . substr($request->input('cne'), -4);
-        $password = substr($request->input('cne'), -4). '@' . substr($request->input('name'), 0);
+        $password = substr($request->input('cne_a'), -4). '@' . substr($request->input('name_a'), 0);
 
 
 
         $user = User::create([
-            'name' => $request->input('name'),
-            'tele' => $request->input('tele'),
-            'adresse' => $request->input('adresse'),
-            'cin' => $request->input('cin'),
-            'email' => $request->input('email'),
+            'name' => $request->input('name_a'),
+            'tele' => $request->input('tele_a'),
+            'adresse' => $request->input('adresse_a'),
+            'cin' => $request->input('cin_a'),
+            'email' => $request->input('email_a'),
             'role' => 'etudiant',
             'password' =>bcrypt($password),
         ]);
 
         $etudiant = Etudiant::create([
             'user_id' => $user->id,
-            "id_filiere" => $request->input("id_filiere"),
-            'cne' => $request->input('cne'),
-            'apogee' => $request->input('apogee'),
+            "id_filiere" => $request->input("id_filiere_a"),
+            'cne' => $request->input('cne_a'),
+            'apogee' => $request->input('apogee_a'),
 
         ]);
 
 
     // Send an email to the student with their email and password
-    Mail::to($user->email)->send(new SendEmail($request->input('email'), $password));
+    Mail::to($user->email)->send(new SendEmail($request->input('email_a'), $password));
 
 
 

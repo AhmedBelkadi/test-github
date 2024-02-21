@@ -24,8 +24,8 @@ Ajouter un module
                        <div class="row">
                            <div class="col mb-3">
                                <label for="nameBasic" class="form-label">Name</label>
-                               <input type="text" value="{{ old("name") }}" name="name" id="nameBasic" class="form-control" placeholder="Enter Name" />
-                               @error("name")
+                               <input type="text" value="{{ old("name_a") }}" name="name_a" id="nameBasic" class="form-control" placeholder="Enter Name" />
+                               @error("name_a")
                                <span class="text-danger" >{{$message}}</span>
                                @enderror
                            </div>
@@ -33,8 +33,8 @@ Ajouter un module
                        <div class="row g-2">
                            <div class="col mb-0">
                                <label for="emailBasic" class="form-label">nbr-heure</label>
-                               <input type="text" id="emailBasic"   value="{{ old("nbr_heure") }}" name="nbr_heure" class="form-control" placeholder="enter nombre des heures" />
-                               @error("nbr_heure")
+                               <input type="text" id="emailBasic"   value="{{ old("nbr_heure_a") }}" name="nbr_heure_a" class="form-control" placeholder="enter nombre des heures" />
+                               @error("nbr_heure_a")
                                <span class="text-danger" >{{$message}}</span>
                                @enderror
                            </div>
@@ -42,13 +42,13 @@ Ajouter un module
                        <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Filiere</label>
-                            <select name="id_filiere" id="filiere" class="form-select form-select">
+                            <select name="id_filiere_a" id="filiere" class="form-select form-select">
                                 <option selected disabled>select filiere</option>
                                 @foreach( $filieres as $filiere )
-                                    <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
+                                    <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}" {{ old('id_filiere_a') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
                                 @endforeach
                             </select>
-                            @error("id_filiere")
+                            @error("id_filiere_a")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
 
@@ -58,10 +58,10 @@ Ajouter un module
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Semestre</label>
                             <div class=" px-0 mb-3">
-                                <select name="name_semestre" id="semestre" class="form-select form-select">
+                                <select name="name_semestre_a" id="semestre" class="form-select form-select">
                                     <option value="" selected disabled>Select Semestre</option>
                                 </select>
-                                @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror
+                                @error('name_semestre_a')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
 
                         </div>

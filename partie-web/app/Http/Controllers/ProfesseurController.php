@@ -39,14 +39,14 @@ class ProfesseurController extends Controller
     public function store(AjouterProfesseurRequest $request)
     {
 
-        $password = substr($request->input('cin'), -4). '@' . substr($request->input('name'), 0);
+        $password = substr($request->input('cin_a'), -4). '@' . substr($request->input('name_a'), 0);
 
         $user = User::create([
-            'name' => $request->input('name'),
-            'tele' => $request->input('tele'),
-            'adresse' => $request->input('adresse'),
-            'cin' => $request->input('cin'),
-            'email' => $request->input('email'),
+            'name' => $request->input('name_a'),
+            'tele' => $request->input('tele_a'),
+            'adresse' => $request->input('adresse_a'),
+            'cin' => $request->input('cin_a'),
+            'email' => $request->input('email_a'),
             'role' => 'professeur',
             'password' => bcrypt('123'),
         ]);
@@ -55,7 +55,7 @@ class ProfesseurController extends Controller
             'user_id' => $user->id,
         ]);
 
-        Mail::to($user->email)->send(new ProfesseurEmail($request->input('email'), $password));
+        Mail::to($user->email)->send(new ProfesseurEmail($request->input('email_a'), $password));
 
 
         return to_route('professeurs.index');

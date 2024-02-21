@@ -37,12 +37,12 @@ class ElementController extends Controller
     {
  // Create the element
  $element = Element::create([
-    "id_module" => $request->input("id_module"),
-    "name" => $request->input("name"),
+    "id_module" => $request->input("id_module_a"),
+    "name" => $request->input("name_a"),
 ]);
 
 // Attach the selected professors to the element
-$element->professeurs()->attach($request->input("id_professeur"));
+$element->professeurs()->attach($request->input("id_professeur_a"));
 
         return to_route('elements.index')->with("success","Element created successfully!");
     }
@@ -61,8 +61,7 @@ $element->professeurs()->attach($request->input("id_professeur"));
     public function edit(Element $element)
 
     {
-
-        return view('admin.elements.index', compact('elements'));
+        return view('admin.elements.index', compact('element'));
     }
 
     /**
@@ -75,8 +74,6 @@ $element->professeurs()->attach($request->input("id_professeur"));
             'name' => 'required|unique:elements,name,'.$element->id,
             'id_module' => 'required|exists:modules,id',
             // 'id_professeur[]' => 'required|exists:professeurs,id',
-
-
 
         ]);
 

@@ -23,9 +23,9 @@ class ElementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'id_module' => 'required|exists:modules,id',
-            'id_professeur' => 'required|exists:professeurs,id',
+            'name_a' => 'required|string|max:255',
+            'id_module_a' => 'required|exists:modules,id',
+            'id_professeur_a' => 'required|exists:professeurs,id',
 
         ];
     }

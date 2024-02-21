@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\ModifierModuleRequest;
 use App\Http\Requests\ModuleRequest;
 use App\Models\Module;
 use App\Models\Semestre;
@@ -35,15 +36,15 @@ class ModuleController extends Controller
      */
     public function store(ModuleRequest $request)
     {
-        $s = Semestre::where("id_filiere", $request->input("id_filiere"))
-            ->where("name", $request->input("name_semestre"))
+        $s = Semestre::where("id_filiere", $request->input("id_filiere_a"))
+            ->where("name", $request->input("name_semestre_a"))
             ->first();
 
         Module::create([
             "id_semestre" => $s->id,
-            "id_filiere" => $request->input("id_filiere"),
-            "nbr_heure" => $request->input("nbr_heure"),
-            "name" => $request->input("name"),
+            "id_filiere" => $request->input("id_filiere_a"),
+            "nbr_heure" => $request->input("nbr_heure_a"),
+            "name" => $request->input("name_a"),
         ]);
         return to_route("modules.index")->with("success","Module created successfully!");    }
 
@@ -67,17 +68,12 @@ class ModuleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ModuleRequest $request, Module $module)
+    public function update(ModifierModuleRequest $request, Module $module)
     {
 
 
 
-        $request->validate([
-        'name' => 'required|string|max:255',
-        'id_filiere' => 'required|exists:filieres,id',
-        'id_semestre' => 'required|exists:semestres,id',
-        'nbr_heure' => 'required|numeric',
-        ]);
+//        $request->validate();
 
         $module->update($request->all());
         return redirect()->route('modules.index')->with('success', 'Module updated successfully!');

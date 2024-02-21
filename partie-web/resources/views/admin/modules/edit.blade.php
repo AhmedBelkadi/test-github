@@ -42,11 +42,11 @@
                                     <label for="nameBasic" class="form-label">Filiere</label>
                                     <select name="id_filiere" id="id_filiere" class="form-select form-select">
                                         <option value="{{ $module->filiere->id }}">{{ $module->filiere->name }}</option>
-                                            @foreach($filieres as $filiere)
+                                        @foreach($filieres as $filiere)
                                             @if($filiere->id==$module->filiere->id)
                                                 @continue
                                             @endif
-                                        <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>
+                                             <option value="{{ $filiere->id }}" {{ old('id_filiere') == $filiere->id ? 'selected' : '' }}>
                                                 {{ $filiere->name }}
                                             </option>
                                         @endforeach

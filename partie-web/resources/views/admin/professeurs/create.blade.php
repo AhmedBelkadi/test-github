@@ -24,8 +24,8 @@ Ajouter un professeur
                        <div class="row">
                            <div class="col mb-3">
                                <label for="nameBasic" class="form-label">Name</label>
-                               <input type="text" value="{{ old("name") }}" name="name" id="nameBasic" class="form-control" placeholder="Enter name" />
-                               @error("name")
+                               <input type="text" value="{{ old("name_a") }}" name="name_a" id="nameBasic" class="form-control" placeholder="Enter name" />
+                               @error("name_a")
                                <span class="text-danger" >{{$message}}</span>
                                @enderror
                            </div>
@@ -33,8 +33,8 @@ Ajouter un professeur
                        <div class="row g-2">
                            <div class="col mb-0">
                                <label for="emailBasic" class="form-label">CIN</label>
-                               <input type="text"  value="{{ old("cin") }}"id="emailBasic"  name="cin" class="form-control" placeholder="enter cin" />
-                               @error("cin")
+                               <input type="text"  value="{{ old("cin_a") }}"id="emailBasic"  name="cin_a" class="form-control" placeholder="enter cin" />
+                               @error("cin_a")
                                <span class="text-danger" >{{$message}}</span>
                                @enderror
                            </div>
@@ -44,8 +44,8 @@ Ajouter un professeur
                        <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Email</label>
-                            <input type="email" value="{{ old("email") }}"id="emailBasic"  name="email" class="form-control" placeholder="enter email" />
-                            @error("email")
+                            <input type="email" value="{{ old("email_a") }}"id="emailBasic"  name="email_a" class="form-control" placeholder="enter email" />
+                            @error("email_a")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
                         </div>
@@ -53,8 +53,8 @@ Ajouter un professeur
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Tele</label>
-                            <input type="text" value="{{ old("tele") }}" id="emailBasic"  name="tele" class="form-control" placeholder="enter tele" />
-                            @error("tele")
+                            <input type="text" value="{{ old("tele_a") }}" id="emailBasic"  name="tele_a" class="form-control" placeholder="enter tele" />
+                            @error("tele_a")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
                         </div>
@@ -62,8 +62,8 @@ Ajouter un professeur
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label for="emailBasic" class="form-label">Adresse</label>
-                            <input type="text" value="{{ old("adresse") }}" id="emailBasic"  name="adresse" class="form-control" placeholder="enter adresse" />
-                            @error("adresse")
+                            <input type="text" value="{{ old("adresse_a") }}" id="emailBasic"  name="adresse_a" class="form-control" placeholder="enter adresse" />
+                            @error("adresse_a")
                             <span class="text-danger" >{{$message}}</span>
                             @enderror
                         </div>

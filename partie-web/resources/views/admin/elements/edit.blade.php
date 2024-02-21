@@ -3,16 +3,8 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modalCenterTitle">Modifier l'element</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-
-
-
 
     <form method="post" action="{{route("elements.update",$element->id)}}">
         @method('PUT')
@@ -27,7 +19,7 @@
                            </div>
                            <div class="row g-2">
                             <div class="col mb-0">
-                                <label for="emailBasic" class="form-label">Module</label>
+                                <label for="largeSelect" class="form-label">Module</label>
                                 <select name="id_module" id="largeSelect" class="form-select form-select">
                                  <option  value="{{$element->module->id}}" >{{$element->module->name}}</option>
                                  @foreach($modules as $module )
@@ -44,13 +36,11 @@
                         </div>
                         <div class="row g-2">
                             <div class="col mb-0">
-                              <label for="emailBasic" class="form-label">Professeur(s)</label>
+                              <label for="professeurs" class="form-label">Professeur(s)</label>
                               <select name="id_professeur[]" id="professeurs" class="form-select form-select" multiple>
-                                <option value="">Select professeur(s)</option>
-                                @foreach($professeurs as $professeur)
-                                    <option value="{{ $professeur->id }}" {{ in_array($professeur->id, old('id_professeur', $element->professeurs->pluck('id')->toArray())) ? 'selected' : '' }}>
-
-
+{{--                                <option value="">Select professeur(s)</option>--}}
+                                 @foreach($professeurs as $professeur)
+                                        <option value="{{ $professeur->id }}" {{ in_array($professeur->id, old('id_professeur', $element->professeurs->pluck('id')->toArray())) ? 'selected' : '' }}>
                                         {{ $professeur->user->name }}
                                     </option>
                                 @endforeach

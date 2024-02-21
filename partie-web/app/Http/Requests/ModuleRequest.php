@@ -25,10 +25,10 @@ class ModuleRequest extends FormRequest
     {
 
         return [
-        'name' => 'required|string|max:255',
-        'id_filiere' => 'required|exists:filieres,id',
-        'name_semestre' => 'required|exists:semestres,name',
-        'nbr_heure' => 'required|numeric',
+        'name_a' => 'required|string|max:255',
+        'id_filiere_a' => 'required|exists:filieres,id',
+        'name_semestre_a' => 'required|exists:semestres,name',
+        'nbr_heure_a' => 'required|numeric',
 
     ];
     }
