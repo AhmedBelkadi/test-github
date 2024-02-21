@@ -44,4 +44,6 @@ Route::resource("absences" , \App\Http\Controllers\AbsenceController::class);
 
 Route::post("/absences/chercher",[\App\Http\Controllers\AbsenceController::class,"chercher"])->name("absences.chercher");
 Route::post('/absences/search-by-student', [\App\Http\Controllers\AbsenceController::class, 'searchByStudent'])->name('absences.searchByStudent');
+Route::get('/professeur/', [\App\Http\Controllers\AbsenceController::class, 'test']);
+Route::get('/login', [\App\Http\Controllers\AbsenceController::class, 'test2']);
 

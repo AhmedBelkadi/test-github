@@ -107,6 +107,16 @@ class AbsenceController extends Controller
 
     }
 
+    public function test()
+    {
+        return view("professeur.index");
+    }
+    public function test2()
+    {
+        return view("login");
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */
