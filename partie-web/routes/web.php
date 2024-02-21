@@ -43,7 +43,8 @@ Route::resource("absences" , \App\Http\Controllers\AbsenceController::class);
 
 
 Route::post("/absences/chercher",[\App\Http\Controllers\AbsenceController::class,"chercher"])->name("absences.chercher");
+Route::post("/chercherEtdsParFiliere",[\App\Http\Controllers\EtudiantController::class,"chercherEtdsParFiliere"])->name("etudiants.chercherEtdsParFiliere");
 Route::post('/absences/search-by-student', [\App\Http\Controllers\AbsenceController::class, 'searchByStudent'])->name('absences.searchByStudent');
-Route::get('/professeur/', [\App\Http\Controllers\AbsenceController::class, 'test']);
+Route::get('/professeur/', [\App\Http\Controllers\AbsenceController::class, 'test'])->name("indexProf");
 Route::get('/login', [\App\Http\Controllers\AbsenceController::class, 'test2']);
 

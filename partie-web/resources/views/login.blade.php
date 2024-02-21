@@ -71,7 +71,7 @@
                       <div class="row">
                           <div class="col mb-3">
                               <label for="nameBasic" class="form-label">email</label>
-                              <input type="eamil" value="{{ old("name_a") }}" name="name_a" id="nameBasic" class="form-control" placeholder="Enter Email" />
+                              <input type="email" value="{{ old("name_a") }}" name="name_a" id="nameBasic" class="form-control" placeholder="Enter Email" />
                               {{--                            @error("name_a")--}}
                               {{--                            <span class="text-danger" >{{$message}}</span>--}}
                               {{--                            @enderror--}}

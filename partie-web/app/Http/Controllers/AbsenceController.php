@@ -109,7 +109,10 @@ class AbsenceController extends Controller
 
     public function test()
     {
-        return view("professeur.index");
+        $periodes = Periode::all();
+        $filieres = Filiere::all();
+        $elements = Element::all();
+        return view("professeur.index" , compact("periodes","filieres","elements")  );
     }
     public function test2()
     {

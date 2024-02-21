@@ -5,7 +5,7 @@
 @section("main")
 
 <div class="row vw-100 bg-black" >
-    <div class="col-4 bg-white vh-100 " >
+    <div class="col-4 bg-primary vh-100 " >
         <div class="row h-100 py-5 px-3" >
             <div class="col-12 h-25 " >
                 <div class="d-flex align-items-center justify-content-center h-100" >
@@ -20,11 +20,14 @@
                         <div class="row g-2">
                             <div class="col px-0  mb-0">
                                 <div class=" px-0 mb-3">
-                                    <label for="emailBasic" class="form-label">Filiere</label>
-                                    <select name="name_semestre" id="semestre" class="form-select-lg form-select">
-                                        <option value="" selected disabled>Select Semestre</option>
+                                    <label for="filiere" class="form-label">Filiere</label>
+                                    <select name="id_filiere" id="filiere" class="form-select-lg form-select">
+                                            <option value="" selected disabled>Select Filiere</option>
+                                            @foreach($filieres as $filiere)
+                                                <option value="{{ $filiere->id }}" >{{ $filiere->name }}</option>
+                                            @endforeach
                                     </select>
-                                    {{--                                    @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror--}}
+                                    @error("id_filiere")<span class="text-danger" >{{$message}}</span>@enderror
                                 </div>
                             </div>
                         </div>
@@ -33,11 +36,14 @@
                         <div class="row g-2">
                             <div class="col px-0  mb-0">
                                 <div class=" px-0 mb-3">
-                                    <label for="emailBasic" class="form-label">Filiere</label>
-                                    <select name="name_semestre" id="semestre" class="form-select-lg form-select">
-                                        <option value="" selected disabled>Select Semestre</option>
+                                    <label for="element" class="form-label">Element</label>
+                                    <select name="id_element" id="element" class="form-select-lg form-select">
+                                        <option value="" selected disabled>Select Filiere</option>
+                                        @foreach($elements as $element)
+                                            <option value="{{ $element->id }}" >{{ $element->name }}</option>
+                                        @endforeach
                                     </select>
-                                    {{--                                    @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror--}}
+                                    @error("id_element")<span class="text-danger" >{{$message}}</span>@enderror
                                 </div>
                             </div>
                         </div>
@@ -48,11 +54,13 @@
                                 <div class="row g-2">
                                     <div class="col px-0  mb-0">
                                         <div class=" px-0 mb-3">
-                                            <label for="emailBasic" class="form-label">Filiere</label>
-                                            <select name="name_semestre" id="semestre" class="form-select-lg form-select">
-                                                <option value="" selected disabled>Select Semestre</option>
+                                            <label for="largeSelect" class="form-label">Type</label>
+                                            <select name="type" id="largeSelect" class="form-select-lg form-select">
+                                                <option selected disabled >select type</option>
+                                                <option value="tp" {{ old('type') == 'tp' ? 'selected' : '' }} >Traveaux Pratique</option>
+                                                <option value="cour" {{ old('type') == 'cour' ? 'selected' : '' }} >Cour</option>
                                             </select>
-                                            {{--                                    @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror--}}
+                                            @error("type")<span class="text-danger" >{{$message}}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
@@ -61,11 +69,14 @@
                                 <div class="row g-2">
                                     <div class="col px-0  mb-0">
                                         <div class=" px-0 mb-3">
-                                            <label for="emailBasic" class="form-label">Filiere</label>
-                                            <select name="name_semestre" id="semestre" class="form-select-lg form-select">
-                                                <option value="" selected disabled>Select Semestre</option>
+                                            <label for="periode" class="form-label">Periode</label>
+                                            <select name="id_periode" id="periode" class="form-select-lg form-select">
+                                                <option value="" selected disabled>Select Filiere</option>
+                                                @foreach($periodes as $periode)
+                                                    <option value="{{ $periode->id }}" >{{ $periode->libelle }}</option>
+                                                @endforeach
                                             </select>
-                                            {{--                                    @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror--}}
+                                            @error("id_periode")<span class="text-danger" >{{$message}}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
@@ -74,28 +85,26 @@
                     </div>
                     <div class="col-12" >
                         <div class="row" >
+{{--                            <div class="col-6 " >--}}
+{{--                                <div class="row g-2">--}}
+{{--                                    <div class="col px-0  mb-0">--}}
+{{--                                        <div class=" px-0 mb-3">--}}
+{{--                                            <label for="emailBasic" class="form-label">Filiere</label>--}}
+{{--                                            <select name="name_semestre" id="semestre" class="form-select-lg form-select">--}}
+{{--                                                <option value="" selected disabled>Select Semestre</option>--}}
+{{--                                            </select>--}}
+{{--                                            --}}{{--                                    @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="col-6 " >
                                 <div class="row g-2">
                                     <div class="col px-0  mb-0">
                                         <div class=" px-0 mb-3">
-                                            <label for="emailBasic" class="form-label">Filiere</label>
-                                            <select name="name_semestre" id="semestre" class="form-select-lg form-select">
-                                                <option value="" selected disabled>Select Semestre</option>
-                                            </select>
-                                            {{--                                    @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror--}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 " >
-                                <div class="row g-2">
-                                    <div class="col px-0  mb-0">
-                                        <div class=" px-0 mb-3">
-                                            <label for="emailBasic" class="form-label">Filiere</label>
-                                            <select name="name_semestre" id="semestre" class="form-select-lg form-select">
-                                                <option value="" selected disabled>Select Semestre</option>
-                                            </select>
-                                            {{--                                    @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror--}}
+                                            <label for="nameBasic" class="form-label">Date</label>
+                                            <input type="date" value="{{old("date")}}" name="date" id="nameBasic" class="form-control form-control-lg"  />
+                                            @error("date")<span class="text-danger" >{{$message}}</span>@enderror
                                         </div>
                                     </div>
                                 </div>
@@ -105,10 +114,10 @@
                     <div class="col-12" >
                         <div class="row" >
                             <div class="col-6  " >
-                                <button type="submit" class="btn-lg btn-primary w-100 ">Rechercher</button>
+                                <button type="submit" formaction="{{route("etudiants.chercherEtdsParFiliere")}}" class="btn-lg btn-white w-100 ">Rechercher</button>
                             </div>
                             <div class="col-6 " >
-                                <button type="submit" class="btn-lg btn-primary w-100 ">Rechercher</button>
+                                <button type="submit" formaction="" class="btn-lg btn-danger w-100 ">Envoyer</button>
                             </div>
                         </div>
                     </div>
@@ -198,10 +207,44 @@
             </div>
         </div>
     </div>
-    <div class="col-8 bg-primary vh-100 " >
+    <div class="col-8 bg-white vh-100 " >
+        @if(isset($etudiants))
+            <div class="mt-3 card">
+                <div class="table-responsive text-nowrap">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th class="text-center" >Name</th>
+                            <th class="text-center" >CIN</th>
+                            <th class="text-center" >Apogee</th>
+                            <th  class="text-center" >CNE</th>
+                            <th  class="text-center"  >Absence</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                        @forelse($etudiants as $etudiant )
+                            <tr>
+                                <td class="text-center" >{{$etudiant->user->name}}</td>
+                                <td class="text-center" >{{$etudiant->user->cin}}</td>
+                                <td class="text-center" >{{$etudiant->apogee}}</td>
+                                <td class="text-center" >{{$etudiant->cne}}</td>
+                                <td class="text-center" >hhh</td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td>no etudiants</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        @else
             <div class="d-flex align-items-center justify-content-center h-100" >
                 <img src="{{asset("assets/img/avatars/Mar-Business_2-removebg-preview.png")}}" class="h-50 border rounded-3" >
             </div>
+        @endif
     </div>
 
 

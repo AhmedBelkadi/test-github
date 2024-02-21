@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AjouterEtudiantRequest;
 use App\Http\Requests\SearchEtudiantRequest;
 use App\Http\Requests\EtudiantRequest;
+use App\Models\Element;
 use App\Models\Etudiant;
 use App\Models\Filiere;
+use App\Models\Periode;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
@@ -171,5 +173,15 @@ class EtudiantController extends Controller
 
             return redirect()->route('etudiants.index')->with('success', 'Etudiant deleted successfully!');
         }
+    }
+
+
+    public function chercherEtdsParFiliere( Request $request )
+    {
+        $periodes = Periode::all();
+        $filieres = Filiere::all();
+        $elements = Element::all();
+        $etudiants = Etudiant::where("id_filiere",$request->input("id_filiere"))->paginate(9);
+        return view("professeur.index",compact("etudiants","periodes","filieres","elements"));
     }
 }
