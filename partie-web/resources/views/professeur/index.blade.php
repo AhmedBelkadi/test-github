@@ -4,7 +4,12 @@
 
 @section("main")
 
+    @if(session()->has("failed"))<x-alert :message="session('failed')" type="danger" />@endif
+    @if(session()->has("success"))<x-alert :message="session('success')" type="success" />@endif
+
 <div class="row vw-100 bg-black" >
+
+
     <div class="col-4 bg-primary vh-100 " >
         <div class="row h-100 py-5 px-3" >
             <div class="col-12 h-25 " >
@@ -14,7 +19,10 @@
                 </div>
             </div>
             <div class="col-12 h-75  py-5" >
-                <form method="post" class="row mx-0  h-100   " action="{{route("absences.chercher")}}">
+{{--                @if(session('success'))<x-alert :message="session('success')" type="success" />@endif--}}
+
+
+                <form method="post" class="row mx-0  h-100" >
                     @csrf
                     <div class="col-12" >
                         <div class="row g-2">
@@ -24,7 +32,7 @@
                                     <select name="id_filiere" id="filiere" class="form-select-lg form-select">
                                             <option value="" selected disabled>Select Filiere</option>
                                             @foreach($filieres as $filiere)
-                                                <option value="{{ $filiere->id }}" >{{ $filiere->name }}</option>
+                                                <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}" >{{ $filiere->name }}</option>
                                             @endforeach
                                     </select>
                                     @error("id_filiere")<span class="text-danger" >{{$message}}</span>@enderror
@@ -36,9 +44,23 @@
                         <div class="row g-2">
                             <div class="col px-0  mb-0">
                                 <div class=" px-0 mb-3">
+                                    <label for="emailBasic" class="form-label">Semestre</label>
+                                    <select name="name_semestre" id="semestre" class="form-select-lg form-select">
+                                        <option value="" selected disabled>Select Semestre</option>
+                                    </select>
+                                    @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12" >
+                        <div class="row g-2">
+                            <div class="col px-0  mb-0">
+                                <div class=" px-0 mb-3">
                                     <label for="element" class="form-label">Element</label>
                                     <select name="id_element" id="element" class="form-select-lg form-select">
-                                        <option value="" selected disabled>Select Filiere</option>
+                                        <option value="" selected disabled>Select Element</option>
                                         @foreach($elements as $element)
                                             <option value="{{ $element->id }}" >{{ $element->name }}</option>
                                         @endforeach
@@ -71,7 +93,7 @@
                                         <div class=" px-0 mb-3">
                                             <label for="periode" class="form-label">Periode</label>
                                             <select name="id_periode" id="periode" class="form-select-lg form-select">
-                                                <option value="" selected disabled>Select Filiere</option>
+                                                <option value="" selected disabled>Select Periode</option>
                                                 @foreach($periodes as $periode)
                                                     <option value="{{ $periode->id }}" >{{ $periode->libelle }}</option>
                                                 @endforeach
@@ -85,20 +107,8 @@
                     </div>
                     <div class="col-12" >
                         <div class="row" >
-{{--                            <div class="col-6 " >--}}
-{{--                                <div class="row g-2">--}}
-{{--                                    <div class="col px-0  mb-0">--}}
-{{--                                        <div class=" px-0 mb-3">--}}
-{{--                                            <label for="emailBasic" class="form-label">Filiere</label>--}}
-{{--                                            <select name="name_semestre" id="semestre" class="form-select-lg form-select">--}}
-{{--                                                <option value="" selected disabled>Select Semestre</option>--}}
-{{--                                            </select>--}}
-{{--                                            --}}{{--                                    @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-                            <div class="col-6 " >
+
+                            <div class="col-12 " >
                                 <div class="row g-2">
                                     <div class="col px-0  mb-0">
                                         <div class=" px-0 mb-3">
@@ -114,13 +124,15 @@
                     <div class="col-12" >
                         <div class="row" >
                             <div class="col-6  " >
-                                <button type="submit" formaction="{{route("etudiants.chercherEtdsParFiliere")}}" class="btn-lg btn-white w-100 ">Rechercher</button>
+                                <button type="submit" formaction="{{route("etudiants.chercherEtdsParFiliere")}}" class="btn-lg btn-white w-100 ">list of etudiant</button>
                             </div>
                             <div class="col-6 " >
-                                <button type="submit" formaction="" class="btn-lg btn-danger w-100 ">Envoyer</button>
+                                <button type="submit" formaction="{{route("etudiants.codeQrParSeance")}}" class="btn-lg btn-danger w-100 ">Code Qr</button>
                             </div>
                         </div>
                     </div>
+
+
 
 
 {{--                    <div class="col-11 ps-0  " >--}}
@@ -250,4 +262,43 @@
 
 </div>
 
+@endsection
+
+@section( "scripts" )
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const filiereSelect = document.getElementById('filiere');
+            const semestreSelect = document.getElementById('semestre');
+            semestreSelect.disabled = true;
+
+            filiereSelect.addEventListener('change', function () {
+                const selectedFiliereId = filiereSelect.value;
+                const selectedFiliereOption = filiereSelect.options[filiereSelect.selectedIndex];
+                const selectedFiliereType = selectedFiliereOption.getAttribute('data-type');
+                semestreSelect.innerHTML = ''; // Clear previous options
+
+                if (selectedFiliereType === 'dut') {
+                    semestreSelect.disabled = false;
+
+                    for (let i = 1; i <= 4; i++) {
+                        const option = document.createElement('option');
+                        option.value = 'Semestre ' + i;
+                        option.textContent = 'Semestre ' + i;
+                        semestreSelect.appendChild(option);
+                    }
+                } else if (selectedFiliereType === 'lp') {
+                    semestreSelect.disabled = false;
+
+                    for (let i = 5; i <= 6; i++) {
+                        const option = document.createElement('option');
+                        option.value = 'Semestre ' + i;
+                        option.textContent = 'Semestre ' + i;
+                        semestreSelect.appendChild(option);
+                    }
+                }
+            });
+        });
+
+    </script>
 @endsection

@@ -5,9 +5,12 @@ use App\Http\Requests\AjouterEtudiantRequest;
 use App\Http\Requests\SearchEtudiantRequest;
 use App\Http\Requests\EtudiantRequest;
 use App\Models\Element;
+use App\Models\EmploiDuTemps;
 use App\Models\Etudiant;
 use App\Models\Filiere;
 use App\Models\Periode;
+use App\Models\Seance;
+use App\Models\Semestre;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
@@ -178,10 +181,60 @@ class EtudiantController extends Controller
 
     public function chercherEtdsParFiliere( Request $request )
     {
+
+        $dateValue = $request->input('date'); // Assuming 'date' is the name of your input field
+
+// Extract the day from the date value
+        $day = date('l', strtotime($dateValue));
+//        dd($day);
+
+// $day will contain the full name of the day (e.g., Monday, Tuesday, etc.)
+
+
+//        dd($e->filiere->name,$e->semestre->name);
         $periodes = Periode::all();
         $filieres = Filiere::all();
         $elements = Element::all();
-        $etudiants = Etudiant::where("id_filiere",$request->input("id_filiere"))->paginate(9);
-        return view("professeur.index",compact("etudiants","periodes","filieres","elements"));
+        $s = Semestre::where("id_filiere", $request->input("id_filiere"))
+            ->where("name", $request->input("name_semestre"))
+            ->first();
+        $e=EmploiDuTemps::where("id_filiere",$request->input("id_filiere"))->where("id_semestre",$s->id)->get()->first();
+        $seance=Seance::where("id_periode",$request->input("id_periode"))
+                        ->where("id_element",$request->input("id_element"))
+                        ->where("id_emploi_du_temps",$e->id)
+                        ->where("day",$day)
+                        ->get()->first();
+        if ( $seance ){
+            $etudiants = Etudiant::where("id_filiere",$request->input("id_filiere"))->paginate(9);
+            session()->flash('success', 'Seance found in the emplois');
+            return view("professeur.index",compact("etudiants","periodes","filieres","elements"));
+        }
+            session()->flash('failed', 'Seance not found in the emplois');
+        return view("professeur.index",compact("periodes","filieres","elements"));
+    }
+    public function codeQrParSeance( Request $request )
+    {
+
+        $dateValue = $request->input('date');
+        $day = date('l', strtotime($dateValue));
+        $periodes = Periode::all();
+        $filieres = Filiere::all();
+        $elements = Element::all();
+        $s = Semestre::where("id_filiere", $request->input("id_filiere"))
+            ->where("name", $request->input("name_semestre"))
+            ->first();
+        $e=EmploiDuTemps::where("id_filiere",$request->input("id_filiere"))->where("id_semestre",$s->id)->get()->first();
+        $seance=Seance::where("id_periode",$request->input("id_periode"))
+                        ->where("id_element",$request->input("id_element"))
+                        ->where("id_emploi_du_temps",$e->id)
+                        ->where("day",$day)
+                        ->get()->first();
+        if ( $seance ){
+            $etudiants = Etudiant::where("id_filiere",$request->input("id_filiere"))->paginate(9);
+            session()->flash('success', 'Seance found in the emplois');
+            return view("professeur.index",compact("etudiants","periodes","filieres","elements"));
+        }
+        session()->flash('failed', 'Seance not found in the emplois');
+        return view("professeur.index",compact("periodes","filieres","elements"));
     }
 }
