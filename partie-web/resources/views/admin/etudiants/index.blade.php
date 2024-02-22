@@ -20,7 +20,7 @@
     @csrf
     <div class="row px-2.2">
         <div class="col-11">
-            <input type="text" name="cin_cne" id="search" class="form-control" placeholder="Enter CIN or CNE">
+            <input type="text" name="cin_cne" id="search" class="form-control" placeholder="Enter APOGEE or CNE">
             @error('cin_cne')
                 <span class="text-danger">{{$message}}</span>
             @enderror
