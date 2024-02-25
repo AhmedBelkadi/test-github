@@ -9,9 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('absences', function (Blueprint $table) {
-            // Check if the 'date' column doesn't already exist
             if (!Schema::hasColumn('absences', 'date')) {
-                // Add the 'date' column
                 $table->date('date')->nullable();
             }
         });

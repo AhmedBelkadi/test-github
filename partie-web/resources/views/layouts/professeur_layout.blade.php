@@ -59,16 +59,17 @@
 <!-- Layout wrapper -->
 {{--<div class="layout-wrapper layout-content-navbar">--}}
 
-{{--    <div class="container">--}}
 
 {{--        <x-sidebar />--}}
 
+
+{{--        <div class="container">--}}
             @yield("main")
+{{--        </div>--}}
 {{--        <!-- Layout container -->--}}
 {{--        <div class="layout-page">--}}
 {{--            <div class="container-xxl flex-grow-1 container-p-y ">--}}
 {{--            </div>--}}
-{{--        </div>--}}
 {{--        <!-- / Layout page -->--}}
 
 {{--    </div>--}}

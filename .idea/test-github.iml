@@ -8,6 +8,8 @@
       <sourceFolder url="file://$MODULE_DIR$/partie-web/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/partie-web/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/partie-web/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/carbonphp/carbon-doctrine-types" />
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/composer" />
@@ -120,6 +122,9 @@
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/bacon/bacon-qr-code" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/dasprid/enum" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/simplesoftwareio/simple-qrcode" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

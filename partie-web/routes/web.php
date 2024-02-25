@@ -13,9 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.dashboard');
-});
+//Route::get('/', function () {
+//    return view('admin.dashboard');
+//})->name("admin.index");
+Route::view("/","login")->name("showLogin");
+Route::view("/dashboard","admin.dashboard")->name("admin.index");
+
 
 Route::resource("modules" , \App\Http\Controllers\ModuleController::class);
 Route::resource("filieres" , \App\Http\Controllers\FiliereController::class);
@@ -47,5 +50,7 @@ Route::post("/chercherEtdsParFiliere",[\App\Http\Controllers\EtudiantController:
 Route::post("/codeQrParSeance",[\App\Http\Controllers\EtudiantController::class,"codeQrParSeance"])->name("etudiants.codeQrParSeance");
 Route::post('/absences/search-by-student', [\App\Http\Controllers\AbsenceController::class, 'searchByStudent'])->name('absences.searchByStudent');
 Route::get('/professeur/', [\App\Http\Controllers\AbsenceController::class, 'test'])->name("indexProf");
-Route::get('/login', [\App\Http\Controllers\AbsenceController::class, 'test2']);
+
+Route::post("/login",[\App\Http\Controllers\AuthController::class,"login"])->name("login");
+Route::get("/logout",[\App\Http\Controllers\AuthController::class,"logout"])->name("logout");
 

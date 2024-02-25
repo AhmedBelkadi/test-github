@@ -26,11 +26,11 @@ class AjouterEtudiantRequest extends FormRequest
         return [
 
             'name_a' => 'required:users',
-            'email_a' => 'required|email|unique:users',
+            'email_a' => 'required',
             'tele_a' => 'required:users',
             'adresse_a' => 'required:users',
-            'cin_a' => 'required|unique:users',
-            'cne_a' => 'required|unique:etudiants',
+            'cin_a' => 'required',
+            'cne_a' => 'required',
             'apogee_a' => 'required:etudiants',
             'id_filiere_a' => 'required:filieres,id_filiere',
 

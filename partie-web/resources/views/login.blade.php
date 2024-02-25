@@ -63,7 +63,7 @@
         </div>
         <div class="col-7 bg-white vh-100 d-flex justify-content-center align-items-center" >
 
-            <form method="post" class="row bg-white w-50 px-5 border border-3 border-primary rounded-3 " action="{{route("modules.store")}}">
+            <form method="post" class="row bg-white w-50 px-5 border border-3 border-primary rounded-3 " action="{{route("login")}}">
                 @csrf
                   <div class="col-12 p-5 " >
                       <h1 class="text-center text-primary" >Connexion</h1>
@@ -71,19 +71,20 @@
                       <div class="row">
                           <div class="col mb-3">
                               <label for="nameBasic" class="form-label">email</label>
-                              <input type="email" value="{{ old("name_a") }}" name="name_a" id="nameBasic" class="form-control" placeholder="Enter Email" />
-                              {{--                            @error("name_a")--}}
-                              {{--                            <span class="text-danger" >{{$message}}</span>--}}
-                              {{--                            @enderror--}}
+                              <input type="email" value="{{ old("email") }}" name="email" id="nameBasic" class="form-control" placeholder="Enter Email" />
+                              @error("email")<span class="text-danger" >{{$message}}</span>@enderror
                           </div>
                       </div>
                       <div class="row g-2">
                           <div class="col mb-0">
                               <label for="emailBasic" class="form-label">password</label>
-                              <input type="password" id="emailBasic"   value="{{ old("nbr_heure_a") }}" name="nbr_heure_a" class="form-control" placeholder="Enter Password" />
-                              {{--                            @error("nbr_heure_a")--}}
-                              {{--                            <span class="text-danger" >{{$message}}</span>--}}
-                              {{--                            @enderror--}}
+                              <input type="password" id="emailBasic"   value="{{ old("password") }}" name="password" class="form-control" placeholder="Enter Password" />
+                              @error("password")<span class="text-danger" >{{$message}}</span>@enderror
+                          </div>
+                      </div>
+                      <div class="row g-2">
+                          <div class="col mb-0">
+                              <input type="submit"  value="login" class="btn btn-primary w-100 mt-3"  />
                           </div>
                       </div>
                   </div>

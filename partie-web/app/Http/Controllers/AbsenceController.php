@@ -8,8 +8,10 @@ use App\Models\Absence;
 use App\Models\Element;
 use App\Models\Filiere;
 use App\Models\Periode;
+use App\Models\Professeur;
 use App\Models\Semestre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AbsenceController extends Controller
 {
@@ -111,13 +113,10 @@ class AbsenceController extends Controller
     {
         $periodes = Periode::all();
         $filieres = Filiere::all();
-        $elements = Element::all();
+        $elements = Professeur::all()->find( Auth::user()->professeur->id )->elements;
         return view("professeur.index" , compact("periodes","filieres","elements")  );
     }
-    public function test2()
-    {
-        return view("login");
-    }
+
 
 
     /**

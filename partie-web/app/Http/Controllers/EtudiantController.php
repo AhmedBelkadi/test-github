@@ -12,6 +12,8 @@ use App\Models\Periode;
 use App\Models\Seance;
 use App\Models\Semestre;
 use App\Models\User;
+use Dflydev\DotAccessData\Data;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
 use Illuminate\Support\Str;
@@ -19,6 +21,9 @@ use Illuminate\Support\Str;
 
 
 use Illuminate\Http\Request;
+//use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
 
 class EtudiantController extends Controller
 {
@@ -52,7 +57,6 @@ class EtudiantController extends Controller
         $password = substr($request->input('cne_a'), -4). '@' . substr($request->input('name_a'), 0);
 
 
-
         $user = User::create([
             'name' => $request->input('name_a'),
             'tele' => $request->input('tele_a'),
@@ -60,7 +64,7 @@ class EtudiantController extends Controller
             'cin' => $request->input('cin_a'),
             'email' => $request->input('email_a'),
             'role' => 'etudiant',
-            'password' =>bcrypt($password),
+            'password' =>bcrypt("111"),
         ]);
 
         $etudiant = Etudiant::create([
@@ -73,7 +77,7 @@ class EtudiantController extends Controller
 
 
     // Send an email to the student with their email and password
-    Mail::to($user->email)->send(new SendEmail($request->input('email_a'), $password));
+//    Mail::to($user->email)->send(new SendEmail($request->input('email_a'), $password));
 
 
 
@@ -183,15 +187,7 @@ class EtudiantController extends Controller
     {
 
         $dateValue = $request->input('date'); // Assuming 'date' is the name of your input field
-
-// Extract the day from the date value
         $day = date('l', strtotime($dateValue));
-//        dd($day);
-
-// $day will contain the full name of the day (e.g., Monday, Tuesday, etc.)
-
-
-//        dd($e->filiere->name,$e->semestre->name);
         $periodes = Periode::all();
         $filieres = Filiere::all();
         $elements = Element::all();
@@ -206,35 +202,13 @@ class EtudiantController extends Controller
                         ->get()->first();
         if ( $seance ){
             $etudiants = Etudiant::where("id_filiere",$request->input("id_filiere"))->paginate(9);
+            $data = $seance;
+            $data["date_unique"] = Carbon::now()->format('y-m-d h:i:s');
+            $qrCode = QrCode::size(350)->generate($data);
             session()->flash('success', 'Seance found in the emplois');
-            return view("professeur.index",compact("etudiants","periodes","filieres","elements"));
+            return view("professeur.index",compact("etudiants","qrCode","periodes","filieres","elements"));
         }
             session()->flash('failed', 'Seance not found in the emplois');
-        return view("professeur.index",compact("periodes","filieres","elements"));
-    }
-    public function codeQrParSeance( Request $request )
-    {
-
-        $dateValue = $request->input('date');
-        $day = date('l', strtotime($dateValue));
-        $periodes = Periode::all();
-        $filieres = Filiere::all();
-        $elements = Element::all();
-        $s = Semestre::where("id_filiere", $request->input("id_filiere"))
-            ->where("name", $request->input("name_semestre"))
-            ->first();
-        $e=EmploiDuTemps::where("id_filiere",$request->input("id_filiere"))->where("id_semestre",$s->id)->get()->first();
-        $seance=Seance::where("id_periode",$request->input("id_periode"))
-                        ->where("id_element",$request->input("id_element"))
-                        ->where("id_emploi_du_temps",$e->id)
-                        ->where("day",$day)
-                        ->get()->first();
-        if ( $seance ){
-            $etudiants = Etudiant::where("id_filiere",$request->input("id_filiere"))->paginate(9);
-            session()->flash('success', 'Seance found in the emplois');
-            return view("professeur.index",compact("etudiants","periodes","filieres","elements"));
-        }
-        session()->flash('failed', 'Seance not found in the emplois');
         return view("professeur.index",compact("periodes","filieres","elements"));
     }
 }
