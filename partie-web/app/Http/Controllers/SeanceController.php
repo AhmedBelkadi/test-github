@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AjouterSeanceRequest;
 use App\Http\Requests\ModifierSeanceRequest;
+use App\Http\Resources\SeanceResource;
 use App\Models\EmploiDuTemps;
 use App\Models\Seance;
 use Illuminate\Http\Request;
@@ -60,6 +61,13 @@ class SeanceController extends Controller
             'id_filiere' => $emploi->filiere->id,
             'name_semestre' => $emploi->semestre->name,
         ])->with("success", "Seance created successfully!");
+    }
+
+
+    public function getSeancesByDate($day)
+    {
+        $seances = Seance::where('day', $day)->get();
+        return SeanceResource::collection($seances);
     }
 
 

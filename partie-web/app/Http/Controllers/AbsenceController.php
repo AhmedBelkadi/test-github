@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RechercherAbsenceRequest;
 use App\Http\Requests\SearchAbsencesByStudentRequest;
+use App\Http\Resources\AbsenceResource;
 use App\Models\Absence;
 use App\Models\Element;
 use App\Models\Filiere;
@@ -74,6 +75,21 @@ class AbsenceController extends Controller
         return view("admin.absences.index" ,compact("absences","filieres","periodes","elements","semestres")  );
 
 
+
+    }
+
+    public function getAbsencesByStudent( $student_id )
+    {
+//        dd($student_id);
+//        $absences = Absence::where('id_etudiant', $student_id)->get();
+
+
+        // You may want to eager load related data if necessary
+         Example: $absences = Absence::where('id_etudiant', $student_id)->get();
+
+        // Return the absences as JSON response
+//        return response()->json(['absences' => $absences]);
+        return AbsenceResource::collection($absences);
 
     }
 

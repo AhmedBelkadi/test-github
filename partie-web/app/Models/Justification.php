@@ -9,6 +9,8 @@ class Justification extends Model
 {
     use HasFactory;
 
+    protected $fillable = [ "libele" , "etat" , "date" ];
+
     public function absences()
     {
         return $this->belongsToMany(Absence::class , "absence_justification" ,  'id_justification', 'id_absence' );

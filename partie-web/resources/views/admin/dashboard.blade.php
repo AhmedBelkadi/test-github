@@ -3,684 +3,305 @@
 @section( "dashboard-active" , "active" )
 
 @section("main")
-    <!-- Navbar -->
-    <nav
-        class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-        id="layout-navbar"
-    >
-        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                <i class="bx bx-menu bx-sm"></i>
-            </a>
-        </div>
 
-        <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-            <!-- Search -->
-            <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                    <i class="bx bx-search fs-4 lh-0"></i>
-                    <input
-                        type="text"
-                        class="form-control border-0 shadow-none"
-                        placeholder="Search..."
-                        aria-label="Search..."
-                    />
-                </div>
-            </div>
-            <!-- /Search -->
-
-            <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
-                    <a
-                        class="github-button"
-                        href="https://github.com/themeselection/sneat-html-admin-template-free"
-                        data-icon="octicon-star"
-                        data-size="large"
-                        data-show-count="true"
-                        aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                    >Star</a
-                    >
-                </li>
-
-                <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                        <div class="avatar avatar-online">
-                            <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                        </div>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0 me-3">
-                                        <div class="avatar avatar-online">
-                                            <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block">John Doe</span>
-                                        <small class="text-muted">Admin</small>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="bx bx-user me-2"></i>
-                                <span class="align-middle">My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="bx bx-cog me-2"></i>
-                                <span class="align-middle">Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="auth-login-basic.html">
-                                <i class="bx bx-power-off me-2"></i>
-                                <span class="align-middle">Log Out</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <!--/ User -->
-            </ul>
-        </div>
-    </nav>
-    <!-- / Navbar -->
 
     <!-- Content wrapper -->
-    <div class="content-wrapper">
+    <div class="vh-100">
         <!-- Content -->
 
-        <div class="container-xxl flex-grow-1 container-p-y">
-            <div class="row">
-                <div class="col-lg-8 mb-4 order-0">
-                    <div class="card">
-                        <div class="d-flex align-items-end row">
-                            <div class="col-sm-7">
-                                <div class="card-body">
-                                    <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
-                                    <p class="mb-4">
-                                        You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
-                                        your profile.
-                                    </p>
 
-                                    <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
-                                </div>
-                            </div>
-                            <div class="col-sm-5 text-center text-sm-left">
-                                <div class="card-body pb-0 px-0 px-md-4">
-                                    <img
-                                        src="../assets/img/illustrations/man-with-laptop-light.png"
-                                        height="140"
-                                        alt="View Badge User"
-                                        data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                                        data-app-light-img="illustrations/man-with-laptop-light.png"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 order-1">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12 col-6 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title d-flex align-items-start justify-content-between">
-                                        <div class="avatar flex-shrink-0">
-                                            <img
-                                                src="../assets/img/icons/unicons/chart-success.png"
-                                                alt="chart success"
-                                                class="rounded"
-                                            />
-                                        </div>
-                                        <div class="dropdown">
-                                            <button
-                                                class="btn p-0"
-                                                type="button"
-                                                id="cardOpt3"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="fw-semibold d-block mb-1">Profit</span>
-                                    <h3 class="card-title mb-2">$12,628</h3>
-                                    <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-6 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title d-flex align-items-start justify-content-between">
-                                        <div class="avatar flex-shrink-0">
-                                            <img
-                                                src="../assets/img/icons/unicons/wallet-info.png"
-                                                alt="Credit Card"
-                                                class="rounded"
-                                            />
-                                        </div>
-                                        <div class="dropdown">
-                                            <button
-                                                class="btn p-0"
-                                                type="button"
-                                                id="cardOpt6"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span>Sales</span>
-                                    <h3 class="card-title text-nowrap mb-1">$4,679</h3>
-                                    <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Total Revenue -->
-                <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
-                    <div class="card">
-                        <div class="row row-bordered g-0">
-                            <div class="col-md-8">
-                                <h5 class="card-header m-0 me-2 pb-3">Total Revenue</h5>
-                                <div id="totalRevenueChart" class="px-2"></div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <div class="dropdown">
-                                            <button
-                                                class="btn btn-sm btn-outline-primary dropdown-toggle"
-                                                type="button"
-                                                id="growthReportId"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
-                                                2022
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="growthReportId">
-                                                <a class="dropdown-item" href="javascript:void(0);">2021</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">2020</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">2019</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="growthChart"></div>
-                                <div class="text-center fw-semibold pt-3 mb-2">62% Company Growth</div>
+        <div class="container h-100 container  ">
+            <div class="d-flex gap-3 align-items-center h-25  py-2" >
+                <div class=" d-flex  py-3  align-items-center justify-content-around  w-25 border rounded-3  " >
+{{--                        <img class="h-25 w-25 border rounded-circle" src="{{asset("assets/img/avatars/1.png")}}">--}}
 
-                                <div class="d-flex px-xxl-4 px-lg-2 p-4 gap-xxl-3 gap-lg-1 gap-3 justify-content-between">
-                                    <div class="d-flex">
-                                        <div class="me-2">
-                                            <span class="badge bg-label-primary p-2"><i class="bx bx-dollar text-primary"></i></span>
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <small>2022</small>
-                                            <h6 class="mb-0">$32.5k</h6>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex">
-                                        <div class="me-2">
-                                            <span class="badge bg-label-info p-2"><i class="bx bx-wallet text-info"></i></span>
-                                        </div>
-                                        <div class="d-flex flex-column">
-                                            <small>2021</small>
-                                            <h6 class="mb-0">$41.2k</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <svg class="p-0 " xmlns="http://www.w3.org/2000/svg" width="20%" height="20%" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M2 7v1l11 4 9-4V7L11 4z"></path><path d="M4 11v4.267c0 1.621 4.001 3.893 9 3.734 4-.126 6.586-1.972 7-3.467.024-.089.037-.178.037-.268V11L13 14l-5-1.667v3.213l-1-.364V12l-3-1z"></path></svg>
+
+                    <div class="" >
+                        <p class="fw-bold text-dark fs-3" >47</p>
+                        <p class="fw-semibold" >TOTAL STUDENTS</p>
                     </div>
                 </div>
-                <!--/ Total Revenue -->
-                <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
-                    <div class="row">
-                        <div class="col-6 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title d-flex align-items-start justify-content-between">
-                                        <div class="avatar flex-shrink-0">
-                                            <img src="../assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded" />
-                                        </div>
-                                        <div class="dropdown">
-                                            <button
-                                                class="btn p-0"
-                                                type="button"
-                                                id="cardOpt4"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="d-block mb-1">Payments</span>
-                                    <h3 class="card-title text-nowrap mb-2">$2,456</h3>
-                                    <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> -14.82%</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title d-flex align-items-start justify-content-between">
-                                        <div class="avatar flex-shrink-0">
-                                            <img src="../assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded" />
-                                        </div>
-                                        <div class="dropdown">
-                                            <button
-                                                class="btn p-0"
-                                                type="button"
-                                                id="cardOpt1"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                            >
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <span class="fw-semibold d-block mb-1">Transactions</span>
-                                    <h3 class="card-title mb-2">$14,857</h3>
-                                    <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.14%</small>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- </div>
-        <div class="row"> -->
-                        <div class="col-12 mb-4">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
-                                        <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
-                                            <div class="card-title">
-                                                <h5 class="text-nowrap mb-2">Profile Report</h5>
-                                                <span class="badge bg-label-warning rounded-pill">Year 2021</span>
-                                            </div>
-                                            <div class="mt-sm-auto">
-                                                <small class="text-success text-nowrap fw-semibold"
-                                                ><i class="bx bx-chevron-up"></i> 68.2%</small
-                                                >
-                                                <h3 class="mb-0">$84,686k</h3>
-                                            </div>
-                                        </div>
-                                        <div id="profileReportChart"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                <div class=" d-flex  py-3  align-items-center justify-content-around  w-25 border rounded-3  " >
+                    {{--                        <img class="h-25 w-25 border rounded-circle" src="{{asset("assets/img/avatars/1.png")}}">--}}
+
+{{--                    <svg class="p-0 " xmlns="http://www.w3.org/2000/svg" width="20%" height="20%" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M2 7v1l11 4 9-4V7L11 4z"></path><path d="M4 11v4.267c0 1.621 4.001 3.893 9 3.734 4-.126 6.586-1.972 7-3.467.024-.089.037-.178.037-.268V11L13 14l-5-1.667v3.213l-1-.364V12l-3-1z"></path></svg>--}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20%" height="20%" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
+                    <div class="" >
+                        <p class="fw-bold text-dark fs-3" >47</p>
+                        <p class="fw-semibold" >TOTAL STUDENTS</p>
                     </div>
                 </div>
+                <div class=" d-flex  py-3  align-items-center justify-content-around  w-25 border rounded-3  " >
+                    {{--                        <img class="h-25 w-25 border rounded-circle" src="{{asset("assets/img/avatars/1.png")}}">--}}
+
+{{--                    <svg class="p-0 " xmlns="http://www.w3.org/2000/svg" width="20%" height="20%" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M2 7v1l11 4 9-4V7L11 4z"></path><path d="M4 11v4.267c0 1.621 4.001 3.893 9 3.734 4-.126 6.586-1.972 7-3.467.024-.089.037-.178.037-.268V11L13 14l-5-1.667v3.213l-1-.364V12l-3-1z"></path></svg>--}}
+                    <svg xmlns="http://www.w3.org/2000/svg"  width="20%" height="20%" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zM174.6 384.1c-4.5 12.5-18.2 18.9-30.7 14.4s-18.9-18.2-14.4-30.7C146.9 319.4 198.9 288 256 288s109.1 31.4 126.6 79.9c4.5 12.5-2 26.2-14.4 30.7s-26.2-2-30.7-14.4C328.2 358.5 297.2 336 256 336s-72.2 22.5-81.4 48.1zM144.4 208a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zm192-32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                    <div class="" >
+                        <p class="fw-bold text-dark fs-3" >47</p>
+                        <p class="fw-semibold" >TOTAL STUDENTS</p>
+                    </div>
+                </div>
+                <div class=" d-flex  py-3  align-items-center justify-content-around  w-25 border rounded-3  " >
+                    {{--                        <img class="h-25 w-25 border rounded-circle" src="{{asset("assets/img/avatars/1.png")}}">--}}
+
+                    <svg class="p-0 " xmlns="http://www.w3.org/2000/svg" width="20%" height="20%" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M2 7v1l11 4 9-4V7L11 4z"></path><path d="M4 11v4.267c0 1.621 4.001 3.893 9 3.734 4-.126 6.586-1.972 7-3.467.024-.089.037-.178.037-.268V11L13 14l-5-1.667v3.213l-1-.364V12l-3-1z"></path></svg>
+
+                    <div class="" >
+                        <p class="fw-bold text-dark fs-3" >47</p>
+                        <p class="fw-semibold" >TOTAL STUDENTS</p>
+                    </div>
+                </div>
+
+
             </div>
-            <div class="row">
-                <!-- Order Statistics -->
-                <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header d-flex align-items-center justify-content-between pb-0">
-                            <div class="card-title mb-0">
-                                <h5 class="m-0 me-2">Order Statistics</h5>
-                                <small class="text-muted">42.82k Total Sales</small>
-                            </div>
-                            <div class="dropdown">
-                                <button
-                                    class="btn p-0"
-                                    type="button"
-                                    id="orederStatistics"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="orederStatistics">
-                                    <a class="dropdown-item" href="javascript:void(0);">Select All</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Refresh</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <div class="d-flex flex-column align-items-center gap-1">
-                                    <h2 class="mb-2">8,258</h2>
-                                    <span>Total Orders</span>
-                                </div>
-                                <div id="orderStatisticsChart"></div>
-                            </div>
-                            <ul class="p-0 m-0">
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-primary"
-                            ><i class="bx bx-mobile-alt"></i
-                                ></span>
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Electronic</h6>
-                                            <small class="text-muted">Mobile, Earbuds, TV</small>
-                                        </div>
-                                        <div class="user-progress">
-                                            <small class="fw-semibold">82.5k</small>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <span class="avatar-initial rounded bg-label-success"><i class="bx bx-closet"></i></span>
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Fashion</h6>
-                                            <small class="text-muted">T-shirt, Jeans, Shoes</small>
-                                        </div>
-                                        <div class="user-progress">
-                                            <small class="fw-semibold">23.8k</small>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <span class="avatar-initial rounded bg-label-info"><i class="bx bx-home-alt"></i></span>
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Decor</h6>
-                                            <small class="text-muted">Fine Art, Dining</small>
-                                        </div>
-                                        <div class="user-progress">
-                                            <small class="fw-semibold">849k</small>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex">
-                                    <div class="avatar flex-shrink-0 me-3">
-                            <span class="avatar-initial rounded bg-label-secondary"
-                            ><i class="bx bx-football"></i
-                                ></span>
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">Sports</h6>
-                                            <small class="text-muted">Football, Cricket Kit</small>
-                                        </div>
-                                        <div class="user-progress">
-                                            <small class="fw-semibold">99</small>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="d-flex align-items-center justify-content-around h-50 mb-5 py-4" >
+                <div class="h-100 " >
+                    <canvas class="h-100" id="hh"></canvas>
                 </div>
-                <!--/ Order Statistics -->
+                <div class="h-100" >
+                    <canvas class="h-100" id="hhh"></canvas>
 
-                <!-- Expense Overview -->
-                <div class="col-md-6 col-lg-4 order-1 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header">
-                            <ul class="nav nav-pills" role="tablist">
-                                <li class="nav-item">
-                                    <button
-                                        type="button"
-                                        class="nav-link active"
-                                        role="tab"
-                                        data-bs-toggle="tab"
-                                        data-bs-target="#navs-tabs-line-card-income"
-                                        aria-controls="navs-tabs-line-card-income"
-                                        aria-selected="true"
-                                    >
-                                        Income
-                                    </button>
-                                </li>
-                                <li class="nav-item">
-                                    <button type="button" class="nav-link" role="tab">Expenses</button>
-                                </li>
-                                <li class="nav-item">
-                                    <button type="button" class="nav-link" role="tab">Profit</button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-body px-0">
-                            <div class="tab-content p-0">
-                                <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
-                                    <div class="d-flex p-4 pt-3">
-                                        <div class="avatar flex-shrink-0 me-3">
-                                            <img src="../assets/img/icons/unicons/wallet.png" alt="User" />
-                                        </div>
-                                        <div>
-                                            <small class="text-muted d-block">Total Balance</small>
-                                            <div class="d-flex align-items-center">
-                                                <h6 class="mb-0 me-1">$459.10</h6>
-                                                <small class="text-success fw-semibold">
-                                                    <i class="bx bx-chevron-up"></i>
-                                                    42.9%
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="incomeChart"></div>
-                                    <div class="d-flex justify-content-center pt-4 gap-2">
-                                        <div class="flex-shrink-0">
-                                            <div id="expensesOfWeek"></div>
-                                        </div>
-                                        <div>
-                                            <p class="mb-n1 mt-1">Expenses This Week</p>
-                                            <small class="text-muted">$39 less than last week</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <!--/ Expense Overview -->
 
-                <!-- Transactions -->
-                <div class="col-md-6 col-lg-4 order-2 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header d-flex align-items-center justify-content-between">
-                            <h5 class="card-title m-0 me-2">Transactions</h5>
-                            <div class="dropdown">
-                                <button
-                                    class="btn p-0"
-                                    type="button"
-                                    id="transactionID"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="transactionID">
-                                    <a class="dropdown-item" href="javascript:void(0);">Last 28 Days</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Last Month</a>
-                                    <a class="dropdown-item" href="javascript:void(0);">Last Year</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <ul class="p-0 m-0">
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/paypal.png" alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Paypal</small>
-                                            <h6 class="mb-0">Send money</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">+82.6</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Wallet</small>
-                                            <h6 class="mb-0">Mac'D</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">+270.69</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/chart.png" alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Transfer</small>
-                                            <h6 class="mb-0">Refund</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">+637.91</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/cc-success.png" alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Credit Card</small>
-                                            <h6 class="mb-0">Ordered Food</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">-838.71</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Wallet</small>
-                                            <h6 class="mb-0">Starbucks</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">+203.33</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="d-flex">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <img src="../assets/img/icons/unicons/cc-warning.png" alt="User" class="rounded" />
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <small class="text-muted d-block mb-1">Mastercard</small>
-                                            <h6 class="mb-0">Ordered Food</h6>
-                                        </div>
-                                        <div class="user-progress d-flex align-items-center gap-1">
-                                            <h6 class="mb-0">-92.45</h6>
-                                            <span class="text-muted">USD</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Transactions -->
             </div>
+            <div class="d-flex align-items-center justify-content-around h-50 pb-5" >
+                <div class=" h-100 " >
+                    <canvas class="h-100" id="studentsByClass"></canvas>
+                </div>
+                <div class=" h-100 " >
+                    <canvas class="h-100" id="hhhh"></canvas>
+                </div>
+
+
+{{--                <div class="col-4" >--}}
+{{--                    <div class="card h-100">--}}
+{{--                        <div class="card-header d-flex align-items-center justify-content-between">--}}
+{{--                            <div class="card-title mb-0">--}}
+{{--                                <h4 class="m-0 me-2 ">Top 6 Attendant</h4>--}}
+{{--                            </div>--}}
+
+{{--                        </div>--}}
+{{--                        <div class="table-responsive">--}}
+{{--                            <table class="table table-borderless ">--}}
+
+{{--                                <tbody>--}}
+{{--                                <tr>--}}
+{{--                                    <td>--}}
+{{--                                        <div class="d-flex justify-content-start align-items-center mt-lg-4">--}}
+{{--                                            <div class="avatar me-3">--}}
+{{--                                                <img src="{{asset("assets/img/avatars/1.png")}}" alt="Avatar" class="rounded-circle">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="d-flex flex-column">--}}
+{{--                                                <h6 class="mb-1 text-truncate">Maven Analytics</h6>--}}
+{{--                                                <small class="text-truncate text-muted">Business Intelligence</small>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                    <td class="text-end">--}}
+{{--                                        <div class="user-progress mt-lg-4">--}}
+{{--                                            <h6 class="mb-0">33</h6>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <td>--}}
+{{--                                        <div class="d-flex justify-content-start align-items-center">--}}
+{{--                                            <div class="avatar me-3">--}}
+{{--                                                <img src="{{asset("assets/img/avatars/1.png")}}" alt="Avatar" class="rounded-circle">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="d-flex flex-column">--}}
+{{--                                                <h6 class="mb-1 text-truncate">Zsazsa McCleverty</h6>--}}
+{{--                                                <small class="text-truncate text-muted">Digital Marketing</small>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                    <td class="text-end">--}}
+{{--                                        <div class="user-progress">--}}
+{{--                                            <h6 class="mb-0">52</h6>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <td>--}}
+{{--                                        <div class="d-flex justify-content-start align-items-center">--}}
+{{--                                            <div class="avatar me-3">--}}
+{{--                                                <img src="../../../demo/assets/img/avatars/3.png" alt="Avatar" class="rounded-circle">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="d-flex flex-column">--}}
+{{--                                                <h6 class="mb-1 text-truncate">Nathan Wagner</h6>--}}
+{{--                                                <small class="text-truncate text-muted">UI/UX Design</small>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                    <td class="text-end">--}}
+{{--                                        <div class="user-progress">--}}
+{{--                                            <h6 class="mb-0">12</h6>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                                <tr>--}}
+{{--                                    <td>--}}
+{{--                                        <div class="d-flex justify-content-start align-items-center">--}}
+{{--                                            <div class="avatar me-3">--}}
+{{--                                                <img src="../../../demo/assets/img/avatars/4.png" alt="Avatar" class="rounded-circle">--}}
+{{--                                            </div>--}}
+{{--                                            <div class="d-flex flex-column">--}}
+{{--                                                <h6 class="mb-1 text-truncate">Emma Bowen</h6>--}}
+{{--                                                <small class="text-truncate text-muted">React Native</small>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                    <td class="text-end">--}}
+{{--                                        <div class="user-progress">--}}
+{{--                                            <h6 class="mb-0">8</h6>--}}
+{{--                                        </div>--}}
+{{--                                    </td>--}}
+{{--                                </tr>--}}
+{{--                                </tbody>--}}
+{{--                            </table>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+
+
+            </div>
+
         </div>
         <!-- / Content -->
 
-        <!-- Footer -->
-        <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                    ©
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script>
-                    , made with ❤️ by
-                    <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-                </div>
-                <div>
-                    <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                    <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
 
-                    <a
-                        href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                        target="_blank"
-                        class="footer-link me-4"
-                    >Documentation</a
-                    >
-
-                    <a
-                        href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                        target="_blank"
-                        class="footer-link me-4"
-                    >Support</a
-                    >
-                </div>
-            </div>
-        </footer>
-        <!-- / Footer -->
-
-        <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
 
+@endsection
+
+@section("scripts")
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('studentsByClass').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+
+
+
+
+        var ctx2 = document.getElementById('hh').getContext('2d');
+        var myChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: @json($filieres->pluck('name')),
+                datasets: [{
+                    label: 'Number of Students',
+                    data:  @json($filieres->pluck('etudiants_count')),
+                    backgroundColor: 'rgb(75, 192, 192)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+        var ctx3 = document.getElementById('hhh').getContext('2d');
+        var myChart = new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'Red',
+                    'Blue',
+                    'Yellow'
+                ],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [300, 50, 100],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var ctx4 = document.getElementById('hhhh').getContext('2d');
+        var myChart = new Chart(ctx4, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Eating',
+                    'Drinking',
+                    'Sleeping',
+                    'Designing',
+                    'Coding',
+                    'Cycling',
+                    'Running'
+                ],
+                datasets: [{
+                    label: 'My First Dataset',
+                    data: [65, 59, 90, 81, 56, 55, 40],
+                    fill: true,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                }, {
+                    label: 'My Second Dataset',
+                    data: [28, 48, 40, 19, 96, 27, 100],
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgb(54, 162, 235)',
+                    pointBackgroundColor: 'rgb(54, 162, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                }]
+            },
+            options: {
+                elements: {
+                    line: {
+                        borderWidth: 3
+                    }
+                }
+            }
+        });
+
+    </script>
 @endsection

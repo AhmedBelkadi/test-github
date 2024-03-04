@@ -36,13 +36,13 @@ class ElementController extends Controller
     public function store(ElementRequest $request)
     {
  // Create the element
- $element = Element::create([
-    "id_module" => $request->input("id_module_a"),
-    "name" => $request->input("name_a"),
-]);
-
+     $element = Element::create([
+        "id_module" => $request->input("id_module_a"),
+        "name" => $request->input("name_a"),
+    ]);
+//        dd($request->all());
 // Attach the selected professors to the element
-$element->professeurs()->attach($request->input("id_professeur_a"));
+        $element->professeurs()->attach($request->input("id_professeur_a"));
 
         return to_route('elements.index')->with("success","Element created successfully!");
     }

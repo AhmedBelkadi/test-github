@@ -14,6 +14,7 @@ use App\Models\Semestre;
 use App\Models\User;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
 use Illuminate\Support\Str;
@@ -30,6 +31,22 @@ class EtudiantController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function dashboard()
+    {
+        $filieres = Filiere::withCount('etudiants')->get();
+        $topFilieres = Filiere::select('filieres.*', 'total_absences')
+            ->leftJoin(DB::raw('(SELECT etudiants.id_filiere, count(absences.id) as total_absences
+                                      FROM etudiants
+                                      INNER JOIN absences ON etudiants.id = absences.id_etudiant
+                                      GROUP BY etudiants.id_filiere) as sub'), 'filieres.id', '=', 'sub.id_filiere')
+            ->orderByDesc('total_absences')
+            ->take(5)
+            ->get();
+        return view("admin.dashboard",compact("filieres","topFilieres"));
+    }
+
+
     public function index()
     {
         $etudiants = Etudiant::paginate(10);

@@ -70,7 +70,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
         <li class="menu-item @yield("dashboard-active") ">
-            <a href="/" class="menu-link">
+            <a href="/dashboard" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
@@ -115,6 +115,7 @@
         <li class="menu-item @yield("etudiants-active")">
             <a href="{{route("etudiants.index")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
+
                 <div data-i18n="Analytics">Etudiants</div>
             </a>
         </li>

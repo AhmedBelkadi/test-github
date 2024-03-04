@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsenceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 //    return view('admin.dashboard');
 //})->name("admin.index");
 Route::view("/","login")->name("showLogin");
-Route::view("/dashboard","admin.dashboard")->name("admin.index");
+Route::get("/dashboard",[\App\Http\Controllers\EtudiantController::class,"dashboard"])->name("admin.index");
 
 
 Route::resource("modules" , \App\Http\Controllers\ModuleController::class);
 Route::resource("filieres" , \App\Http\Controllers\FiliereController::class);
-Route::resource("seances" , \App\Http\Controllers\SeanceController::class);
+Route::resource("seances" , \App\Http\Controllers\SeanceController::class)->except("show");
 Route::post("/emplois/chercher",[\App\Http\Controllers\EmploiDuTempsController::class,"chercher"])->name("emplois.chercher");
 
 Route::resource("emplois" , \App\Http\Controllers\EmploiDuTempsController::class);
@@ -40,7 +41,6 @@ Route::post("/etudiants/search", [\App\Http\Controllers\EtudiantController::clas
 Route::resource("semestres" , \App\Http\Controllers\SemestreController::class);
 Route::resource("periodes" , \App\Http\Controllers\PeriodeController::class);
 Route::resource("absences" , \App\Http\Controllers\AbsenceController::class);
-
 
 
 

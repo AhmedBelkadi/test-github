@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\JustificationResource;
 use App\Models\Justification;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,16 @@ class JustificationController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json(["data"=>"store"]);
+        $j = Justification::create([
+            "libele" => $request->file("path")->store("justifications","public"),
+            "date" => date("d-m-Y-H-i-s"),
+            "etat" => "en revue"
+        ]);
+
+        $j->absences()->attach($request->input("id_absence"));
+
+//        return response()->json(["data"=> $j]);
+        return new JustificationResource( $j );
     }
 
     /**
