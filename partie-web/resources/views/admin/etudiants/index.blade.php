@@ -16,20 +16,24 @@
         $openModal = request()->query('openModal');
     @endphp
 
-<form method="post" class="row mt-3" action="{{ route('etudiants.search') }}">
-    @csrf
-    <div class="row px-2.2">
-        <div class="col-11">
-            <input type="text" name="cin_cne" id="search" class="form-control" placeholder="Enter APOGEE or CNE">
-            @error('cin_cne')
-                <span class="text-danger">{{$message}}</span>
-            @enderror
-        </div>
-        <div class="col-1">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-    </div>
-</form>
+        <form  class="d-inline" method="GET" action="{{route("etudiants.exporter")}}" >
+            <button type="submit" class="btn btn-warning text-white" >exporter</button>
+        </form>
+
+        <form method="post" class="row mt-3" action="{{ route('etudiants.search') }}">
+            @csrf
+            <div class="row px-2.2">
+                <div class="col-11">
+                    <input type="text" name="cin_cne" id="search" class="form-control" placeholder="Enter APOGEE or CNE">
+                    @error('cin_cne')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </div>
+                <div class="col-1">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
 
 
 
@@ -76,7 +80,8 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#deletModal{{ $etudiant->id }}"
                             >
-                                Supprimer
+                                <i class="menu-icon tf-icons bx bx-trash"></i>
+
                             </button>
                             @include('admin.etudiants.delete')
 
@@ -87,8 +92,9 @@
                             data-bs-toggle="modal"
                             data-bs-target="#modifieModal{{$etudiant->id}}"
                         >
-                          Modifier
-                        </button>
+                                <i class="menu-icon tf-icons bx bx-pencil"></i>
+
+                            </button>
                         @include('admin.etudiants.edit')
 
                         </td>

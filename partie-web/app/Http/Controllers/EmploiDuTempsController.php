@@ -53,7 +53,10 @@ class EmploiDuTempsController extends Controller
             $emploi = EmploiDuTemps::with(['filiere', 'semestre', 'seances'])
                 ->orderBy("created_at", "desc")
                 ->first();
+            if( !isset($emploi->filiere) ){
+                return view("admin.emplois.index", compact("periodes", "salles", "filieres", "semestres"));
 
+            }
             // Populate the schedule for the latest emploi
             $schedule = [];
             foreach ($days as $day) {

@@ -38,7 +38,8 @@ class PeriodeController extends Controller
             "libelle" => $request->input("libelle"),
             "nbr_heure" => 90,
         ]);
-        return to_route("emplois.index",['openModal2' => true])->with("success","Periode created successfully!");
+        toastr()->success('Periode created successfully!');
+        return to_route("emplois.index",['openModal2' => true]);
     }
 
     /**
@@ -87,25 +88,6 @@ class PeriodeController extends Controller
 
 
         return view("admin.emplois.index", compact("periodes", "days", "openModal2","schedule", "emploi", "salles", "filieres", "semestres", "elements","p"));
-
-
-
-
-
-
-
-
-
-//        $p = $periode;
-//        $periodes = Periode::all();
-//        $semestres = Semestre::all();
-//        $filieres = Filiere::all();
-//        $salles = Salle::all();
-//        $emploi = EmploiDuTemps::paginate(1);
-//        $days = ["Monday","Tuesday","Wednesday","Thursday","Friday"];
-//        $urlParams = new \Illuminate\Http\Request();
-//        $openModal2 = $urlParams->query('openModal2');
-//        return view("admin.emplois.index" ,compact("semestres","filieres","salles","p","openModal2","periodes","days","emploi") );
     }
 
     /**
@@ -115,7 +97,8 @@ class PeriodeController extends Controller
     {
         $periode->libelle = $request->input("libelle");
         $periode->save();
-        return to_route("emplois.index",['openModal2' => true])->with("success","Periode alle updated successfully!");
+        toastr()->success('Periode updated successfully!');
+        return to_route("emplois.index",['openModal2' => true]);
     }
 
     /**
@@ -124,7 +107,7 @@ class PeriodeController extends Controller
     public function destroy(Periode $periode)
     {
         $periode->delete();
-        return to_route("emplois.index",['openModal2' => true])->with("success","Periode deleted successfully!");
-//        return back()->with("success", "Salle deleted successfully!");
+        toastr()->success('Periode deleted successfully!');
+        return to_route("emplois.index",['openModal2' => true]);
     }
 }

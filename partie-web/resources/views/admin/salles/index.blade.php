@@ -23,11 +23,16 @@
                 <div style="width: 50%;height: 52px" class="bg-white border border-2 rounded-2 d-flex align-items-center ps-2 me-2" >
                     {{$salle->name}}
                 </div>
-                <a  href="{{route("salles.edit",[ 'salle'=>$salle , 'openModal' => true])}}" class="btn btn-primary text-white  btn-lg" >modifier</a>
+                <a  href="{{route("salles.edit",[ 'salle'=>$salle , 'openModal' => true])}}" class="btn btn-primary text-white  btn-lg" >
+                    <i class="menu-icon tf-icons bx bx-pencil"></i>
+
+                </a>
                 <form method="POST" class="" action="{{route("salles.destroy",$salle)}}" >
                     @csrf
                     @method("DELETE")
-                    <button type="submit" class=" ms-2 btn btn-danger btn-lg">supprimer</button>
+                    <button type="submit" class=" ms-2 btn btn-danger btn-lg">
+                        <i class="menu-icon tf-icons bx bx-trash"></i>
+                    </button>
                 </form>
             </div>
         @endforeach

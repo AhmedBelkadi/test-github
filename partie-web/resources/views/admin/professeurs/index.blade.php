@@ -8,11 +8,14 @@
 
 
 
-    @php $openModal = request()->query('openModal');@endphp
 
     @include('admin.professeurs.create')
+    @php $openModal = request()->query('openModal');@endphp
 
 
+    <form  class="d-inline" method="GET" action="{{route("professeurs.exporter")}}" >
+        <button type="submit" class="btn btn-warning text-white" >exporter</button>
+    </form>
 
     <form method="post" class=" row mt-3  " action="{{ route('professeurs.search') }}">
         @csrf
@@ -62,7 +65,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#basiModal{{$professeur->id}}"
                                 >
-                                    Delete
+                                    <i class="menu-icon tf-icons bx bx-trash"></i>
                                 </button>
                                 @include('admin.professeurs.delete')
 
@@ -72,7 +75,7 @@
                                     data-bs-toggle="modal"
                                     data-bs-target="#editModal{{$professeur->id}}"
                                 >
-                                    Modifier
+                                    <i class="menu-icon tf-icons bx bx-pencil"></i>
                                 </button>
                                 @include('admin.professeurs.edit')
 

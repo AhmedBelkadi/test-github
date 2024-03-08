@@ -37,7 +37,9 @@ class SalleController extends Controller
         Salle::create([
             "name" => $request->input("name"),
         ]);
-        return to_route("emplois.index",['openModal' => true])->with("success","salle created successfully!");
+        toastr()->success('Salle created successfully!');
+
+        return to_route("emplois.index",['openModal' => true]);
     }
 
     /**
@@ -110,7 +112,8 @@ class SalleController extends Controller
     {
         $salle->name = $request->input("name");
         $salle->save();
-        return to_route("emplois.index",['openModal' => true])->with("success","salle updated successfully!");
+        toastr()->success('Salle updated successfully!');
+        return to_route("emplois.index",['openModal' => true]);
     }
 
     /**
@@ -119,8 +122,8 @@ class SalleController extends Controller
     public function destroy(Salle $salle)
     {
         $salle->delete();
-        return to_route("emplois.index",['openModal' => true])->with("success","salle deleted successfully!");
-//        return back()->with("success", "Salle deleted successfully!");
+        toastr()->success('Salle deleted successfully!');
+        return to_route("emplois.index",['openModal' => true]);
     }
 
 }

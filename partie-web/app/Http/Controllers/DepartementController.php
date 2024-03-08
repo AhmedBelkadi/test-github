@@ -42,8 +42,8 @@ class DepartementController extends Controller
         $departement->name = $validated['name'];
         $departement->id_professeur = $validated['id_professeur'];
         $departement->save();
-
-        return to_route('departements.index')->with("success","Departements created successfully!");
+        toastr()->success('Departement created successfully!');
+        return to_route('departements.index');
 
     }
 
@@ -79,8 +79,9 @@ class DepartementController extends Controller
         $departement->id_professeur = $request->input("id_professeur");
 
         $departement->save();
+        toastr()->success('Departement updated successfully!');
 
-        return to_route("departements.index")->with("success","departement updated successfully!");
+        return to_route("departements.index");
     }
 
     /**
@@ -89,6 +90,7 @@ class DepartementController extends Controller
     public function destroy(Departement $departement)
     {
         $departement->delete();
-        return to_route("departements.index")->with("success","departement deleted successfully!");
+        toastr()->success('Departement deleted successfully!');
+        return to_route("departements.index");
     }
 }

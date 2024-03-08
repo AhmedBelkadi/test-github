@@ -7,7 +7,10 @@ use App\Http\Requests\AjouterSeanceRequest;
 use App\Http\Requests\ModifierSeanceRequest;
 use App\Http\Resources\SeanceResource;
 use App\Models\EmploiDuTemps;
+use App\Models\Etudiant;
 use App\Models\Seance;
+use App\Models\Semestre;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -17,30 +20,27 @@ class SeanceController extends Controller
     public function destroy(Seance $seance)
     {
         $seance->delete();
+        toastr()->success('Seance deleted successfully!');
         return Redirect::route('emplois.index', [
             'id_filiere' => $seance->emploiDuTemps->filiere->id,
             'name_semestre' => $seance->emploiDuTemps->semestre->name,
-        ])->with('success', 'Seance deleted successfully!');
+        ]);
     }
 
     public function update(ModifierSeanceRequest $request, Seance $seance)
     {
-//        $request->validate([
-//            'type' => 'required|string',
-//            'id_salle' => 'required|exists:salles,id',
-//            'id_element' => 'required|exists:elements,id',
-//        ]);
 
         $seance->update([
             'type' => $request->type,
             'id_salle' => $request->id_salle,
             'id_element' => $request->id_element,
         ]);
+        toastr()->success('Seance updated successfully!');
 
         return Redirect::route('emplois.index', [
             'id_filiere' => $seance->emploiDuTemps->filiere->id,
             'name_semestre' => $seance->emploiDuTemps->semestre->name,
-        ])->with('success', 'Seance updated successfully.');
+        ]);
     }
 
     public function store(AjouterSeanceRequest $request)
@@ -54,19 +54,26 @@ class SeanceController extends Controller
             "id_salle" => $request->input("id_salle"),
         ]);
 
-        // Assuming you have the emploi accessible from the request
         $emploi = EmploiDuTemps::find($request->input("id_emploi_du_temps"));
+        toastr()->success('Seance created successfully!');
 
         return Redirect::route('emplois.index', [
             'id_filiere' => $emploi->filiere->id,
             'name_semestre' => $emploi->semestre->name,
-        ])->with("success", "Seance created successfully!");
+        ]);
     }
 
 
-    public function getSeancesByDate($day)
-    {
-        $seances = Seance::where('day', $day)->get();
+    public function getSeancesByDate($idEtudiant){
+        $etd = Etudiant::find($idEtudiant);
+        $currentDay = Carbon::now()->format("l");
+        $currentDate = Carbon::now()->format('Y-m-d');
+        $currentSemester = Semestre::where('id_filiere', $etd->filiere->id)
+            ->where('start_date', '<=', $currentDate)
+            ->where('end_date', '>=', $currentDate)
+            ->first();
+        $emploi = EmploiDuTemps::where("id_filiere",$etd->filiere->id)->where("id_semestre",$currentSemester->id)->first();
+        $seances = Seance::where('day', $currentDay)->where("id_emploi_du_temps",$emploi->id)->get();
         return SeanceResource::collection($seances);
     }
 

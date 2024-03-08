@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Exports\ProfesseurExport;
 use App\Http\Requests\ProfesseurRequest;
 use App\Http\Requests\AjouterProfesseurRequest;
 use App\Http\Requests\SearchProfesseurRequest;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ProfesseurEmail;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProfesseurController extends Controller
 {
@@ -55,8 +57,9 @@ class ProfesseurController extends Controller
             'user_id' => $user->id,
         ]);
 
-        Mail::to($user->email)->send(new ProfesseurEmail($request->input('email_a'), $password));
+//        Mail::to($user->email)->send(new ProfesseurEmail($request->input('email_a'), $password));
 
+        toastr()->success('Professeur created successfully!');
 
         return to_route('professeurs.index');
 
@@ -134,8 +137,9 @@ class ProfesseurController extends Controller
         $user = $professeur->user;
         $user->fill($validated);
         $user->save();
+        toastr()->success('Professeur updated successfully!');
 
-        return redirect()->route('professeurs.index')->with('success', 'Professeur updated successfully!');
+        return redirect()->route('professeurs.index');
     }
 
 
@@ -147,7 +151,18 @@ class ProfesseurController extends Controller
         {
             $professeur->delete();
 
-            return redirect()->route('professeurs.index')->with('success', 'professor deleted successfully!');
+        toastr()->success('Professeur deleted successfully!');
+
+            return redirect()->route('professeurs.index');
         }
     }
+
+    public function exporter()
+    {
+        toastr()->success('Professeurs expoted successfully!');
+
+        return Excel::download(new ProfesseurExport(), 'professeurs.xlsx');
+
+    }
+
 }

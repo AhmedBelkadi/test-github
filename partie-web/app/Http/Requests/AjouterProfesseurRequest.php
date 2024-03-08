@@ -28,10 +28,10 @@ class AjouterProfesseurRequest extends FormRequest
         return [
 
                 'name_a' => 'required',
-                'email_a' => 'required|email|unique:users',
+                'email_a' => 'required',
                 'tele_a' => 'required',
                 'adresse_a' => 'required',
-                'cin_a' => 'required|unique:users',
+                'cin_a' => 'required',
 
 
 

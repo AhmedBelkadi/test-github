@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Exports\EtudiantExport;
 use App\Http\Requests\AjouterEtudiantRequest;
 use App\Http\Requests\SearchEtudiantRequest;
 use App\Http\Requests\EtudiantRequest;
@@ -23,6 +24,7 @@ use Illuminate\Support\Str;
 
 use Illuminate\Http\Request;
 //use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Maatwebsite\Excel\Facades\Excel;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
@@ -43,7 +45,11 @@ class EtudiantController extends Controller
             ->orderByDesc('total_absences')
             ->take(5)
             ->get();
-        return view("admin.dashboard",compact("filieres","topFilieres"));
+        $studentsByGender = Etudiant::join('users', 'etudiants.user_id', '=', 'users.id')
+            ->select('users.gender', DB::raw('count(*) as count'))
+            ->groupBy('users.gender')
+            ->get();
+        return view("admin.dashboard",compact("filieres","topFilieres","studentsByGender"));
     }
 
 
@@ -98,7 +104,7 @@ class EtudiantController extends Controller
 
 
 
-
+        toastr()->success('Etudiant created successfully!');
         return to_route('etudiants.index');}
 
 
@@ -179,6 +185,7 @@ class EtudiantController extends Controller
 
         $user->save();
         $etudiant->save();
+        toastr()->success('Etudiant updated successfully!');
 
         return to_route('etudiants.index');
         // dd("kkkk");
@@ -194,6 +201,7 @@ class EtudiantController extends Controller
     {
         {
             $etudiant->delete();
+            toastr()->success('Etudiant deleted successfully!');
 
             return redirect()->route('etudiants.index')->with('success', 'Etudiant deleted successfully!');
         }
@@ -228,4 +236,14 @@ class EtudiantController extends Controller
             session()->flash('failed', 'Seance not found in the emplois');
         return view("professeur.index",compact("periodes","filieres","elements"));
     }
+
+
+    public function exporter()
+    {
+        toastr()->success('Etudiants exported successfully!');
+        return Excel::download(new EtudiantExport(), 'etudiants.xlsx');
+    }
+
+
+
 }

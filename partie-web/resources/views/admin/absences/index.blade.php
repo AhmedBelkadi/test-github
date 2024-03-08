@@ -94,20 +94,21 @@
                        <div class="col-1 ps-1 pe-0  " >
                            <button type="submit" class="btn btn-primary h-100  pe-3 ">Rechercher</button>
                        </div>
-                       {{--                    </div>--}}
                    </form>
-                   <div class="row  p-0  mx-0 mb-4" >
-{{--                       <div class="col-12  p-0"  >--}}
-                           <form method="post"  class="col-12" action="{{ route('absences.searchByStudent') }}" >
-                               @csrf
-                              <div class="row" >
-                                  <input type="text" value="{{old("query")}}" name="query" id="nameBasic" class="form-control col-11" placeholder="Rechercher par CIN ou CNE"  />
-                                  <button class="btn btn-primary col-1" type="submit">Search</button>
-                              </div>
-                               @error("query")<span class="text-danger" >{{$message}}</span>@enderror
-                           </form>
-{{--                       </div>--}}
-                   </div>
+                   <form method="post"  class="row mb-3" action="{{ route('absences.searchByStudent') }}" >
+                       @csrf
+                      <div class="row " >
+                          <div class="col-11">
+                          <input type="text" value="{{old("query")}}" name="query" id="nameBasic" class="form-control " placeholder="Rechercher par CIN ou CNE"  />
+                      </div>
+                       <div class="col-1">
+                            <button class="btn btn-primary " type="submit">Search</button>
+                          </div>
+
+                      </div>
+                       @error("query")<span class="text-danger" >{{$message}}</span>@enderror
+                   </form>
+
                    <div class=" card">
                        <div class="table-responsive text-nowrap">
                            <table class="table table-hover">
@@ -138,7 +139,11 @@
                                        <td class="text-center" >{{$absence->date}}</td>
                                        <td class="text-center" >{{$absence->seance->periode->libelle}}</td>
                                        <td class="text-center" >{{$absence->seance->type}}</td>
-                                       <td class="text-center" > <a class="link-opacity-100  " href="" >voir</a> </td>
+                                       <td class="text-center" >
+                                           @foreach( $absence->justifications as $j )
+                                           <a class="link-opacity-100" href="{{asset('storage/'.$j->libele)}}">voir</a>
+                                           @endforeach
+                                       </td>
                                        <td class="text-center" >
                                            <div class="d-flex" >
                                                <button class="btn btn-success me-1" >Accepter</button>
@@ -158,28 +163,6 @@
         </div>
     </div>
 
-
-
-    {{--                               <div class="col-3" >--}}
-    {{--                                   <div class="row g-2">--}}
-    {{--                                       <div class="col mb-0">--}}
-    {{--                                           <div class=" mt-2 mb-0">--}}
-    {{--                                               --}}{{--                                       <label for="nameBasic" class="form-label">Departement</label>--}}
-    {{--                                               <select name="id_departement" id="id_departement" class="form-select form-select">--}}
-    {{--                                                   <option value="">Select Departement</option>--}}
-    {{--                                                   --}}{{--                                    @foreach($departements as $departement)--}}
-    {{--                                                   --}}{{--                                        <option value="{{ $departement->id }}" {{ old('id_departement') == $departement->id ? 'selected' : '' }}>--}}
-    {{--                                                   --}}{{--                                            {{ $departement->name }}--}}
-    {{--                                                   --}}{{--                                        </option>--}}
-    {{--                                                   --}}{{--                                    @endforeach--}}
-    {{--                                               </select>--}}
-    {{--                                               @error('id_departement')--}}
-    {{--                                               <span class="text-danger">{{ $message }}</span>--}}
-    {{--                                               @enderror--}}
-    {{--                                           </div>--}}
-    {{--                                       </div>--}}
-    {{--                                   </div>--}}
-    {{--                               </div>--}}
 @endsection
 
 @section( "scripts" )

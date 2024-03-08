@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('admin.dashboard');
 //})->name("admin.index");
-Route::view("/","login")->name("showLogin");
+Route::view("/login","login")->name("showLogin");
+Route::view("/","master")->name("master");
 Route::get("/dashboard",[\App\Http\Controllers\EtudiantController::class,"dashboard"])->name("admin.index");
 
 
@@ -30,9 +31,12 @@ Route::resource("emplois" , \App\Http\Controllers\EmploiDuTempsController::class
 Route::resource("salles" , \App\Http\Controllers\SalleController::class);
 Route::resource("departements" , \App\Http\Controllers\DepartementController::class);
 Route::resource("elements" , \App\Http\Controllers\ElementController::class);
+Route::get("/professeurs/exporter",[\App\Http\Controllers\ProfesseurController::class,"exporter"])->name("professeurs.exporter");
 Route::resource("professeurs" , \App\Http\Controllers\ProfesseurController::class);
 Route::post("/professeurs/search", [\App\Http\Controllers\ProfesseurController::class, "search"])->name("professeurs.search");
+Route::get("/etudiants/exporter",[\App\Http\Controllers\EtudiantController::class,"exporter"])->name("etudiants.exporter");
 Route::resource("etudiants" , \App\Http\Controllers\EtudiantController::class);
+//Route::post("/etudiants/importer",[\App\Http\Controllers\EtudiantController::class,"importer"])->name("etudiants.importer");
 Route::post("/etudiants/search", [\App\Http\Controllers\EtudiantController::class, "search"])->name("etudiants.search");
 
 

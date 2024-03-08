@@ -15,7 +15,7 @@
                             <select name="id_filiere" id="filiere"  class="form-select form-select-lg" >
                                 <option value="" selected disabled>Select Filiere</option>
                                 @foreach($filieres as $filiere)
-                                        <option value="{{ $filiere->id }}" data-type="{{ $filiere->type }}">{{ $filiere->name }}</option>
+                                        <option value="{{ $filiere->id }}" data-type="{{ $filiere->type .$filiere->promotion }}">{{ $filiere->name }}</option>
                                     @endforeach
                             </select>
                              @error('id_filiere')<span class="text-danger">{{ $message }}</span>@enderror
@@ -38,53 +38,57 @@
                     </div>
             </div>
 
-            <h2 class="mt-4 mb-4">{{ $emploi->filiere->name }} - {{ $emploi->semestre->name }}</h2>
-            <table class="table table-bordered">
-                <thead>
-                <tr class="bg-danger " >
-                    <th></th>
-                    @foreach ($periodes as $periode)
-                        <th class="bg-primary " >
-                            <div class="bg-info text-center px-1 py-2 w-50 border border-2 rounded-3" >
-                                {{ $periode->libelle }}
-                            </div>
-                        </th>
-                    @endforeach
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($days as $day)
-                    <tr class="" >
-                        <td class=" w-px-75" >
-                            <div class="bg-primary text-white py-4 px-3 border border-2 rounded-3 text-center" >
-                                {{ $day }}
-                            </div>
-                        </td>
+            @if(!isset($emploi))
+                <h1>no emplois now</h1>
+            @else
+                <h2 class="mt-4 mb-4">{{ $emploi->filiere->name }} - {{ $emploi->semestre->name }}</h2>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr class=" " >
+                        <th></th>
                         @foreach ($periodes as $periode)
-                            <td class=" " >
-                                @if (isset($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id]) && count($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id]) > 0)
-                                    @foreach ($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id] as $seance)
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateSeanceModal_{{ $seance->id }}">Update</button>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSeanceModal_{{ $seance->id }}">delete</button><br>
-                                        @include("admin.seances.edit")
-                                        @include("admin.seances.delete")
-                                        @foreach($seance->element->professeurs as $prof)
-                                            professeurs:   {{$prof->user->name}} /
-                                        @endforeach
-                                        <br>type:   {{ $seance->type }}<br>
-                                        salle:  {{ $seance->salle->name }}<br>
-                                        element:  {{ $seance->element->name }}<br>
-                                    @endforeach
-                                @else
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSeanceModal_{{ $day }}_{{ $periode->id }}">+</button>
-                                    @include("admin.seances.create")
-                                @endif
-                            </td>
+                            <th class="bg-primary " >
+                                <div class="bg-info text-center px-1 py-2 w-50 border border-2 rounded-3" >
+                                    {{ $periode->libelle }}
+                                </div>
+                            </th>
                         @endforeach
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach ($days as $day)
+                        <tr class="" >
+                            <td class=" w-px-75" >
+                                <div class="bg-primary text-white py-4 px-3 border border-2 rounded-3 text-center" >
+                                    {{ $day }}
+                                </div>
+                            </td>
+                            @foreach ($periodes as $periode)
+                                <td class=" " >
+                                    @if (isset($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id]) && count($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id]) > 0)
+                                        @foreach ($schedule[$emploi->filiere->name][$emploi->semestre->name][$day][$periode->id] as $seance)
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateSeanceModal_{{ $seance->id }}">Update</button>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSeanceModal_{{ $seance->id }}">delete</button><br>
+                                            @include("admin.seances.edit")
+                                            @include("admin.seances.delete")
+                                            @foreach($seance->element->professeurs as $prof)
+                                                professeurs:   {{$prof->user->name}} /
+                                            @endforeach
+                                            <br>type:   {{ $seance->type }}<br>
+                                            salle:  {{ $seance->salle->name }}<br>
+                                            element:  {{ $seance->element->name }}<br>
+                                        @endforeach
+                                    @else
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSeanceModal_{{ $day }}_{{ $periode->id }}">+</button>
+                                        @include("admin.seances.create")
+                                    @endif
+                                </td>
+                            @endforeach
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
 
 
 
@@ -107,17 +111,17 @@
                     const selectedFiliereOption = filiereSelect.options[filiereSelect.selectedIndex];
                     const selectedFiliereType = selectedFiliereOption.getAttribute('data-type');
                     semestreSelect.innerHTML = ''; // Clear previous options
-
-                    if (selectedFiliereType === 'dut') {
+                    console.log(selectedFiliereType)
+                    if (selectedFiliereType === 'dutpremier annee') {
                         semestreSelect.disabled = false;
 
-                        for (let i = 1; i <= 4; i++) {
+                        for (let i = 1; i <= 2; i++) {
                             const option = document.createElement('option');
                             option.value = 'Semestre ' + i;
                             option.textContent = 'Semestre ' + i;
                             semestreSelect.appendChild(option);
                         }
-                    } else if (selectedFiliereType === 'lp') {
+                    } else if (selectedFiliereType === 'lppremier annee') {
                         semestreSelect.disabled = false;
 
                         for (let i = 5; i <= 6; i++) {
@@ -126,9 +130,20 @@
                             option.textContent = 'Semestre ' + i;
                             semestreSelect.appendChild(option);
                         }
-                    }
+                    }else if (selectedFiliereType === 'dutdeuxieme annee') {
+                        semestreSelect.disabled = false;
+
+                        for (let i = 1; i <= 2; i++) {
+                            const option = document.createElement('option');
+                            option.value = 'Semestre ' + (i+2);
+                            option.textContent = 'Semestre ' + (i+2);
+                            semestreSelect.appendChild(option);
+                        }}
                 });
             });
+
+
+
             window.addEventListener('load', function() {
                 let urlParams = new URLSearchParams(window.location.search);
                 let openModal = urlParams.get('openModal');
@@ -144,11 +159,13 @@
                     let bootstrapModal = new bootstrap.Modal(modal);
                     bootstrapModal.show();
                 }
-                if (openModal3) {
-                    let modal = document.getElementById('addSeanceModal_{{ $day }}_{{ $periode->id }}');
-                    let bootstrapModal = new bootstrap.Modal(modal);
-                    bootstrapModal.show();
-                }
+                @if(isset($emploi))
+                    if (openModal3) {
+                        let modal = document.getElementById('addSeanceModal_{{ $day }}_{{ $periode->id }}');
+                        let bootstrapModal = new bootstrap.Modal(modal);
+                        bootstrapModal.show();
+                    }
+                @endif
             });
 
 

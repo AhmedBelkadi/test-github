@@ -9,12 +9,14 @@
                     <div class="p-2 bg-primary text-white rounded me-2">
                         {{count($departement->filieres)}} filieres
                     </div>
-                    <a class="btn btn-success me-2 rounded-3 " href="{{route("departements.edit", $departement )}}">Update <i class="bi bi-pencil"></i></a>
-                    {{--                            <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#editFiliereModal">--}}
-                    {{--                                modifier--}}
-                    {{--                            </button>--}}
+                    <a class="btn btn-success me-2 rounded-3 " href="{{route("departements.edit", $departement )}}">
+                        <i class="menu-icon tf-icons bx bx-pencil"></i>
+                    </a>
 
-                    <button type="button" class="btn btn-danger rounded-3 " data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                    <button type="button" class="btn btn-danger rounded-3 " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="menu-icon tf-icons bx bx-trash"></i>
+
+                    </button>
                     <x-delete-modal>
                         <form method="POST" class=" me-2" action="{{route("departements.destroy",$departement->id)}}" >
                             @csrf

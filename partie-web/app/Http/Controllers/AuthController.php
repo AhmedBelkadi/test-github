@@ -18,13 +18,16 @@ class AuthController extends Controller
         if(Auth::attempt(["email"=>$request->input("email"),"password"=>$request->input("password")])){
             if( Auth::user()->role == "professeur" ){
                 $request->session()->regenerate();
-                return to_route("indexProf")->with("success","Login successfully!");
+                toastr()->success('Login successfully!');
+                return to_route("indexProf");
             }elseif ( Auth::user()->role == "admin"  ){
                 $request->session()->regenerate();
-                return to_route("admin.index")->with("success","Login successfully!");
+                toastr()->success('Login successfully!');
+                return to_route("admin.index");
             }
         }
-        return back()->with("danger", "invalid credentials");
+        toastr()->error('invalid credentials!');
+        return back();
 
 
     }
@@ -33,7 +36,8 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return to_route("showLogin")->with("success","Logout successfully!");
+        toastr()->success('Logout successfully!');
+        return to_route("showLogin");
     }
 
     public function loginEtd(Request $request)

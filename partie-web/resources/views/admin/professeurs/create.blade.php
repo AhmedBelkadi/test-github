@@ -1,11 +1,5 @@
-<button
-type="button"
-class="btn btn-primary mt-2"
-data-bs-toggle="modal"
-data-bs-target="#professeursModal"
->
-Ajouter un professeur
-</button>
+<button type="button" class="btn btn-primary mt" data-bs-toggle="modal" data-bs-target="#professeursModal">Ajouter un professeur</button>
+
 <div class="modal fade" id="professeursModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">

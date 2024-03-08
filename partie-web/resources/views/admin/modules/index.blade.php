@@ -42,7 +42,8 @@
                                 data-bs-toggle="modal"
                                 data-bs-target="#basicModal{{$module->id}}"
                             >
-                              Supprimer
+                                <i class="menu-icon tf-icons bx bx-trash"></i>
+
                             </button>
                                  @include('admin.modules.delete')
 
@@ -53,8 +54,9 @@
                             data-bs-toggle="modal"
                             data-bs-target="#modifierModal{{$module->id}}"
                         >
-                          Modifier
-                        </button>
+                                <i class="menu-icon tf-icons bx bx-pencil"></i>
+
+                            </button>
                         @include('admin.modules.edit')
 
                         </td>

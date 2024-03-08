@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="{{asset("assets")}}/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Page CSS -->
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Helpers -->
     <script src="{{asset("assets")}}/vendor/js/helpers.js"></script>
 
@@ -95,6 +95,14 @@
 
 <!-- Page JS -->
 <script src="{{asset("assets")}}/js/dashboards-analytics.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@if(\Illuminate\Support\Facades\Session::has("message"))
+<script>
+    toastr.options = { "progressBar":true  , "closeButton":true }
+    toastr.success("{{\Illuminate\Support\Facades\Session::get("message")}}")
+    toastr.error("{{\Illuminate\Support\Facades\Session::get("message")}}")
+</script>
+@endif
 
 @yield("scripts")
 

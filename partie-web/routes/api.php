@@ -25,7 +25,7 @@ Route::apiResource("justifications",\App\Http\Controllers\JustificationControlle
 
 Route::get('/etudiant/{student_id}/absences', [AbsenceController::class, 'getAbsencesByStudent'])->middleware('auth:sanctum');
 
-Route::get('/seances/date/{day}', [SeanceController::class, 'getSeancesByDate'])->middleware('auth:sanctum');
+Route::get('/seances/date/{idEtudiant}', [SeanceController::class, 'getSeancesByDate'])->middleware('auth:sanctum');
 
 Route::post('/login', [AuthController::class, 'loginEtd']);
 

@@ -9,7 +9,7 @@ class Semestre extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["id_filiere","name"];
+    protected $fillable = ["id_filiere","name","end_date","start_date"];
     public function modules()
     {
         return $this->hasMany(Module::class, "id_semestre");

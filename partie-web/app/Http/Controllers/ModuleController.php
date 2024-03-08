@@ -46,6 +46,7 @@ class ModuleController extends Controller
             "nbr_heure" => $request->input("nbr_heure_a"),
             "name" => $request->input("name_a"),
         ]);
+        toastr()->success('Module created successfully!');
         return to_route("modules.index")->with("success","Module created successfully!");    }
 
 
@@ -70,12 +71,8 @@ class ModuleController extends Controller
      */
     public function update(ModifierModuleRequest $request, Module $module)
     {
-
-
-
-//        $request->validate();
-
         $module->update($request->all());
+        toastr()->success('Module updated successfully!');
         return redirect()->route('modules.index')->with('success', 'Module updated successfully!');
     }
 
@@ -87,6 +84,7 @@ class ModuleController extends Controller
     {
         {
             $module->delete();
+            toastr()->success('Module deleted successfully!');
             return to_route('modules.index')->with('success', 'Module deleted successfully!');
         }
     }
