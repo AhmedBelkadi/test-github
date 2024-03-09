@@ -1,4 +1,4 @@
-@extends("layouts.professeur_layout")
+@extends("layouts.master_layout")
 
 {{--@section( "dashboard-active" , "active" )--}}
 

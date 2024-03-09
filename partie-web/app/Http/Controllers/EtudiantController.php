@@ -233,7 +233,9 @@ class EtudiantController extends Controller
             session()->flash('success', 'Seance found in the emplois');
             return view("professeur.index",compact("etudiants","qrCode","periodes","filieres","elements"));
         }
-            session()->flash('failed', 'Seance not found in the emplois');
+//            session()->flash('failed', 'Seance not found in the emplois');
+        toastr()->error('Seance not found in the emplois!');
+
         return view("professeur.index",compact("periodes","filieres","elements"));
     }
 

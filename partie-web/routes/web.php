@@ -23,6 +23,7 @@ Route::get("/dashboard",[\App\Http\Controllers\EtudiantController::class,"dashbo
 
 
 Route::resource("modules" , \App\Http\Controllers\ModuleController::class);
+Route::resource("classrooms" , \App\Http\Controllers\ClassRoomController::class);
 Route::resource("filieres" , \App\Http\Controllers\FiliereController::class);
 Route::resource("seances" , \App\Http\Controllers\SeanceController::class)->except("show");
 Route::post("/emplois/chercher",[\App\Http\Controllers\EmploiDuTempsController::class,"chercher"])->name("emplois.chercher");

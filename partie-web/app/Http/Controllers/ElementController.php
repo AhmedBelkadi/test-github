@@ -41,7 +41,7 @@ class ElementController extends Controller
         ]);
         $element->professeurs()->attach($request->input("id_professeur_a"));
         toastr()->success('Element created successfully!');
-        return to_route('elements.index')->with("success","Element created successfully!");
+        return to_route('elements.index');
     }
 
     /**

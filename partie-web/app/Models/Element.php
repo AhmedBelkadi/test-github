@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Element extends Model
 {
     use HasFactory;
-    protected $fillable = [ "id_module" ,"name","id_professeur"];
+    protected $fillable = [ "id_module" ,"name","id_professeur","class_room_id"];
 
     public function module()
     {
@@ -23,5 +23,16 @@ class Element extends Model
     public function seances()
     {
         return $this->hasMany(Seance::class , "id_element" );
+    }
+
+//    public function classRoom()
+//    {
+//        return $this->hasOne(ClassRoom::class);
+//    }
+
+
+    public function classRoom()
+    {
+        return $this->belongsTo(ClassRoom::class, 'class_room_id');
     }
 }

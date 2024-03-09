@@ -12,7 +12,8 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        //
+        $classRooms = ClassRoom::all();
+        return view("professeur.classrooms.index" , compact("classRooms") );
     }
 
     /**
@@ -28,7 +29,12 @@ class ClassRoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ClassRoom::create([
+            "description" => $request->input("description"),
+            "image" => $request->file("image")->store("classRooms","public")
+        ]);
+        toastr()->success('ClassRoom created successfully!');
+        return to_route("classrooms.index");
     }
 
     /**
@@ -36,7 +42,11 @@ class ClassRoomController extends Controller
      */
     public function show(ClassRoom $classRoom)
     {
-        //
+        dd($classRoom->id);
+        $d = ClassRoom::find($classRoom->id);
+        dd($classRoom);
+        return view("professeur.classrooms.show" , compact("classRoom") );
+
     }
 
     /**
@@ -52,7 +62,11 @@ class ClassRoomController extends Controller
      */
     public function update(Request $request, ClassRoom $classRoom)
     {
-        //
+        $classRoom->image = $request->file("image")->store("classRooms","public");
+        $classRoom->description = $request->input("description");
+        $classRoom->save();
+        toastr()->success('ClassRoom updated successfully!');
+        return to_route("classrooms.index");
     }
 
     /**
@@ -60,6 +74,8 @@ class ClassRoomController extends Controller
      */
     public function destroy(ClassRoom $classRoom)
     {
-        //
+        $classRoom->delete();
+        toastr()->success('ClassRoom deleted successfully!');
+        return to_route("classrooms.index");
     }
 }

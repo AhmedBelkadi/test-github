@@ -47,7 +47,7 @@ class ModuleController extends Controller
             "name" => $request->input("name_a"),
         ]);
         toastr()->success('Module created successfully!');
-        return to_route("modules.index")->with("success","Module created successfully!");    }
+        return to_route("modules.index");    }
 
 
     /**
@@ -73,7 +73,7 @@ class ModuleController extends Controller
     {
         $module->update($request->all());
         toastr()->success('Module updated successfully!');
-        return redirect()->route('modules.index')->with('success', 'Module updated successfully!');
+        return redirect()->route('modules.index');
     }
 
 

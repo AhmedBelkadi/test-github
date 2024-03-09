@@ -61,23 +61,8 @@
 
 <body>
 <!-- Layout wrapper -->
-<div class="layout-wrapper layout-content-navbar">
+@yield("main")
 
-    <div class="layout-container">
-
-
-
-        <!-- Layout container -->
-        <div class="layout-page">
-            <div class="container-xxl flex-grow-1 container-p-y ">
-                @yield("main")
-            </div>
-        </div>
-        <!-- / Layout page -->
-
-    </div>
-
-</div>
 <!-- / Layout wrapper -->
 
 

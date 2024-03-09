@@ -31,7 +31,7 @@ Ajouter un element
                            </div>
                        </div>
                        <div class="row g-2">
-                           <div class="col mb-0">
+                           <div class="col mb-3">
                                <label for="emailBasic" class="form-label">Module</label>
                                <select name="id_module_a" id="largeSelect" class="form-select form-select">
                                 <option selected >select module</option>
@@ -46,10 +46,11 @@ Ajouter un element
                        </div>
 
                        <div class="row g-2">
-                        <div class="col mb-0">
-                            <label for="emailBasic" class="form-label">Professeur(s)     <span class="text-success">(control-click (Windows) or command-click (Mac) to select more than one.)</span>
-                            </label>
-                            <select name="id_professeur_a[]" id="professeurs" class="form-select form-select" multiple>
+
+                       <div class="col mb-0">
+                            <label for="professeurs" class="form-label">Professeur(s)</label>
+                           <p class=" form-label ">control-click (Windows) or command-click (Mac) to select more than one.</p>
+                           <select name="id_professeur_a[]" id="professeurs" class="form-select form-select" multiple>
                                 <option selected >select professeur</option>
                                 @foreach($professeurs as $professeur)
                                     <option value="{{ $professeur->id }}" {{ in_array($professeur->id, old('id_professeur_a', [])) ? 'selected' : '' }}>{{ $professeur->user->name }}</option>
