@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\ElementRequest;
+use App\Models\ClassRoom;
 use App\Models\Element;
 use App\Models\Module;
 use App\Models\Professeur;
@@ -35,9 +36,15 @@ class ElementController extends Controller
      */
     public function store(ElementRequest $request)
     {
+        $c = ClassRoom::create([
+            "description" => "",
+            "image" => "https://www.gstatic.com/classroom/themes/img_reachout.jpg"
+        ]);
+
          $element = Element::create([
             "id_module" => $request->input("id_module_a"),
             "name" => $request->input("name_a"),
+            "class_room_id" => $c->id,
         ]);
         $element->professeurs()->attach($request->input("id_professeur_a"));
         toastr()->success('Element created successfully!');

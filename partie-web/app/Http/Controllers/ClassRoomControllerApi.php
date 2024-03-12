@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ClassRoomResource;
 use App\Models\ClassRoom;
+use App\Models\Element;
+use App\Models\Etudiant;
+use App\Models\Filiere;
+use App\Models\Semestre;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class ClassRoomController extends Controller
+class ClassRoomControllerApi extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $classRooms = ClassRoom::all();
-        return view("professeur.classrooms.index" , compact("classRooms") );
-    }
+//    public function index()
+//    {
+//        $classRooms = ClassRoom::all();
+//        return ClassRoomResource::collection($classRooms);
+//    }
 
     /**
      * Show the form for creating a new resource.
@@ -75,5 +81,37 @@ class ClassRoomController extends Controller
         $classRoom->delete();
         toastr()->success('ClassRoom deleted successfully!');
         return to_route("classrooms.index");
+    }
+
+
+    public function getClassroomsForCurrentSemester($student_id)
+    {
+
+        // Get the student's filiere
+        $etudiant = Etudiant::find($student_id);
+        $filiereId = $etudiant->filiere->id;
+        // Determine the current semester (you need to implement this logic)
+        $currentDate = Carbon::now()->format('Y-m-d');
+        $currentSemesterId = Semestre::where('id_filiere', $etudiant->filiere->id)
+            ->where('start_date', '<=', $currentDate)
+            ->where('end_date', '>=', $currentDate)
+            ->first()->id;
+
+
+
+        // Query modules and elements for the current semester and filiere
+        $elements = Element::whereHas('module', function ($query) use ($filiereId, $currentSemesterId) {
+            $query->where('id_filiere', $filiereId)
+                ->where('id_semestre', $currentSemesterId);
+        })->get();
+
+        // Retrieve classrooms associated with elements
+        $classrooms = $elements->map(function ($element) {
+            return $element->classRoom;
+        });
+
+//        dd($classrooms->count());
+        // Return the classrooms
+        return  ClassRoomResource::collection($classrooms) ;
     }
 }

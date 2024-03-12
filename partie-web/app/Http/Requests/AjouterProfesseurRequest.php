@@ -32,6 +32,7 @@ class AjouterProfesseurRequest extends FormRequest
                 'tele_a' => 'required',
                 'adresse_a' => 'required',
                 'cin_a' => 'required',
+                'gender_a' => 'required',
 
 
 

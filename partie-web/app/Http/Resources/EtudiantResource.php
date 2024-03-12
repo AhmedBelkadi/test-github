@@ -17,6 +17,7 @@ class EtudiantResource extends JsonResource
         return [
             "id"=>$this->id,
             "name"=>$this->user->name,
+            "idUser"=>$this->user->id,
             "gender"=>$this->user->gender,
             "image"=>$this->user->image,
             "email"=>$this->user->email,

@@ -86,7 +86,9 @@ class EtudiantController extends Controller
             'adresse' => $request->input('adresse_a'),
             'cin' => $request->input('cin_a'),
             'email' => $request->input('email_a'),
+            'gender' => $request->input('gender_a'),
             'role' => 'etudiant',
+            'image' => $request->input('gender_a')==="male" ?  asset("assets/img/avatars/man.png"):asset("assets/img/avatars/woman.png") ,
             'password' =>bcrypt("111"),
         ]);
 

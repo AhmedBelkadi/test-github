@@ -127,6 +127,15 @@
       <path value="$PROJECT_DIR$/partie-web/vendor/bacon/bacon-qr-code" />
       <path value="$PROJECT_DIR$/partie-web/vendor/dasprid/enum" />
       <path value="$PROJECT_DIR$/partie-web/vendor/simplesoftwareio/simple-qrcode" />
+      <path value="$PROJECT_DIR$/partie-web/vendor/maatwebsite/excel" />
+      <path value="$PROJECT_DIR$/partie-web/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/partie-web/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/partie-web/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/partie-web/vendor/maennchen/zipstream-php" />
+      <path value="$PROJECT_DIR$/partie-web/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/partie-web/vendor/yoeunes/toastr" />
+      <path value="$PROJECT_DIR$/partie-web/vendor/php-flasher/flasher" />
+      <path value="$PROJECT_DIR$/partie-web/vendor/php-flasher/flasher-laravel" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassRoom;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -28,12 +29,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $c = ClassRoom::find($request->input("class_room_id"));
+
         Post::create([
             "content" => $request->input("content"),
             "class_room_id" => $request->input("class_room_id")
         ]);
         toastr()->success('Post created successfully!');
-        return to_route("posts.index");
+        return to_route("classrooms.show",$c);
+
     }
 
     /**
@@ -49,7 +53,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+//        return view('professeur.posts.edit', compact('post'));
+
     }
 
     /**
@@ -57,11 +62,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $post->class_room_id = $request->input("class_room_id");
+//        $post->class_room_id = $request->input("class_room_id");
         $post->content = $request->input("content");
         $post->save();
         toastr()->success('Post updated successfully!');
-        return to_route("posts.index");
+        return to_route("classrooms.show",$post->classRoom);
     }
 
     /**
@@ -71,6 +76,6 @@ class PostController extends Controller
     {
         $post->delete();
         toastr()->success('Post deleted successfully!');
-        return to_route("posts.index");
+        return to_route("classrooms.show",$post->classRoom);
     }
 }

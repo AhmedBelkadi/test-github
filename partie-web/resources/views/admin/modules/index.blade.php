@@ -87,6 +87,8 @@
             bootstrapModal.show();
         }
     });
+
+
     document.addEventListener('DOMContentLoaded', function () {
         const filiereSelect = document.getElementById('filiere');
         const semestreSelect = document.getElementById('semestre');

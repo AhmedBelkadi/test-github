@@ -27,6 +27,7 @@ class AjouterEtudiantRequest extends FormRequest
 
             'name_a' => 'required:users',
             'email_a' => 'required',
+            'gender_a' => 'required',
             'tele_a' => 'required:users',
             'adresse_a' => 'required:users',
             'cin_a' => 'required',

@@ -17,13 +17,16 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('admin.dashboard');
 //})->name("admin.index");
+Route::resource("classrooms" , \App\Http\Controllers\ClassRoomController::class);
+Route::resource("commentaires" , \App\Http\Controllers\CommentaireController::class);
+Route::resource("posts" , \App\Http\Controllers\PostController::class);
+Route::resource("documents" , \App\Http\Controllers\DocumentController::class);
 Route::view("/login","login")->name("showLogin");
 Route::view("/","master")->name("master");
 Route::get("/dashboard",[\App\Http\Controllers\EtudiantController::class,"dashboard"])->name("admin.index");
 
 
 Route::resource("modules" , \App\Http\Controllers\ModuleController::class);
-Route::resource("classrooms" , \App\Http\Controllers\ClassRoomController::class);
 Route::resource("filieres" , \App\Http\Controllers\FiliereController::class);
 Route::resource("seances" , \App\Http\Controllers\SeanceController::class)->except("show");
 Route::post("/emplois/chercher",[\App\Http\Controllers\EmploiDuTempsController::class,"chercher"])->name("emplois.chercher");

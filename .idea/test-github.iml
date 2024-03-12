@@ -125,6 +125,15 @@
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/bacon/bacon-qr-code" />
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/dasprid/enum" />
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/simplesoftwareio/simple-qrcode" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/ezyang/htmlpurifier" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/maatwebsite/excel" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/maennchen/zipstream-php" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/markbaker/complex" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/markbaker/matrix" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/phpoffice/phpspreadsheet" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/php-flasher/flasher" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/php-flasher/flasher-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/yoeunes/toastr" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

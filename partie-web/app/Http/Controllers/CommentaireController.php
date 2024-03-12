@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CommentaireResource;
 use App\Models\Commentaire;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentaireController extends Controller
@@ -28,12 +30,25 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
+        $p = Post::find($request->input("post_id"));
+
         Commentaire::create([
             "commentaire" => $request->input("commentaire"),
-            "post_id" => $request->input("post_id")
+            "post_id" => $request->input("post_id"),
+            "user_id" => $request->input("user_id")
         ]);
         toastr()->success('Commentaire created successfully!');
-        return to_route("commentaires.index");
+        return to_route("classrooms.show",$p->classRoom);
+    }
+
+    public function ajouterCommentaire(Request $request)
+    {
+        $c = Commentaire::create([
+            "commentaire" => $request->input("commentaire"),
+            "post_id" => $request->input("post_id"),
+            "user_id" => $request->input("user_id")
+        ]);
+        return new CommentaireResource($c);
     }
 
     /**
@@ -59,6 +74,7 @@ class CommentaireController extends Controller
     {
         $commentaire->commentaire = $request->input("commentaire");
         $commentaire->post_id = $request->input("post_id");
+        $commentaire->user_id = $request->input("user_id");
         $commentaire->save();
         toastr()->success('Commentaire updated successfully!');
         return to_route("commentaires.index");

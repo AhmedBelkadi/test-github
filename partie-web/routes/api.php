@@ -21,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
+//Route::resource("classrooms" , \App\Http\Controllers\ClassRoomController::class);
+
+Route::post('/commentaires', [\App\Http\Controllers\CommentaireController::class, 'ajouterCommentaire']);
+Route::get('/etudiant/{student_id}/classrooms', [\App\Http\Controllers\ClassRoomControllerApi::class, 'getClassroomsForCurrentSemester']);
+
 Route::apiResource("justifications",\App\Http\Controllers\JustificationController::class)->middleware('auth:sanctum');
 
 Route::get('/etudiant/{student_id}/absences', [AbsenceController::class, 'getAbsencesByStudent'])->middleware('auth:sanctum');

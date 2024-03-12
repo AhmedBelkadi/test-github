@@ -23,6 +23,27 @@
                                @enderror
                            </div>
                        </div>
+
+
+                    <div class="row">
+
+
+
+                        <div class="col-md">
+                            <small class="text-light fw-semibold d-block">gender</small>
+                            <div class="form-check form-check-inline mt-3">
+                                <input class="form-check-input" type="radio" name="gender_a" id="inlineRadio1" value="male">
+                                <label class="form-check-label" for="inlineRadio1">male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender_a" id="inlineRadio2" value="female">
+                                <label class="form-check-label" for="inlineRadio2">female</label>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                        <div class="row g-2">
                            <div class="col mb-0">
                                <label for="emailBasic" class="form-label">CIN</label>

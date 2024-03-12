@@ -12,7 +12,7 @@
             <a class="card-link" href="{{route("classrooms.show",$classRoom)}}" >
                 <div class="card  h-100 ">
                     <div class="w-100 h-25" >
-                        <img class="w-100 h-25" src="{{asset("assets/img/avatars/wwww.jpg")}}" alt="Card image cap">
+                        <img class="w-100 h-25" src="{{$classRoom->image}}" alt="Card image cap">
                     </div>
                     <div class="card-body h-75 ">
                         <h5 class="card-title">{{$classRoom->element->name}}</h5>
