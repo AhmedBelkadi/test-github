@@ -15,6 +15,7 @@ class ClassRoomResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            "id"=>$this->id,
             "image"=>$this->image,
             "description"=>$this->description,
             "element"=> new ElementResource($this->element) ,

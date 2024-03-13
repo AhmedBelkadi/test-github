@@ -16,6 +16,7 @@ class PostResource extends JsonResource
     {
         return [
             "content"=>$this->content,
+            "date"=>$this->created_at,
             "commentaires"=>  CommentaireResource::collection($this->commentaires) ,
 //                        "classRoom"=> new ClassRoomResource($this->classRoom) ,
 //            "documents"=>  CommentaireResource::collection($this->documents) ,
