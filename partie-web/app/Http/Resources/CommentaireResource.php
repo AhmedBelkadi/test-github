@@ -17,6 +17,7 @@ class CommentaireResource extends JsonResource
         return [
             "commentaire"=>$this->commentaire,
             "user"=>$this->user,
+            "date"=>$this->created_at,
 //            "post"=> new PostResource($this->post) ,
 //            "posts"=>  PostResource::collection($this->posts) ,
         ];
