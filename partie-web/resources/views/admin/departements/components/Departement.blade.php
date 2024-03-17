@@ -1,32 +1,34 @@
-@props(["departement","index"])
-<div>
-    <div class="col">
-        <div class="card text-center mb-3">
-            <div class="card-body">
-                <h5 class="card-title">{{$departement->name}}</h5>
-                <h6 class="card-title">Chef de departement : {{$departement->chef->user->name}}</h6>
-                <div class="d-flex justify-content-center">
-                    <div class="p-2 bg-primary text-white rounded me-2">
-                        {{count($departement->filieres)}} filieres
-                    </div>
-                    <a class="btn btn-success me-2 rounded-3 " href="{{route("departements.edit", $departement )}}">
-                        <i class="menu-icon tf-icons bx bx-pencil"></i>
-                    </a>
+@props(["departement", "index"])
 
-                    <button type="button" class="btn btn-danger rounded-3 " data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="menu-icon tf-icons bx bx-trash"></i>
-
+<div class="col">
+    <div class="card text-center mb-3">
+        <div class="card-body">
+            <div class="d-flex justify-content-end position-absolute top-0 end-0">
+                <div class="dropdown">
+                    <button class="btn " type="button" id="dropdownMenuButton{{$index}}" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="menu-icon tf-icons bx bx-dots-vertical-rounded"></i>
                     </button>
-                    <x-delete-modal>
-                        <form method="POST" class=" me-2" action="{{route("departements.destroy",$departement->id)}}" >
-                            @csrf
-                            @method("DELETE")
-                            <input type="submit" class="btn btn-danger" value="Delete">
-                        </form>
-                    </x-delete-modal>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton{{$index}}">
+                        <li>
+                            <a class="dropdown-item" href="{{route("departements.edit", $departement)}}">
+                                <i class="menu-icon tf-icons bx bx-pencil"></i> Edit
+                            </a>
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal{{$index}}">
+                                <i class="menu-icon tf-icons bx bx-trash"></i> Delete
+                            </button>
+                            <x-delete-modal :index="$index" :departement="$departement" />
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <!-- Rest of the card body content -->
+            <h5 class="card-title">{{$departement->name}}</h5>
+            <h6 class="card-title">Chef de département : {{$departement->chef->user->name}}</h6>
+        </div>
+        <div class="p-2 bg-primary text-white rounded me-0">
+            {{count($departement->filieres)}} filières
         </div>
     </div>
-    @if (($index + 1) % 2 === 0) </div> <div class="row row-cols-2"> @endif
 </div>

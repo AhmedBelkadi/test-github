@@ -35,7 +35,7 @@
 
                             </button>
                                  @include('admin.elements.delete')
-                            <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#modifierModal{{$element->id}}">
+                            <button type="button" class="btn btn-success text-white" data-bs-toggle="modal" data-bs-target="#modifierModal{{$element->id}}">
                                 <i class="menu-icon tf-icons bx bx-pencil"></i>
 
                             </button>

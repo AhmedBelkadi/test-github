@@ -7,29 +7,31 @@
 
     <h1>classroom</h1>
 
-                <div class="card ">
-                    <div class="w-100 h-25" >
-                        <img class="w-100 h-25" src="{{$classroom->image}}" alt="Card image cap">
-                    </div>
-                    <div class="card-body h-75 ">
-                        <h5 class="card-title">{{$classroom->element->name}}</h5>
-                    </div>
+    <div class="card mb-4">
+        <div class="w-100 h-25">
+            <img class="w-100 h-25" src="{{$classroom->image}}" alt="Card image cap">
+        </div>
+        <div class="card-body h-75">
+            <h5 class="card-title">{{$classroom->element->name}}</h5>
+        </div>
+    </div>
+
+    <form method="post" action="{{route("posts.store")}}" class="mb-4">
+        @csrf
+        <div class="row g-2">
+            <div class="col px-1 mb-0">
+                <input type="hidden" value="{{$classroom->id}}" name="class_room_id" />
+                <div class="input-group mb-3">
+                    <input type="text" value="{{old("content")}}" name="content" id="nameBasic" placeholder="Annoncez quelque chose à votre classe" class="form-control form-control-lg" style="margin-right: 5px;" />
+                    @error("content")<span class="text-danger">{{$message}}</span>@enderror
+                    <button type="submit" class="btn btn-primary">envoyer</button>
                 </div>
+            </div>
+        </div>
+    </form>
 
-                <form method="post" action="{{route("posts.store")}}" >
-                    @csrf
-                    <div class="row g-2">
-                        <div class="col px-0  mb-0">
-                            <input type="hidden" value="{{$classroom->id}}" name="class_room_id"   />
-                            <div class=" px-0 mb-3">
-                                <input type="text" value="{{old("content")}}" name="content" id="nameBasic" placeholder="Annoncez quelque chose à votre classe" class="form-control form-control-lg"  />
-                                @error("content")<span class="text-danger" >{{$message}}</span>@enderror
-                                <button type="submit"  class="btn btn-primary ">envoyer</button>
 
-                            </div>
-                        </div>
-                    </div>
-                </form>
+
 
 
     @forelse($posts as $post)
@@ -113,22 +115,23 @@
 
                     <div id="commentCollapse{{ $post->id }}" class="collapse">
                         @foreach($post->commentaires as $commentaire)
-                            <div class="d-flex align-items-center mb-4 h-100">
-                                <div class="avatar flex-shrink-0 me-3">
-                                    <img src="{{ asset('assets/img/avatars/wwww.jpg') }}" alt="User" class="rounded-circle">
-                                </div>
-                                <div>
-{{--                                    <h5 class="card-title">{{\Illuminate\Support\Facades\Auth::user()->professeur->user->name}}</h5>--}}
-                                    <h5 class="card-title">{{$commentaire->user->name}}</h5>
-                                    <h5 class="fs-tiny pt-1" >{{$commentaire->created_at->format('H:i')}}</h5>
-
-                                    <p class="card-text">{{$commentaire->commentaire}}</p>
-                                </div>
+                        <div class="d-flex align-items-center mb-4 h-100">
+                            <div class="avatar flex-shrink-0 me-3">
+                                <img src="{{ asset('assets/img/avatars/wwww.jpg') }}" alt="User" class="rounded-circle">
                             </div>
+                            <div>
+                                <div class="d-flex align-items-center"> <!-- New div to contain name and date -->
+                                    <h5 class="card-title me-1 mb-0">{{$commentaire->user->name}}</h5>
+                                    <h5 class="fs-tiny mb-0">{{$commentaire->created_at->format('H:i')}}</h5>
+                                </div>
+                                <p class="card-text">{{$commentaire->commentaire}}</p>
+                            </div>
+                        </div>
+
                         @endforeach
                     </div>
 
-                    <div class="d-flex align-items-center mb-4 h-100">
+                    {{-- <div class="d-flex align-items-center mb-4 h-100">
                         <div class="avatar flex-shrink-0 me-3">
                             <img src="{{ asset('assets/img/avatars/1.png') }}" alt="User" class="rounded-circle">
                         </div>
@@ -139,25 +142,25 @@
                            </div>
                             <p class="card-text">{{ $post->commentaires->last()->commentaire }}</p>
                         </div>
-                    </div>
+                    </div> --}}
                 @else
                     <p>No comments</p>
                 @endif
-
                 <form method="post" action="{{ route("commentaires.store") }}">
                     @csrf
                     <input type="hidden" value="{{ $post->id }}" name="post_id">
                     <input type="hidden" value="{{ \Illuminate\Support\Facades\Auth::id() }}" name="user_id">
                     <div class="row g-2">
                         <div class="col px-0 mb-0">
-                            <div class="px-0 mb-3 d-flex">
-                                <input type="text" value="{{ old("commentaire") }}" name="commentaire" id="nameBasic" placeholder="Ajouter un commentaire au cours…" class="form-control">
+                            <div class="px-1 mb-3 d-flex">
+                                <input type="text" value="{{ old("commentaire") }}" name="commentaire" id="nameBasic" placeholder="Ajouter un commentaire au cours…" class="form-control" style="margin-right: 10px;">
                                 @error("commentaire")<span class="text-danger">{{ $message }}</span>@enderror
                                 <button type="submit" class="btn btn-primary">Envoyer</button>
                             </div>
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
     @empty

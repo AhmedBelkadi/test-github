@@ -14,7 +14,7 @@
         <li class="menu-item @yield("prof-dashboard-active") ">
             <a href="{{route("indexProf")}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div data-i18n="Analytics">Acceuil</div>
             </a>
         </li>
 
