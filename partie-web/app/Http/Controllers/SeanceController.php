@@ -51,6 +51,7 @@ class SeanceController extends Controller
             "id_periode" => $request->input("id_periode"),
             "type" => $request->input("type"),
             "day" => $request->input("day"),
+            "expired" => true,
             "id_salle" => $request->input("id_salle"),
         ]);
 

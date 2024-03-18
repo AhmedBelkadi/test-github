@@ -7,7 +7,8 @@
     <div class="row mt-2">
         <div class="col p-0">
             <div class="">
-                <form method="post" class="row mx-0 mb-4" action="{{route("absences.chercher")}}">
+                @if(\Illuminate\Support\Facades\Auth::user()->role === "admin")
+                    <form method="post" class="row mx-0 mb-4" action="{{route("absences.chercher")}}">
                     @csrf
                     <div class="col-11 ps-0">
                         <div class="row">
@@ -92,6 +93,68 @@
                         <button type="submit" class="btn btn-primary h-100 pe-3">Rechercher</button>
                     </div>
                 </form>
+                @elseif(\Illuminate\Support\Facades\Auth::user()->role === "professeur")
+                    <form method="post" class="row mx-0 mb-4" action="{{route("absences.chercher")}}">
+                        @csrf
+                        <div class="col-11 ps-0">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <div class="  mb-0">
+                                                <select name="id_element" id="id_element" class="form-select form-select">
+                                                    <option value="">Select Element</option>
+                                                    @foreach( \Illuminate\Support\Facades\Auth::user()->professeur->elements  as $element)
+                                                        <option value="{{ $element->id }}" {{ old('id_element') == $element->id ? 'selected' : '' }}>
+                                                            {{ $element->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('id_element')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="row g-2">
+                                        <div class="col mb-0">
+                                            <div class="mb-0">
+                                                <select name="id_periode" id="id_periode" class="form-select form-select">
+                                                    <option value="">Select Periode</option>
+                                                    @foreach($periodes as $periode)
+                                                        <option value="{{ $periode->id }}" {{ old('id_periode') == $periode->id ? 'selected' : '' }}>
+                                                            {{ $periode->libelle }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('id_periode')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col mt-3">
+                                            <input type="date" value="{{old("date")}}" name="date" id="nameBasic" class="form-control" />
+                                            @error("date")<span class="text-danger">{{$message}}</span>@enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-1 ps-1 pe-0">
+                            <button type="submit" class="btn btn-primary h-100 pe-3">Rechercher</button>
+                        </div>
+                    </form>
+
+                @endif
 
                 <form method="post" class="row mb-3" action="{{ route('absences.searchByStudent') }}">
                     @csrf
@@ -111,16 +174,19 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th class="text-center">cne</th>
+                                    <th class="text-center">Cne</th>
                                     <th class="text-center">Etudiant</th>
-                                    <th class="text-center">Par mr (mme)</th>
                                     <th class="text-center">Element</th>
-                                    <th class="text-center">filiere</th>
-                                    <th class="text-center">date</th>
-                                    <th class="text-center">periode</th>
-                                    <th class="text-center">type seance</th>
-                                    <th class="text-center">justifier</th>
-                                    <th class="text-center"></th>
+                                    <th class="text-center">Date</th>
+                                    <th class="text-center">Periode</th>
+                                    <th class="text-center">Type seance</th>
+                                    <th class="text-center">Etat</th>
+                                    @if(\Illuminate\Support\Facades\Auth::user()->role === "admin")
+                                    <th class="text-center">Filiere</th>
+                                    <th class="text-center">Par mr (mme)</th>
+                                        <th class="text-center">Justification</th>
+                                        <th class="text-center"></th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
@@ -128,35 +194,42 @@
                                 <tr>
                                     <td class="text-center">{{$absence->etudiant->cne}}</td>
                                     <td class="text-center">{{$absence->etudiant->user->name}}</td>
-                                    <td class="text-center">{{ implode(" / ", $absence->seance->element->professeurs->pluck('user.name')->toArray()) }}</td>
                                     <td class="text-center">{{$absence->seance->element->name}}</td>
-                                    <td class="text-center">{{$absence->seance->element->module->filiere->name}}</td>
                                     <td class="text-center">{{$absence->date}}</td>
                                     <td class="text-center">{{$absence->seance->periode->libelle}}</td>
                                     <td class="text-center">{{$absence->seance->type}}</td>
-                                    <td class="text-center">
-                                        @foreach( $absence->justifications as $j )
-                                        <a class="link-opacity-100" href="{{asset('storage/'.$j->libele)}}">voir</a>
-                                        @endforeach
+                                    <td class="text-center">{{$absence->etat}}</td>
+                                    @if(\Illuminate\Support\Facades\Auth::user()->role === "admin")
+                                    <td class="text-center">{{$absence->seance->element->module->filiere->name}}</td>
+                                    <td class="text-center">{{ implode(" / ", $absence->seance->element->professeurs->pluck('user.name')->toArray()) }}</td>
+                                        <td class="text-center">
 
-                                        <button class="btn btn-success me-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                                <path d="M0 0h24v24H0z" fill="none"/>
-                                                <path d="M9 16.2l-3.5-3.5 1.4-1.4L9 13.4l6.3-6.3 1.4 1.4-7.7 7.7z"/>
-                                            </svg>
-                                        </button>
-                                        <button class="btn btn-danger me-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                                <path d="M0 0h24v24H0z" fill="none"/>
-                                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
-                                            </svg>
-                                        </button>
-                                       
+                                            @foreach( $absence->justifications as $j )
+                                            <a class="link-opacity-100" href="{{asset('storage/'.$j->libele)}}">voir</a>
+                                            @endforeach
+                                        </td>
+                                        <td class="text-center d-flex">
 
+                                            <form action="{{ route('absences.update', $absence->id) }}" method="POST">
+                                                @csrf
+                                                @method("put")
+                                                <input type="hidden" name="etat" value="justifier">
+                                                <button type="submit" class="btn btn-success me-1">
+                                                    <i class='bx bx-check'></i>
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('absences.update', $absence->id) }}" method="POST">
+                                                @csrf
+                                                @method("put")
+                                                <input type="hidden" name="etat" value="non justifier">
+                                                <button type="submit" class="btn btn-danger me-1">
+                                                    ❌
+                                                </button>
+                                            </form>
 
+                                        </td>
+                                    @endif
 
-
-                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

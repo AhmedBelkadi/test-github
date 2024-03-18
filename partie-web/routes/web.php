@@ -62,3 +62,4 @@ Route::get('/professeur/', [\App\Http\Controllers\AbsenceController::class, 'tes
 Route::post("/login",[\App\Http\Controllers\AuthController::class,"login"])->name("login");
 Route::get("/logout",[\App\Http\Controllers\AuthController::class,"logout"])->name("logout");
 
+Route::post('/mark-absences', [AbsenceController::class, 'markAbsences'])->name('mark.absences');

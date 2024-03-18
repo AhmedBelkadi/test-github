@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Etudiant extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [  "id_filiere"  , "cne","apogee","user_id"];
 
 
@@ -24,6 +24,11 @@ class Etudiant extends Model
     public function absences()
     {
         return $this->hasMany(Absence::class , "id_etudiant" );
+    }
+
+    public function qrCodeScans()
+    {
+        return $this->hasMany(QRCodeScan::class, 'student_id');
     }
 
 }

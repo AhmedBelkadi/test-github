@@ -1,29 +1,37 @@
 @extends("layouts.professeur_layout")
 
-@section( "dashboard-active" , "active" )
+@section( "classrooms-active" , "active" )
 
 @section("main")
-    <x-professeur-sidebar />
+{{--    <x-professeur-sidebar />--}}
+<x-sidebar />
 
-    <h1>classroom</h1>
 
-    <div class="d-flex gap-4 align-items-center" >
-        @forelse($classRooms as $classRoom)
-            <a class="card-link" href="{{route("classrooms.show",$classRoom)}}" >
-                <div class="card  h-100 ">
-                    <div class="w-100 h-25" >
-                        <img class="w-100 h-25" src="{{$classRoom->image}}" alt="Card image cap">
+{{--    <div class="d-flex gap-4 align-items-center" >--}}
+@forelse($classRooms->chunk(2) as $chunk)
+    <div class="row">
+        @foreach($chunk as $classRoom)
+            <div class="col-md-6 mb-5">
+                <a class="card-link" href="{{ route('classrooms.show', $classRoom) }}">
+                    <div class="card h-100">
+                        <div class="aspect-ratio-square">
+                            <img class="card-img-top" src="{{ $classRoom->image }}" alt="Card image cap">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $classRoom->element->name }}</h5>
+                        </div>
                     </div>
-                    <div class="card-body h-75 ">
-                        <h5 class="card-title">{{$classRoom->element->name}}</h5>
-                    </div>
-                </div>
-            </a>
-        @empty
-            <h1>no classrooms</h1>
-        @endforelse
-
+                </a>
+            </div>
+        @endforeach
     </div>
+@empty
+    <h1>no classrooms</h1>
+@endforelse
+
+
+
+{{--    </div>--}}
 
 
 

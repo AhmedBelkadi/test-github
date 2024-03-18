@@ -1,9 +1,10 @@
 @extends("layouts.professeur_layout")
 
-@section( "dashboard-active" , "active" )
+@section( "classrooms-active" , "active" )
 
 @section("main")
-    <x-professeur-sidebar />
+{{--    <x-professeur-sidebar />--}}
+<x-sidebar />
 
     <h1>classroom</h1>
 

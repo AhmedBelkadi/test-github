@@ -9,6 +9,7 @@ class Absence extends Model
 {
     use HasFactory;
 
+    protected $fillable=["id_seance","id_etudiant","date","etat"];
     public function seance()
     {
         return $this->belongsTo(Seance::class , "id_seance");

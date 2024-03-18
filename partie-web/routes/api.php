@@ -22,15 +22,22 @@ use Illuminate\Support\Facades\Route;
 //});
 
 //Route::resource("classrooms" , \App\Http\Controllers\ClassRoomController::class);
+Route::post('/absences', [\App\Http\Controllers\AbsenceController::class, 'ajouterAbsence'])->middleware('auth:sanctum');
 
-Route::post('/commentaires', [\App\Http\Controllers\CommentaireController::class, 'ajouterCommentaire']);
+Route::post("/recordQRCodeScan",[\App\Http\Controllers\EtudiantController::class,"recordQRCodeScan"]);
+
+
+Route::post('/commentaires', [\App\Http\Controllers\CommentaireController::class, 'ajouterCommentaire'])->middleware('auth:sanctum');
+Route::put('/commentaires/{commentaire}', [\App\Http\Controllers\CommentaireController::class, 'modifierCommentaire'])->middleware('auth:sanctum');
+Route::delete('/commentaires/{commentaire}', [\App\Http\Controllers\CommentaireController::class, 'supprimerCommentaire'])->middleware('auth:sanctum');
+
 Route::get('/etudiant/{student_id}/classrooms', [\App\Http\Controllers\ClassRoomControllerApi::class, 'getClassroomsForCurrentSemester']);
 
 Route::apiResource("justifications",\App\Http\Controllers\JustificationController::class)->middleware('auth:sanctum');
 
 Route::get('/etudiant/{student_id}/absences', [AbsenceController::class, 'getAbsencesByStudent'])->middleware('auth:sanctum');
 
-Route::get('/seances/date/{idEtudiant}', [SeanceController::class, 'getSeancesByDate'])->middleware('auth:sanctum');
+Route::get('/seances/{idEtudiant}', [SeanceController::class, 'getSeancesByDate'])->middleware('auth:sanctum');
 
 Route::post('/login', [AuthController::class, 'loginEtd']);
 

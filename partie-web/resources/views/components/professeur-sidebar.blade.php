@@ -25,6 +25,13 @@
             </a>
         </li>
 
+        <li class="menu-item @yield("absences-active")">
+            <a href="{{route("absences.index")}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-x-circle"></i>
+                <div data-i18n="Analytics">Absences</div>
+            </a>
+        </li>
+
     </ul>
 </aside>
 <!-- / sideBar -->

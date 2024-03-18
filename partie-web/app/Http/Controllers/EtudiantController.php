@@ -10,11 +10,13 @@ use App\Models\EmploiDuTemps;
 use App\Models\Etudiant;
 use App\Models\Filiere;
 use App\Models\Periode;
+use App\Models\QRCodeScan;
 use App\Models\Seance;
 use App\Models\Semestre;
 use App\Models\User;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
@@ -33,6 +35,24 @@ class EtudiantController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function recordQRCodeScan(Request $request)
+    {
+        $validatedData = $request->validate([
+            'session_id' => 'required|exists:seances,id',
+            'student_id' => 'required|exists:etudiants,id',
+        ]);
+
+        // Create a new QR code scan record
+        QRCodeScan::create([
+            'session_id' => $validatedData['session_id'],
+            'student_id' => $validatedData['student_id'],
+            'scan_timestamp' => now(), // Assuming you have a 'scan_timestamp' column in your QRCodeScans table
+        ]);
+
+        return response()->json(['message' => 'QR code scan recorded successfully'], 200);
+    }
+
 
     public function dashboard()
     {
@@ -228,16 +248,20 @@ class EtudiantController extends Controller
                         ->where("day",$day)
                         ->get()->first();
         if ( $seance ){
+            $sessionStartTime = now()->addMinutes(5);
+            $seance->update(['expired' => false]);
+            Cache::put('session_start_time_' . $seance->id, $sessionStartTime);
+
             $etudiants = Etudiant::where("id_filiere",$request->input("id_filiere"))->paginate(9);
             $data = $seance;
             $data["date_unique"] = Carbon::now()->format('y-m-d h:i:s');
             $qrCode = QrCode::size(350)->generate($data);
-            session()->flash('success', 'Seance found in the emplois');
-            return view("professeur.index",compact("etudiants","qrCode","periodes","filieres","elements"));
-        }
-//            session()->flash('failed', 'Seance not found in the emplois');
-        toastr()->error('Seance not found in the emplois!');
+//            session()->flash('success', 'Seance found in the emplois');
+            toastr()->success('Seance found in the emplois');
 
+            return view("professeur.index",compact("seance","etudiants","qrCode","periodes","filieres","elements"));
+        }
+        toastr()->error('Seance not found in the emplois!');
         return view("professeur.index",compact("periodes","filieres","elements"));
     }
 

@@ -19,9 +19,38 @@ class AbsenceController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function markAbsences(Request $request)
+    {
+        // Validate the request
+//        $request->validate([
+//            'absent_students' => 'required|array',
+//            'absent_students.*' => 'exists:etudiants,id',
+//        ]);
+
+        // Get the list of student IDs marked as absent
+        $absentStudentIds = $request->input('absent_students');
+//dd($absentStudentIds,$request->input("id_seance"));
+        // Create absences for the selected students
+        foreach ($absentStudentIds as $studentId) {
+            Absence::create([
+                'id_etudiant' => $studentId,
+                'id_seance' => $request->input("id_seance"),
+                'date' => now()->toDateString(),
+//                'etat' => 'non justifier', // Assuming the default state is 'non justifier'
+                // Add other necessary fields here
+            ]);
+        }
+
+        // Redirect back or wherever appropriate
+        return to_route("indexProf");
+    }
+
+
     public function index()
     {
         $absences = Absence::paginate(10);
+//        $absences =  Auth::user()->role === "admin" ? Absence::paginate(10) : null ;
         $filieres = Filiere::all();
         $elements = Element::all();
         $periodes = Periode::all();
@@ -148,7 +177,7 @@ class AbsenceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -172,7 +201,18 @@ class AbsenceController extends Controller
      */
     public function update(Request $request, Absence $absence)
     {
-        //
+        // Validate the request data if
+        $request->validate([
+            'etat' => 'required|in:justifier,non justifier', // Define appropriate validation rules
+        ]);
+
+        // Update the absence based on the "etat" value from the form
+        $absence->etat = $request->input("etat");
+        $absence->save();
+        toastr()->success('Absence updated successfully.');
+
+        // Redirect back or wherever appropriate after the update
+        return redirect()->back();
     }
 
     /**
@@ -182,4 +222,16 @@ class AbsenceController extends Controller
     {
         //
     }
+
+    public function ajouterAbsence(Request $request)
+    {
+        $absence =  Absence::create([
+            "id_etudiant" => $request->input("id_etudiant"),
+            "id_seance" => $request->input("id_seance"),
+            "date" => $request->input("date"),
+        ]);
+        return new AbsenceResource($absence);
+    }
+
+
 }

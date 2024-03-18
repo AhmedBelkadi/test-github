@@ -41,15 +41,7 @@ class CommentaireController extends Controller
         return to_route("classrooms.show",$p->classRoom);
     }
 
-    public function ajouterCommentaire(Request $request)
-    {
-        $c = Commentaire::create([
-            "commentaire" => $request->input("commentaire"),
-            "post_id" => $request->input("post_id"),
-            "user_id" => $request->input("user_id")
-        ]);
-        return new CommentaireResource($c);
-    }
+
 
     /**
      * Display the specified resource.
@@ -73,20 +65,43 @@ class CommentaireController extends Controller
     public function update(Request $request, Commentaire $commentaire)
     {
         $commentaire->commentaire = $request->input("commentaire");
-        $commentaire->post_id = $request->input("post_id");
-        $commentaire->user_id = $request->input("user_id");
         $commentaire->save();
         toastr()->success('Commentaire updated successfully!');
         return to_route("commentaires.index");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Commentaire $commentaire)
     {
         $commentaire->delete();
         toastr()->success('Commentaire deleted successfully!');
         return to_route("commentaires.index");
+    }
+
+    public function modifierCommentaire(Request $request, Commentaire $commentaire)
+    {
+        $commentaire->commentaire = $request->input("commentaire");
+        $commentaire->save();
+        return new CommentaireResource($commentaire);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+
+    public function supprimerCommentaire(Commentaire $commentaire)
+    {
+        $commentaire->delete();
+        return response()->json(["message"=>"Commentaire deleted successfully!"]);
+    }
+
+
+    public function ajouterCommentaire(Request $request)
+    {
+        $c = Commentaire::create([
+            "commentaire" => $request->input("commentaire"),
+            "post_id" => $request->input("post_id"),
+            "user_id" => $request->input("user_id")
+        ]);
+        return new CommentaireResource($c);
     }
 }
