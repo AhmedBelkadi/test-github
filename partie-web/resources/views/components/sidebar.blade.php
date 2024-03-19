@@ -99,7 +99,7 @@
             </a>
         </li>
         <li class="menu-item mt-4 ps-5   ">
-            <a href="{{route("logout")}}" class5    "">
+            <a href="{{route("logout")}}" class="text-white" >
                 <i class='bx bx-log-out bx-md '  ></i>
             </a>
         </li>
