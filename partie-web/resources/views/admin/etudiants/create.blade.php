@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#etudiantsModal">Ajouter un etudiant</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#etudiantsModal"><i class="bx bx-plus me-sm-1"></i>Ajouter un etudiant</button>
 <div class="modal fade" id="etudiantsModal" tabindex="-1" aria-hidden="true">
 <div class="modal-dialog" role="document">
     <div class="modal-content">

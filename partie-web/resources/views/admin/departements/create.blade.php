@@ -5,6 +5,7 @@ class="btn btn-primary"
 data-bs-toggle="modal"
 data-bs-target="#addDepartementModal"
 >
+<i class="bx bx-plus me-sm-1"></i>
 Ajouter un Département
 </button>
 

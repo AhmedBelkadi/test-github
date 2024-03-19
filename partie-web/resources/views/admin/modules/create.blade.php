@@ -4,6 +4,7 @@ class="btn btn-primary"
 data-bs-toggle="modal"
 data-bs-target="#modulesModal"
 >
+<i class="bx bx-plus me-sm-1"></i>
 Ajouter un module
 </button>
 <div class="modal fade" id="modulesModal" tabindex="-1" aria-hidden="true">

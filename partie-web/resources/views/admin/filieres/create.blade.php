@@ -1,4 +1,5 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addFiliereModal">
+    <i class="bx bx-plus me-sm-1"></i>
     Ajouter un filiere
 </button>
 

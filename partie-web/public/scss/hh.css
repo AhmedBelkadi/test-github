@@ -1,0 +1,21 @@
+/* Error: $color1: var(--bs-body-bg) is not a color.
+ *    ,
+ * 61 |   @return mix($background, $color, $weight);
+ *    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    '
+ *   _bootstrap-extended\_functions.scss 61:11   tint-color()
+ *   _bootstrap-extended\mixins\_misc.scss 85:5  bg-label-variant()
+ *   _theme\_common.scss 7:3                     template-common-theme()
+ *   theme-default.scss 7:1                      @import
+ *   hh.scss 4:9                                 root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: $color1: var(--bs-body-bg) is not a color.\a    \2577 \a 61 \2502    @return mix($background, $color, $weight);\a    \2502            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a    \2575 \a   _bootstrap-extended\\_functions.scss 61:11   tint-color()\a   _bootstrap-extended\\mixins\\_misc.scss 85:5  bg-label-variant()\a   _theme\\_common.scss 7:3                     template-common-theme()\a   theme-default.scss 7:1                      @import\a   hh.scss 4:9                                 root stylesheet";
+}

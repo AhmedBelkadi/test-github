@@ -109,7 +109,7 @@ class EtudiantController extends Controller
             'gender' => $request->input('gender_a'),
             'role' => 'etudiant',
             'image' => $request->input('gender_a')==="male" ?  asset("assets/img/avatars/man.png"):asset("assets/img/avatars/woman.png") ,
-            'password' =>bcrypt("111"),
+            'password' =>bcrypt($password),
         ]);
 
         $etudiant = Etudiant::create([
@@ -122,7 +122,7 @@ class EtudiantController extends Controller
 
 
     // Send an email to the student with their email and password
-//    Mail::to($user->email)->send(new SendEmail($request->input('email_a'), $password));
+   Mail::to($user->email)->send(new SendEmail($request->input('email_a'), $password));
 
 
 
@@ -222,10 +222,12 @@ class EtudiantController extends Controller
     public function destroy(Etudiant $etudiant)
     {
         {
+            $user = User::find($etudiant->user->id);
+            $user->delete();
             $etudiant->delete();
             toastr()->success('Etudiant deleted successfully!');
 
-            return redirect()->route('etudiants.index')->with('success', 'Etudiant deleted successfully!');
+            return redirect()->route('etudiants.index');
         }
     }
 

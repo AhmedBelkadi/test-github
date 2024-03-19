@@ -96,13 +96,31 @@
 <!-- Page JS -->
 <script src="{{asset("assets")}}/js/dashboards-analytics.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-@if(\Illuminate\Support\Facades\Session::has("message"))
+{{-- @if(\Illuminate\Support\Facades\Session::has("message"))
 <script>
-    toastr.options = { "progressBar":true  , "closeButton":true }
+    toastr.options = { "progressBar":true  , "closeButton":true,"positionClass": "toast-bottom-right",  }
     toastr.success("{{\Illuminate\Support\Facades\Session::get("message")}}")
     toastr.error("{{\Illuminate\Support\Facades\Session::get("message")}}")
 </script>
+@endif --}}
+
+
+@if(\Illuminate\Support\Facades\Session::has("message"))
+    <script>
+        toastr.options = {
+            "progressBar": true,
+            "closeButton": true,
+            "positionClass": "toast-bottom-right",
+        };
+
+        // Ensure the session message is not empty
+        var message = "{{ \Illuminate\Support\Facades\Session::get("message") }}";
+        if (message.trim() !== "") {
+            toastr.success(message);
+        }
+    </script>
 @endif
+
 
 @yield("scripts")
 

@@ -67,14 +67,16 @@ class CommentaireController extends Controller
         $commentaire->commentaire = $request->input("commentaire");
         $commentaire->save();
         toastr()->success('Commentaire updated successfully!');
-        return to_route("commentaires.index");
+        return to_route("classrooms.show",$commentaire->post->classRoom);
     }
 
     public function destroy(Commentaire $commentaire)
     {
         $commentaire->delete();
         toastr()->success('Commentaire deleted successfully!');
-        return to_route("commentaires.index");
+//        return to_route("commentaires.index");
+        return to_route("classrooms.show",$commentaire->post->classRoom);
+
     }
 
     public function modifierCommentaire(Request $request, Commentaire $commentaire)

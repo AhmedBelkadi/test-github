@@ -14,7 +14,7 @@
 
 
     <form  class="d-inline" method="GET" action="{{route("professeurs.exporter")}}" >
-        <button type="submit" class="btn btn-warning text-white" >exporter</button>
+        <button type="submit" class="btn btn-warning text-white" ><i class="bx bx-export me-sm-1"></i>exporter</button>
     </form>
 
     <form method="post" class=" row mt-3  " action="{{ route('professeurs.search') }}">
@@ -26,8 +26,8 @@
                 <span class="text-danger" >{{$message}}</span>
                 @enderror
             </div>
-            <div class=" col-1 ">
-                <button type="submit" class="btn btn-primary">Search</button>
+            <div class=" col-1 pe-0">
+                <button type="submit" class="btn btn-primary w-100"><i class='bx bx-search-alt'></i></button>
             </div>
         </div>
     </form>

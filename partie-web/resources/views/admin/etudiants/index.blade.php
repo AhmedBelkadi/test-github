@@ -17,7 +17,7 @@
     @endphp
 
         <form  class="d-inline" method="GET" action="{{route("etudiants.exporter")}}" >
-            <button type="submit" class="btn btn-warning text-white" >exporter</button>
+            <button type="submit" class="btn btn-warning text-white" ><i class="bx bx-export me-sm-1"></i> exporter</button>
         </form>
 
         <form method="post" class="row mt-3" action="{{ route('etudiants.search') }}">
@@ -30,7 +30,7 @@
                     @enderror
                 </div>
                 <div class="col-1">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary"><i class='bx bx-search'></i></button>
                 </div>
             </div>
         </form>
@@ -40,6 +40,10 @@
 
 
     <div class="mt-3 card">
+
+
+
+
         <div class="table-responsive text-nowrap">
             <table class="table">
                 <thead>
