@@ -61,7 +61,7 @@
                     </div>
                     <ul class="nav header-navbar-rht header-navbar-rht-eight">
                         <li class="nav-item">
-                            <a class="nav-link btn btn-register" href="{{route("showLogin")}}"><i class="fas fa-lock"></i>CONNEXION</a>
+                            <a class=" btn btn-register" href="{{route("showLogin")}}"><i class="fas fa-lock"></i>CONNEXION</a>
                         </li>
                     </ul>
                 </nav>
@@ -105,7 +105,7 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer-widget footer-about">
                                 <div class="footer-logo">
-                                    <img style="box-shadow: 20px 16px 5px 0px #2f266b;"
+                                    <img style="box-shadow: 20px 16px 5px 0px #042552;"
                                          src="{{ asset('assets/img/avatars/wwww.jpg') }}" alt="logo">
                                 </div>
                                 <div class="footer-about-content">

@@ -2,6 +2,22 @@
 
 <div class="col">
     <div class="card text-center mb-3">
+        <style>
+            /* Add hover effect */
+            .card {
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            .card:hover {
+                transform: translateX(-5px); /* Move card slightly up on hover */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow on hover */
+            }
+            .dropdown {
+                transition: opacity 0.3s;
+            }
+            .dropdown:hover {
+                opacity: 1; /* Show dropdown on hover */
+            }
+        </style>
         <div class="card-body">
             <!-- Move the dropdown to the top-right corner -->
             <div class="d-flex justify-content-end position-absolute top-0 end-0">

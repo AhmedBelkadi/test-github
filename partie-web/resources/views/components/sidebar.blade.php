@@ -1,5 +1,5 @@
 <!-- sideBar -->
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme ">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme " style="border-radius: 0 26px 26px 0" >
     <div style="height: 24%;width: 100%" class="  ">
         @if( \Illuminate\Support\Facades\Auth::user()->role === "professeur" )
         <a href="/professeur" class="   h-100">

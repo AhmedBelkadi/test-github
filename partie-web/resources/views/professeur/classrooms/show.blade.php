@@ -6,7 +6,7 @@
 {{--    <x-professeur-sidebar />--}}
 <x-sidebar />
 
-    <h1>classroom</h1>
+{{--    <h1>classroom</h1>--}}
 
     <div class="card mb-4">
         <div class="w-100 h-25">

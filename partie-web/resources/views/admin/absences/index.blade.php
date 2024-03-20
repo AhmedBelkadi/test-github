@@ -150,7 +150,7 @@
 
                         </div>
                         <div class="col-1 ps-1 pe-0">
-                            <button type="submit" class="btn btn-primary h-100 pe-3">Rechercher</button>
+                            <button type="submit" class="btn btn-primary h-100 pe-3 w-100"><i class='bx bx-search-alt bx-lg'></i></button>
                         </div>
                     </form>
 

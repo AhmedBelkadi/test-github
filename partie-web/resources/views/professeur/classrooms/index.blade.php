@@ -8,20 +8,29 @@
 
 
 {{--    <div class="d-flex gap-4 align-items-center" >--}}
-@forelse($classRooms->chunk(2) as $chunk)
+@forelse(Auth::user()->professeur->elements->chunk(2) as $chunk)
     <div class="row">
-        @foreach($chunk as $classRoom)
+        @foreach($chunk as $element)
             <div class="col-md-6 mb-5">
-                <a class="card-link" href="{{ route('classrooms.show', $classRoom) }}">
-                    <div class="card h-100">
+                <a class="card-link" href="{{ route('classrooms.show', $element->classRoom) }}">
+                    <div class="card h-100" style="transition: transform 0.2s;">
+
+                        <!-- Add hover effect using :hover -->
+                        <style>
+                            .card:hover {
+                                transform: scale(1.05);
+                            }
+                        </style>
+
                         <div class="aspect-ratio-square">
-                            <img class="card-img-top" src="{{ $classRoom->image }}" alt="Card image cap">
+                            <img class="card-img-top" src="{{ $element->classRoom->image }}" alt="Card image cap">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ $classRoom->element->name }}</h5>
+                            <h5 class="card-title">{{ $element->name }}</h5>
                         </div>
                     </div>
                 </a>
+
             </div>
         @endforeach
     </div>

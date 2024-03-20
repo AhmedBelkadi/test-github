@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClassRoomController extends Controller
 {
@@ -12,8 +13,9 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        $classRooms = ClassRoom::all();
-        return view("professeur.classrooms.index" , compact("classRooms") );
+
+//        $classRooms = ClassRoom::all();
+        return view("professeur.classrooms.index"  );
     }
 
     /**

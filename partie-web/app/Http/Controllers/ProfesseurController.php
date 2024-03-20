@@ -150,13 +150,11 @@ class ProfesseurController extends Controller
      */
     public function destroy(Professeur $professeur)
     {
-        {
+            $user = User::find($professeur->user->id);
+            $user->delete();
             $professeur->delete();
-
-        toastr()->success('Professeur deleted successfully!');
-
+            toastr()->success('Professeur deleted successfully!');
             return redirect()->route('professeurs.index');
-        }
     }
 
     public function exporter()
