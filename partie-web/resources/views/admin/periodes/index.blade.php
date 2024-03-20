@@ -1,6 +1,6 @@
 @php $openModal2 = request()->query('openModal2'); @endphp
 
-<x-crud-modal stl="fade" idModal="periodesModal" title="gestion des periodes">
+<x-crud-modal stl="fade" idModal="periodesModal" title="">
     <div>
         <form method="post" action="{{ isset($p) ? route("periodes.update", $p) : route("periodes.store") }}" class="">
             @csrf
@@ -13,7 +13,14 @@
                         @error("libelle") <span class="text-danger" >{{$message}}</span> @enderror
                     </div>
                 </div>
-                <button type="submit" class="ms-2 btn btn-lg {{ isset($p) ? "btn-success" : "btn-primary" }}">{{ isset($p) ? "modifier" : "ajouter" }}</button>
+                <button type="submit" class="ms-2 btn btn-lg {{ isset($p) ? "btn-success" : "btn-primary" }}">
+{{--                    {{ isset($p) ? "modifier" : "ajouter" }}--}}
+                    @if(isset($p))
+                        <i class="menu-icon tf-icons bx bx-pencil"></i>
+                    @else
+                        <i class="bx bx-plus me-sm-1"></i>
+                    @endif
+                </button>
             </div>
         </form>
         <label for="nameBasic" class="form-label mt-3">periodes</label>

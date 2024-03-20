@@ -1,5 +1,5 @@
 @php $openModal = request()->query('openModal');   @endphp
-<x-crud-modal stl="fade" idModal="sallesModal" title="gestion des salles" >
+<x-crud-modal stl="fade" idModal="sallesModal" title="" >
     <div>
         <form method="post" action="{{ isset($salle) ? route("salles.update", $salle) : route("salles.store") }}" class="">
             @csrf
@@ -14,7 +14,14 @@
                         @error("name")<span class="text-danger" >{{$message}}</span>@enderror
                     </div>
                 </div>
-                <button type="submit" class="ms-2 btn btn-lg {{ isset($salle) ? "btn-success" : "btn-primary" }}">{{ isset($salle) ? "modifier" : "ajouter" }}</button>
+                <button type="submit" class="ms-2 btn btn-lg {{ isset($salle) ? "btn-success" : "btn-primary" }}">
+{{--                    {{ isset($salle) ? "modifier" : "ajouter" }}--}}
+                    @if(isset($salle))
+                        <i class="menu-icon tf-icons bx bx-pencil"></i>
+                    @else
+                        <i class="bx bx-plus me-sm-1"></i>
+                    @endif
+                </button>
             </div>
         </form>
         <label for="nameBasic" class="form-label mt-3">salles</label>

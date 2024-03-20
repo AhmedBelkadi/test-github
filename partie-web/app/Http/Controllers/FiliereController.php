@@ -112,7 +112,7 @@ class FiliereController extends Controller
         $filiere->id_professeur = $request->input("id_professeur");
         $filiere->save();
         toastr()->success('Filiere updated successfully!');
-        return to_route("filieres.index")->with("success","Filiere updated successfully!");
+        return to_route("filieres.index");
     }
 
 
@@ -120,6 +120,6 @@ class FiliereController extends Controller
     {
         $filiere->delete();
         toastr()->success('Filiere deleted successfully!');
-        return to_route("filieres.index")->with("success","Filiere deleted successfully!");
+        return to_route("filieres.index");
     }
 }

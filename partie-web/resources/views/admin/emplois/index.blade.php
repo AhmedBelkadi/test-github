@@ -27,15 +27,21 @@
                 </select>
                 @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror
             </div>
-            <button type="submit" class="btn btn-lg btn-primary col-3">Rechercher</button>
+            <button type="submit" class="btn btn-lg btn-primary col-3"> <i class=' pe-1 bx bx-search-alt '></i>Rechercher     </button>
         </form>
     </div>
 
     <div class="col-3 px-4">
         <div class="row">
             <div class="col-12 d-flex justify-content-end">
-                <button type="button" class="btn btn-lg btn-primary me-2" data-bs-toggle="modal" data-bs-target="#periodesModal">Periodes</button>
-                <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#sallesModal">Salles</button>
+                <button type="button" class="btn btn-lg btn-primary me-2" data-bs-toggle="modal" data-bs-target="#periodesModal">
+                    <i class='pe-1 bx bx-time-five'></i>
+                    Periodes
+                </button>
+                <button type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#sallesModal">
+                    <i class='pe-1 bx bx-buildings'></i>
+                    Salles
+                </button>
             </div>
         </div>
     </div>

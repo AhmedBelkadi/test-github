@@ -2,6 +2,9 @@
 
 <div class="col">
     <div class="card text-center mb-3">
+
+@include("admin.departements.delete")
+
         <div class="card-body">
             <div class="d-flex justify-content-end position-absolute top-0 end-0">
                 <div class="dropdown">
@@ -15,10 +18,9 @@
                             </a>
                         </li>
                         <li>
-                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal{{$index}}">
+                            <button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#deletModal{{$departement->id}}">
                                 <i class="menu-icon tf-icons bx bx-trash"></i> Delete
                             </button>
-                            <x-delete-modal :index="$index" :departement="$departement" />
                         </li>
                     </ul>
                 </div>
