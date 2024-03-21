@@ -102,7 +102,7 @@
                                     <div class="row g-2">
                                         <div class="col mb-0">
                                             <div class="  mb-0">
-                                                <select name="id_element" id="id_element" class="form-select form-select">
+                                                <select name="id_element" id="id_element" class="form-select form-select-lg">
                                                     <option value="">Select Element</option>
                                                     @foreach( \Illuminate\Support\Facades\Auth::user()->professeur->elements  as $element)
                                                         <option value="{{ $element->id }}" {{ old('id_element') == $element->id ? 'selected' : '' }}>
@@ -121,7 +121,7 @@
                                     <div class="row g-2">
                                         <div class="col mb-0">
                                             <div class="mb-0">
-                                                <select name="id_periode" id="id_periode" class="form-select form-select">
+                                                <select name="id_periode" id="id_periode" class="form-select form-select-lg">
                                                     <option value="">Select Periode</option>
                                                     @foreach($periodes as $periode)
                                                         <option value="{{ $periode->id }}" {{ old('id_periode') == $periode->id ? 'selected' : '' }}>
@@ -141,7 +141,7 @@
                                 <div class="col-12">
                                     <div class="row">
                                         <div class="col mt-3">
-                                            <input type="date" value="{{old("date")}}" name="date" id="nameBasic" class="form-control" />
+                                            <input type="date" value="{{old("date")}}" name="date" id="nameBasic" class="form-control form-control-lg" />
                                             @error("date")<span class="text-danger">{{$message}}</span>@enderror
                                         </div>
                                     </div>
@@ -160,10 +160,10 @@
                     @csrf
                     <div class="row">
                         <div class="col-11">
-                            <input type="text" value="{{old("query")}}" name="query" id="nameBasic" class="form-control" placeholder="Rechercher par CIN ou CNE" />
+                            <input type="text" value="{{old("query")}}" name="query" id="nameBasic" class="form-control form-control-lg" placeholder="Rechercher par CIN ou CNE" />
                         </div>
                         <div class="col-1 pe-0 me-0">
-                            <button class="btn btn-primary w-100 pe" type="submit"><i class='bx bx-search-alt'></i></button>
+                            <button class="btn btn-primary btn-lg w-100 pe" type="submit"><i class='bx bx-search-alt'></i></button>
                         </div>
                     </div>
                     @error("query")<span class="text-danger">{{$message}}</span>@enderror
