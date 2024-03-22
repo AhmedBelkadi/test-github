@@ -72,20 +72,17 @@
             <div class="container">
                 <div class="banner-wrapper-eight m-auto text-center">
                     <div id="accueil" class="banner-header aos" data-aos="fade-up">
-                        <h1>Portail de pré-candidature en ligne aux formations<span> <br> licences professionnelles <br> </span>
+                        <h1>Plateforme de Gestion des Absences en Ligne pour<span> <br>  l'École Supérieure de Technologie Essaouira <br> </span>
                             2023-2024</h1>
-                        <p>Bienvenue sur le Portail de pré-candidature en ligne aux formations licences professionnelles de L'école
-                            Supérieure de Technologie – Fkih Ben Salah.
+                        <p>Bienvenue sur la Plateforme de Gestion des Absences en Ligne des etudiants de L'école
+                            Supérieure de Technologie – Essaouira.
                         </p>
                     </div>
 
                     <div class="row  aos" data-aos="fade-up">
                         <div class="statistics-list-eight">
                             <div class="statistics-content-eight">
-                                <h3>La plateforme de pré-candidature aux formations licences professionnelles permet aux
-                                    candidats de postuler
-                                    aux formations licences professionnelles accréditées dans établissements relevant de L'école
-                                    Supérieure de Technologie – Fkih Ben Salah en ligne.</h3>
+                                <h3>La plateforme de gestion des absences vous permet de signaler vos absences et de consulter votre historique en ligne</h3>
                             </div>
                         </div>
 
