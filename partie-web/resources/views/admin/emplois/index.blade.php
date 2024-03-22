@@ -63,7 +63,7 @@
             <th style="width: {{ 100 / (count($periodes) + 1) }}%;">&nbsp;</th>
             @foreach ($periodes as $periode)
             <th style="width: {{ 100 / (count($periodes) + 1) }}%;" class="bg">
-                <div class="bg-info text-center px-1 py-2 w-100 border border-2 rounded-3">
+                <div class=" text-center px-1 py-2 w-100 border border-2 rounded-3" style="background-color: rgba(4, 37, 82, 0.2)" >
                     {{ $periode->libelle }}
                 </div>
             </th>
@@ -72,8 +72,9 @@
     </thead>
     <tbody>
         @foreach ($days as $day)
-        <tr>
-            <td style="width: {{ 100 / (count($periodes) + 1) }}%;" class="bg-primary text-white py-4 px-3 border border-2 rounded-3 text-center same-height-td">
+        <tr class="" >
+            <td style="width: {{ 100 / (count($periodes) + 1) }}%;background-color: rgba(4, 37, 82, 0.2);"   class="  text-primary fa-bold  border border-2 rounded-3 text-center same-height-td">
+{{--                <span style="background-color: rgba(4, 37, 82, 0.2); padding-block: 23px;padding-inline: 30px" class="  " ></span>--}}
                 {{ $day }}
             </td>
             @foreach ($periodes as $periode)

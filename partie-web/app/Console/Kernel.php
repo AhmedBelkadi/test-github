@@ -18,36 +18,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
-
-        $schedule->call(function () {
-            // Get all active sessions
-            $activeSessions = Seance::where('expired', false)->get();
-            foreach ($activeSessions as $session) {
-                // Check if session start time is in the cache
-                if (Cache::has('session_start_time_' . $session->id)) {
-                    $sessionStartTime = Cache::get('session_start_time_' . $session->id);
-
-                    // Get the session start time from the cache
-                    // Check if 15 minutes have elapsed since the session start time
-                    if (Carbon::now() > $sessionStartTime->addMinutes(5)) {
-                        // Mark students who haven't scanned the QR code as absent
-                        $absentStudents = $session->expectedStudents()->whereNotIn('id', $session->scannedStudents()->pluck('id'))->get();
-                        Log::info("absent student",$absentStudents);
-                        foreach ($absentStudents as $student) {
-                            Absence::create([
-                                'id_seance' => $session->id,
-                                'id_etudiant' => $student->id,
-                                'date' => now()->toDateString(), // Or use the session date
-                                // Other relevant data
-                            ]);
-                        }
-                        // Update session status to expired
-                        $session->update(['expired' => true]);
-                    }
-                }
-            }
-        })->everyMinute();
     }
 
     /**

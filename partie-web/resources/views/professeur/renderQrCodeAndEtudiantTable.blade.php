@@ -75,7 +75,7 @@
 @endsection
 @section("scripts")
     <script>
-        const url = "http://172.20.10.14:8000/api/getNotScannedStudents/{{$seance->id}}";
+        const url = "http://100.91.225.80:8000/api/getNotScannedStudents/{{$seance->id}}";
         const etdsElm = document.querySelector("#etdsElm");
         let etudiants = [];
         console.log(etudiants);

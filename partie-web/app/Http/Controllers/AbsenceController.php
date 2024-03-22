@@ -85,6 +85,10 @@ class AbsenceController extends Controller
             $results->where('date', $request->date);
         }
 
+        if ($request->filled('etat')) {
+            $results->where('etat', $request->etat);
+        }
+
         if ($request->filled('id_periode')) {
             $results->whereHas('seance.periode', function ($query) use ($request) {
                 $query->where('id', $request->id_periode);
