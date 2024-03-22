@@ -22,16 +22,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             // Get all active sessions
-            Log::info('Scheduled task started');
             $activeSessions = Seance::where('expired', false)->get();
-            Log::info($activeSessions);
             foreach ($activeSessions as $session) {
                 // Check if session start time is in the cache
-            Log::info('hhhh');
                 if (Cache::has('session_start_time_' . $session->id)) {
                     $sessionStartTime = Cache::get('session_start_time_' . $session->id);
-                    Log::info('session start: '. $sessionStartTime);
-                    Log::info(Carbon::now()." > ".$sessionStartTime->addMinutes(5));
 
                     // Get the session start time from the cache
                     // Check if 15 minutes have elapsed since the session start time

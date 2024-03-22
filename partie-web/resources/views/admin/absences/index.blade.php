@@ -16,7 +16,7 @@
                                 <div class="row g-2">
                                     <div class="col px-0 mb-0">
                                         <div class="px-0 mb-3">
-                                            <select name="id_filiere" id="filiere" class="form-select form-select">
+                                            <select name="id_filiere" id="filiere" class="form-select form-select-lg">
                                                 <option value="" selected disabled>Select Filiere</option>
                                                 @foreach($filieres as $filiere)
                                                 <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}">{{ $filiere->name }}</option>
@@ -31,7 +31,7 @@
                                 <div class="row g-2">
                                     <div class="col px-0 mb-0">
                                         <div class="px-0 mb-3">
-                                            <select name="name_semestre" id="semestre" class="form-select form-select">
+                                            <select name="name_semestre" id="semestre" class="form-select-lg form-select">
                                                 <option value="" selected disabled>Select Semestre</option>
                                             </select>
                                             @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror
@@ -42,7 +42,7 @@
                             <div class="col-3">
                                 <div class="row">
                                     <div class="col mb-3">
-                                        <input type="date" value="{{old("date")}}" name="date" id="nameBasic" class="form-control" />
+                                        <input type="date" value="{{old("date")}}" name="date" id="nameBasic" class="form-control form-control-lg" />
                                         @error("date")<span class="text-danger">{{$message}}</span>@enderror
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                 <div class="row g-2">
                                     <div class="col mb-0">
                                         <div class=" mt-2 mb-0">
-                                            <select name="id_element" id="id_element" class="form-select form-select">
+                                            <select name="id_element" id="id_element" class="form-select form-select-lg">
                                                 <option value="">Select Element</option>
                                                 @foreach($elements as $element)
                                                 <option value="{{ $element->id }}" {{ old('id_element') == $element->id ? 'selected' : '' }}>
@@ -72,7 +72,7 @@
                                 <div class="row g-2">
                                     <div class="col mb-0">
                                         <div class=" mt-2 mb-0">
-                                            <select name="id_periode" id="id_periode" class="form-select form-select">
+                                            <select name="id_periode" id="id_periode" class="form-select form-select-lg">
                                                 <option value="">Select Periode</option>
                                                 @foreach($periodes as $periode)
                                                 <option value="{{ $periode->id }}" {{ old('id_periode') == $periode->id ? 'selected' : '' }}>
@@ -153,7 +153,6 @@
                             <button type="submit" class="btn btn-primary h-100 pe-3 w-100"><i class='bx bx-search-alt bx-lg'></i></button>
                         </div>
                     </form>
-
                 @endif
 
                 <form method="post" class="row mb-3 " action="{{ route('absences.searchByStudent') }}">

@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/absences', [\App\Http\Controllers\AbsenceController::class, 'ajouterAbsence'])->middleware('auth:sanctum');
 
 Route::post("/recordQRCodeScan",[\App\Http\Controllers\EtudiantController::class,"recordQRCodeScan"]);
+Route::get("/getNotScannedStudents/{seance}",[\App\Http\Controllers\EtudiantController::class,"getNotScannedStudents"]);
 
 
 Route::post('/commentaires', [\App\Http\Controllers\CommentaireController::class, 'ajouterCommentaire'])->middleware('auth:sanctum');

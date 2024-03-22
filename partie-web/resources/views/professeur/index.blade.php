@@ -216,6 +216,48 @@
 @section( "scripts" )
     <script>
 
+
+
+        // let eventSource = new EventSource('/stream');
+        //
+        // eventSource.onopen = function(event) {
+        //     console.log('Connection opened');
+        // };
+        //
+        // eventSource.onmessage = function(event) {
+        //     const data = JSON.parse(event.data);
+        //     console.log('Received data:', data);
+        // };
+        //
+        // eventSource.onerror = function(event) {
+        //     console.error('Error occurred:', event);
+        // };
+        //
+        // // Handle reconnection after a timeout
+        // setTimeout(() => {
+        //     eventSource.close();
+        //     console.log('Connection closed. Attempting to reconnect...');
+        //     eventSource = new EventSource('/stream');
+        // }, 60000); // Reconnect after 1 minute
+
+
+            // if (data.time) {
+            //     document.getElementById('time').innerHTML = data.time;
+            // }
+            // const newElement = document.createElement("li");
+            // const eventList = document.getElementById("list");
+            //
+            // newElement.textContent = "message: " + event.data;
+            // eventList.appendChild(newElement);
+
+
+
+
+
+
+
+
+
         document.addEventListener('DOMContentLoaded', function () {
             const filiereSelect = document.getElementById('filiere');
             const semestreSelect = document.getElementById('semestre');

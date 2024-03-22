@@ -5,6 +5,7 @@ use App\Exports\EtudiantExport;
 use App\Http\Requests\AjouterEtudiantRequest;
 use App\Http\Requests\SearchEtudiantRequest;
 use App\Http\Requests\EtudiantRequest;
+use App\Http\Resources\EtudiantResource;
 use App\Models\Element;
 use App\Models\EmploiDuTemps;
 use App\Models\Etudiant;
@@ -53,6 +54,17 @@ class EtudiantController extends Controller
         return response()->json(['message' => 'QR code scan recorded successfully'], 200);
     }
 
+    public function getNotScannedStudents(Request $request, $seance)
+    {
+        $session = Seance::findOrFail($seance); // Assuming $seance is the ID of the session
+        $absentStudents = $session->expectedStudents()
+            ->whereNotIn('etudiants.id', $session->scannedStudents()->pluck('etudiants.id'))
+            ->get();
+
+        return response()->json(["notScannedStudents"=>EtudiantResource::collection($absentStudents) ,
+                                "expectedStudents"=>EtudiantResource::collection($session->emploiDuTemps->filiere->etudiants)
+            ]) ;
+    }
 
     public function dashboard()
     {
@@ -234,7 +246,6 @@ class EtudiantController extends Controller
 
     public function chercherEtdsParFiliere( Request $request )
     {
-
         $dateValue = $request->input('date'); // Assuming 'date' is the name of your input field
         $day = date('l', strtotime($dateValue));
         $periodes = Periode::all();
@@ -250,23 +261,20 @@ class EtudiantController extends Controller
                         ->where("day",$day)
                         ->get()->first();
         if ( $seance ){
-            $sessionStartTime = now()->addMinutes(5);
-            $seance->update(['expired' => false]);
-            Cache::put('session_start_time_' . $seance->id, $sessionStartTime);
-
             $etudiants = Etudiant::where("id_filiere",$request->input("id_filiere"))->paginate(9);
             $data = $seance;
             $data["date_unique"] = Carbon::now()->format('y-m-d h:i:s');
             $qrCode = QrCode::size(350)->generate($data);
-//            session()->flash('success', 'Seance found in the emplois');
             toastr()->success('Seance found in the emplois');
-
-            return view("professeur.index",compact("seance","etudiants","qrCode","periodes","filieres","elements"));
+            return view("professeur.renderQrCodeAndEtudiantTable",compact("seance","etudiants","qrCode"));
         }
         toastr()->error('Seance not found in the emplois!');
         return view("professeur.index",compact("periodes","filieres","elements"));
     }
 
+    //            $sessionStartTime = now()->addMinutes(5);
+//            $seance->update(['expired' => false]);
+//            Cache::put('session_start_time_' . $seance->id, $sessionStartTime);
 
     public function exporter()
     {

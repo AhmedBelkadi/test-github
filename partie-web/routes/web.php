@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//Route::get('/sse', 'SSEController@stream');
+    Route::get("/stream",[\App\Http\Controllers\SSEController::class,"stream"]);
 
 //Route::get('/', function () {
 //    return view('admin.dashboard');

@@ -22,15 +22,10 @@ class AbsenceController extends Controller
 
     public function markAbsences(Request $request)
     {
-        // Validate the request
-//        $request->validate([
-//            'absent_students' => 'required|array',
-//            'absent_students.*' => 'exists:etudiants,id',
-//        ]);
 
         // Get the list of student IDs marked as absent
         $absentStudentIds = $request->input('absent_students');
-//dd($absentStudentIds,$request->input("id_seance"));
+//dd($absentStudentIds);
         // Create absences for the selected students
         foreach ($absentStudentIds as $studentId) {
             Absence::create([
@@ -41,6 +36,7 @@ class AbsenceController extends Controller
                 // Add other necessary fields here
             ]);
         }
+        toastr()->success('Absences marked successfully!');
 
         // Redirect back or wherever appropriate
         return to_route("indexProf");

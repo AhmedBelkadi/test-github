@@ -21,7 +21,7 @@
         @csrf
         <div class="row px-0  " >
             <div class=" col-11 ">
-                <input type="text" name="cin" id="cin" class="form-control" placeholder="Enter CIN" >
+                <input type="text" name="cin" id="cin" class="form-control " placeholder="Enter CIN" >
                 @error("cin")
                 <span class="text-danger" >{{$message}}</span>
                 @enderror
