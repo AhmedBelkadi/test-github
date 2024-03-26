@@ -6,10 +6,8 @@
     <div class="container-xxl flex-grow-1 container-p-y">
 
         @include("admin.departements.create")
-{{--        <x-Createdepartement />--}}
         @if(isset($departement))
             @include("admin.departements.edit")
-{{--            <x-Editdepartement />--}}
         @endif
         @php $openModal = request()->query('openModal'); @endphp
         <div class=" mt-3 row row-cols-2">

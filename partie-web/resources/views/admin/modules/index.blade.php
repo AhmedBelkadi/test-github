@@ -18,9 +18,9 @@
 
     <div class="mt-3 card">
         <div class="table-responsive text-nowrap">
-            <table class="table">
-                <thead>
-                <tr>
+            <table class="table ">
+                <thead >
+                <tr >
                     <th class="text-center" >module</th>
                     <th class="text-center" >nbr heure</th>
                     <th class="text-center" >filiere</th>

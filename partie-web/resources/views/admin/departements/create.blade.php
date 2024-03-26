@@ -1,25 +1,12 @@
 
-<button
-type="button"
-class="btn btn-primary"
-data-bs-toggle="modal"
-data-bs-target="#addDepartementModal"
->
-<i class="bx bx-plus me-sm-1"></i>
-Ajouter un Département
-</button>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDepartementModal"><i class="bx bx-plus me-sm-1"></i>Ajouter un Département</button>
 
 <div class="modal fade" id="addDepartementModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel1">Ajouter un Département</h5>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                ></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
                <form method="post" action="{{route("departements.store")}}">
                    @csrf

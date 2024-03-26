@@ -11,10 +11,12 @@ use App\Models\EmploiDuTemps;
 use App\Models\Etudiant;
 use App\Models\Filiere;
 use App\Models\Periode;
+use App\Models\Professeur;
 use App\Models\QRCodeScan;
 use App\Models\Seance;
 use App\Models\Semestre;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -36,6 +38,16 @@ class EtudiantController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function exporterPdf()
+    {
+        toastr()->success('Etudiants exported successfully!');
+
+        $etudiants = Etudiant::all();
+        $pdf = Pdf::loadView('admin.etudiants.export_pdf', [ "etudiants" => $etudiants ])
+            ->setPaper("a4","landscape");
+        return $pdf->download('etudiants.pdf');
+    }
 
     public function recordQRCodeScan(Request $request)
     {

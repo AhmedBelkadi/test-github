@@ -22,6 +22,21 @@ class DepartementController extends Controller
         return view("admin.departements.index" ,compact("departements","professeurs")  );
     }
 
+//    public function index()
+//    {
+//        // Eager load related data to avoid N+1 queries
+//        $departements = Departement::with('chef.user')->withCount('filieres')->paginate(4);
+//
+//        // Load only necessary data for professeurs (id and name of the user)
+//        $professeurs = Professeur::with(['user' => function($query) {
+//            $query->select('id', 'name');
+//        }])->get();
+//
+//        return view("admin.departements.index", compact("departements", "professeurs"));
+//    }
+
+
+
     /**
      * Show the form for creating a new resource.
      */

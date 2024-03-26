@@ -17,7 +17,7 @@
         <button type="submit" class="btn btn-warning text-white" ><i class="bx bx-export me-sm-1"></i>exporter</button>
     </form>
 
-    <form method="post" class=" row mt-3  " action="{{ route('professeurs.search') }}">
+    <form method="post" class=" row mt-3" style="padding-left: 13px;padding-right: 2px" action="{{ route('professeurs.search') }}">
         @csrf
         <div class="row px-0  " >
             <div class=" col-11 ">
@@ -34,10 +34,32 @@
 
 
 
-    <div class="row " >
-        <div class=" col-12 mt-3   card">
+{{--    <div class="row " >--}}
+        <div class=" mt-3 card">
+
+            <div class="btn-group my-1 " style="width: 8%" >
+                <button class="btn btn-secondary  btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bx bx-export me-1"></i> Exporter
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{route("professeurs.exporter")}}" >
+                            <i class="bx bx-file "></i>
+                            <input class="dropdown-item" type="submit" value="csv">
+                        </form>
+                    </li>
+                    <li>
+                        <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{ route("professeurs.exporter.pdf") }}" target="__blank" >
+                            <i class="bx bxs-file-pdf me-2"></i>
+                            <input class="dropdown-item" type="submit" value="pdf">
+                        </form>
+                        {{--                                <a class="dropdown-item" href="#"><i class="bx bxs-file-pdf me-2"></i>pdf</a>--}}
+                    </li>
+                </ul>
+            </div>
+
             <div class="table-responsive text-nowrap">
-                <table class="table">
+                <table class="table table-hover table-bordered">
                     <thead>
 
                     <tr>
@@ -87,7 +109,7 @@
                 </table>
             </div>
         </div>
-    </div>
+{{--    </div>--}}
 {{--     {{ $professeurs->links() }}--}}
 </div>
 

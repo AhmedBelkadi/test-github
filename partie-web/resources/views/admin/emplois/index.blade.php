@@ -31,9 +31,9 @@
         </form>
     </div>
 
-    <div class="col-3 px-4">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-end">
+    <div class="col-3 ">
+{{--        <div class="row">--}}
+            <div class="d-flex gap-1">
                 <button type="button" class="btn btn-lg btn-primary me-2" data-bs-toggle="modal" data-bs-target="#periodesModal">
                     <i class='pe-1 bx bx-time-five'></i>
                     Periodes
@@ -43,7 +43,7 @@
                     Salles
                 </button>
             </div>
-        </div>
+{{--        </div>--}}
     </div>
 </div>
 

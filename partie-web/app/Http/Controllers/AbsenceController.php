@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AbsenceExportAdmin;
+use App\Exports\AbsenceExportProfesseur;
 use App\Http\Requests\RechercherAbsenceRequest;
 use App\Http\Requests\SearchAbsencesByStudentRequest;
 use App\Http\Resources\AbsenceResource;
@@ -13,12 +15,38 @@ use App\Models\Professeur;
 use App\Models\Semestre;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class AbsenceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    public function exporterAdmin()
+    {
+        toastr()->success('Absences exported successfully!');
+        return Excel::download(new AbsenceExportAdmin(), 'absences_admin.xlsx');
+
+    }
+    public function exporterProfesseur()
+    {
+        toastr()->success('Absences exported successfully!');
+
+        return Excel::download(new AbsenceExportProfesseur(), 'absences_professeur.xlsx');
+
+    }
+    public function exporterPdf()
+    {
+        toastr()->success('Absences exported successfully!');
+
+        $absences = Absence::all();
+        $pdf = Pdf::loadView('admin.absences.absencesForAdmin', [ "absences" => $absences ])
+        ->setPaper("a4","landscape");
+        return $pdf->download('absences.pdf');
+    }
 
     public function markAbsences(Request $request)
     {

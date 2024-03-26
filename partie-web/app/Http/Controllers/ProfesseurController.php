@@ -7,8 +7,10 @@ use App\Http\Requests\AjouterProfesseurRequest;
 use App\Http\Requests\SearchProfesseurRequest;
 
 
+use App\Models\Absence;
 use App\Models\Professeur;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ProfesseurEmail;
@@ -20,6 +22,16 @@ class ProfesseurController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function exporterPdf()
+    {
+        toastr()->success('Professurs exported successfully!');
+
+        $professeurs = Professeur::all();
+        $pdf = Pdf::loadView('admin.professeurs.export_pdf', [ "professeurs" => $professeurs ])
+            ->setPaper("a4","landscape");
+        return $pdf->download('professeurs.pdf');
+    }
     public function index()
     {
         $professeurs = Professeur::paginate(15);

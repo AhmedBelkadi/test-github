@@ -38,6 +38,17 @@ Route::resource("salles" , \App\Http\Controllers\SalleController::class);
 Route::resource("departements" , \App\Http\Controllers\DepartementController::class);
 Route::resource("elements" , \App\Http\Controllers\ElementController::class);
 Route::get("/professeurs/exporter",[\App\Http\Controllers\ProfesseurController::class,"exporter"])->name("professeurs.exporter");
+
+
+Route::get("/absences/exporteAdmin",[\App\Http\Controllers\AbsenceController::class,"exporterAdmin"])->name("absences.exporter.admin");
+Route::get("/absences/exporterProfesseur",[\App\Http\Controllers\AbsenceController::class,"exporterProfesseur"])->name("absences.exporter.professeur");
+
+Route::get("/absences/exportePdf",[\App\Http\Controllers\AbsenceController::class,"exporterPdf"])->name("absences.exporter.pdf");
+Route::get("/etudiants/exportePdf",[\App\Http\Controllers\EtudiantController::class,"exporterPdf"])->name("etudiants.exporter.pdf");
+Route::get("/professeurs/exportePdf",[\App\Http\Controllers\ProfesseurController::class,"exporterPdf"])->name("professeurs.exporter.pdf");
+//Route::get("/absences/exporterProfesseurPdf",[\App\Http\Controllers\AbsenceController::class,"exporterProfesseurPdf"])->name("absences.exporter.professeur.pdf");
+
+
 Route::resource("professeurs" , \App\Http\Controllers\ProfesseurController::class);
 Route::post("/professeurs/search", [\App\Http\Controllers\ProfesseurController::class, "search"])->name("professeurs.search");
 Route::get("/etudiants/exporter",[\App\Http\Controllers\EtudiantController::class,"exporter"])->name("etudiants.exporter");

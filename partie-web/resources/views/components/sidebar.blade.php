@@ -6,20 +6,15 @@
               <span class=" h-100 w-100 d-flex align-items-center justify-content-center">
                         <img class="w-75 h-75 border rounded-3" src="{{asset("assets/img/avatars/wwww.jpg")}}">
               </span>
-{{--            <span class="app-brand-text demo menu-text fw-bolder ms-2">LOGO</span>--}}
         </a>
         @else
             <a href="/dashboard" class="   h-100">
               <span class=" h-100 w-100 d-flex align-items-center justify-content-center">
                         <img class="w-75 h-75 border rounded-3" src="{{asset("assets/img/avatars/wwww.jpg")}}">
               </span>
-{{--            <span class="app-brand-text demo menu-text fw-bolder ms-2">LOGO</span>--}}
         </a>
         @endif
 
-{{--        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">--}}
-{{--            <i class="bx bx-chevron-left bx-sm align-middle"></i>--}}
-{{--        </a>--}}
     </div>
 
 
@@ -56,7 +51,7 @@
             </li>
             <li class="menu-item @yield("filieres-active")">
                 <a href="{{route("filieres.index")}}" class="menu-link">
-                    {{--                <i class="menu-icon tf-icons bx bx-home-circle"></i>--}}
+{{--                                    <i class="menu-icon tf-icons bx bx-home-circle"></i>--}}
                     <i class="menu-icon tf-icons bx bx-book"></i>
                     <div data-i18n="Analytics">Filieres</div>
                 </a>
@@ -120,4 +115,16 @@
 <!-- / sideBar -->
 
 
-{{--    <div class="menu-inner-shadow"></div>--}}
+
+
+
+
+
+
+
+
+
+
+
+
+

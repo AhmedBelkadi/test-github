@@ -204,9 +204,54 @@
                     @error("query")<span class="text-danger">{{$message}}</span>@enderror
                 </form>
 
+
                 <div class="card">
+{{--                    <form  class="d-inline" method="GET" action="{{ \Illuminate\Support\Facades\Auth::user()->role == "professeur" ? route("absences.exporter.professeur") : route("absences.exporter.admin") }}" >--}}
+{{--                        <button type="submit" class="btn btn-warning text-white" ><i class="bx bx-export me-sm-1"></i>exporter</button>--}}
+{{--                    </form>--}}
+
+{{--                    <div class="dropdown">--}}
+{{--                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                            <i class="bx bx-export me-1"></i> Exporter--}}
+{{--                        </a>--}}
+
+{{--                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">--}}
+{{--                            <li>--}}
+{{--                                <form  class="dropdown-item d-flex align-items-center justify-content-center" method="GET" action="{{ \Illuminate\Support\Facades\Auth::user()->role == "professeur" ? route("absences.exporter.professeur") : route("absences.exporter.admin") }}" >--}}
+{{--                                    <button type="submit" class="btn btn-warning text-white" >csv--}}
+{{--                                        <i class="bx bx-file me-2"></i>--}}
+{{--                                        <input class="dropdown-item" type="submit" value="csv">--}}
+{{--                                </form>--}}
+{{--                                <a class="dropdown-item" href="#"></a>--}}
+{{--                            </li>--}}
+{{--                            <li><a class="dropdown-item" href="#"><i class="bx bxs-file-pdf me-2"></i>pdf</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+
+
+                    <div class="btn-group my-1 " style="width: 8%" >
+                        <button class="btn btn-secondary  btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bx bx-export me-1"></i> Exporter
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{ \Illuminate\Support\Facades\Auth::user()->role == "professeur" ? route("absences.exporter.professeur") : route("absences.exporter.admin") }}" >
+                                    <i class="bx bx-file "></i>
+                                    <input class="dropdown-item" type="submit" value="csv">
+                                </form>
+                            </li>
+                            <li>
+                                <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{ route("absences.exporter.pdf") }}" target="__blank" >
+                                    <i class="bx bxs-file-pdf me-2"></i>
+                                    <input class="dropdown-item" type="submit" value="pdf">
+                                </form>
+{{--                                <a class="dropdown-item" href="#"><i class="bx bxs-file-pdf me-2"></i>pdf</a>--}}
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="table-responsive text-nowrap">
-                        <table class="table table-hover">
+                        <table class="table table-hover table table-bordered">
                             <thead>
                                 <tr>
                                     <th class="text-center">Cne</th>
