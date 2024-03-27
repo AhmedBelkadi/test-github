@@ -17,6 +17,7 @@ class AbsenceResource extends JsonResource
         return [
             "id" => $this->id,
             "date" => $this->date,
+            "etat" => $this->etat,
             "etudiant" => new EtudiantResource($this->etudiant),
             "seance" => new SeanceResource($this->seance),
         ];

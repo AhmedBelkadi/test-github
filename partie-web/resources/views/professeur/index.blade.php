@@ -6,8 +6,8 @@
     <x-sidebar />
 
 
-<h1>Bonjour {{\Illuminate\Support\Facades\Auth::user()->name}}</h1>
-    <div class="bg-primary " style="padding: 33px 43px 33px 43px;border-radius: 23px" >
+<h1 class="ps-2 pb-2" >Bonjour Mr/Mme {{\Illuminate\Support\Facades\Auth::user()->name}}</h1>
+    <div class="bg-primary " style="padding: 33px 43px 23px 43px;border-radius: 23px" >
 
                 <form method="post" action="{{route("etudiants.chercherEtdsParFiliere")}}">
                     @csrf
@@ -20,7 +20,7 @@
                                     <div class="col px-0  mb-0">
                                         <div class=" px-0 mb-3">
                                             {{--                                        <label for="filiere" class="form-label">Filiere</label>--}}
-                                            <select name="id_filiere" id="filiere" class="form-select-lg form-select">
+                                            <select name="id_filiere" id="filiere" class=" form-select">
                                                 <option value="" selected disabled>Select Filiere</option>
                                                 @foreach($filieres as $filiere)
                                                     <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}" >{{ $filiere->name }}</option>
@@ -34,7 +34,7 @@
                                     <div class="col px-0  mb-0">
                                         <div class=" px-0 mb-3">
                                             {{--                                        <label for="emailBasic" class="form-label">Semestre</label>--}}
-                                            <select name="name_semestre" id="semestre" class="form-select-lg form-select">
+                                            <select name="name_semestre" id="semestre" class=" form-select">
                                                 <option value="" selected disabled>Select Semestre</option>
                                             </select>
                                             @error('name_semestre')<span class="text-danger">{{ $message }}</span>@enderror
@@ -46,7 +46,7 @@
                                         <div class="col px-0  mb-0">
                                             <div class=" px-0 mb-3">
                                                 {{--                                                    <label for="nameBasic" class="form-label">Date</label>--}}
-                                                <input type="date" value="{{old("date")}}" name="date" id="nameBasic" class="form-control form-control-lg"  />
+                                                <input type="date" value="{{old("date")}}" name="date" id="nameBasic" class="form-control   "  />
                                                 @error("date")<span class="text-danger" >{{$message}}</span>@enderror
                                             </div>
                                         </div>
@@ -59,7 +59,7 @@
                                         <div class="col px-0  mb-0">
                                             <div class=" px-0 mb-3">
                                                 {{--                                                <label for="largeSelect" class="form-label">Type</label>--}}
-                                                <select name="type" id="largeSelect" class="form-select-lg form-select">
+                                                <select name="type" id="largeSelect" class=" form-select">
                                                     <option selected disabled >select type</option>
                                                     <option value="tp" {{ old('type') == 'tp' ? 'selected' : '' }} >Traveaux Pratique</option>
                                                     <option value="cour" {{ old('type') == 'cour' ? 'selected' : '' }} >Cour</option>
@@ -74,7 +74,7 @@
                                         <div class="col px-0  mb-0">
                                             <div class=" px-0 mb-3">
                                                 {{--                                                <label for="periode" class="form-label">Periode</label>--}}
-                                                <select name="id_periode" id="periode" class="form-select-lg form-select">
+                                                <select name="id_periode" id="periode" class=" form-select">
                                                     <option value="" selected disabled>Select Periode</option>
                                                     @foreach($periodes as $periode)
                                                         <option value="{{ $periode->id }}" >{{ $periode->libelle }}</option>
@@ -90,7 +90,7 @@
                                         <div class="col px-0  mb-0">
                                             <div class=" px-0 mb-3">
                                                 {{--                                                <label for="element" class="form-label">Element</label>--}}
-                                                <select name="id_element" id="element" class="form-select-lg form-select">
+                                                <select name="id_element" id="element" class=" form-select">
                                                     <option value="" selected disabled>Select Element</option>
                                                     @foreach($elements as $element)
                                                         <option value="{{ $element->id }}" >{{ $element->name }}</option>

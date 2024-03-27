@@ -4,15 +4,16 @@
         @if( \Illuminate\Support\Facades\Auth::user()->role === "professeur" )
         <a href="/professeur" class="   h-100">
               <span class=" h-100 w-100 d-flex align-items-center justify-content-center">
-                        <img class="w-75 h-75 border rounded-3" src="{{asset("assets/img/avatars/wwww.jpg")}}">
+                        <img style="width: 82%;height: 95%;" src="{{asset("assets/img/avatars/ttend3.png")}}">
+{{--                        <img class="w-75 h-75 border rounded-3" src="{{asset("assets/img/avatars/wwww.jpg")}}">--}}
               </span>
         </a>
         @else
-            <a href="/dashboard" class="   h-100">
-              <span class=" h-100 w-100 d-flex align-items-center justify-content-center">
-                        <img class="w-75 h-75 border rounded-3" src="{{asset("assets/img/avatars/wwww.jpg")}}">
+            <a href="/dashboard" class="h-100">
+              <span class=" h-100 w-100 d-flex align-items-center justify-content-center  p-0 m-0">
+                        <img style="width: 82%;height: 95%;" src="{{asset("assets/img/avatars/ttend3.png")}}">
               </span>
-        </a>
+            </a>
         @endif
 
     </div>

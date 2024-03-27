@@ -23,7 +23,7 @@
                         </style>
 
                         <div class="aspect-ratio-square">
-                            <img class="card-img-top" src="{{ $element->classRoom->image }}" alt="Card image cap">
+                            <img class="card-img-top" src="{{ asset("assets/img/avatars/img_reachout.jpg") }}" alt="Card image cap">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $element->name }}</h5>

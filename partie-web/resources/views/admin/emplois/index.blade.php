@@ -3,7 +3,7 @@
 @section("emplois-active", "active")
 
 @section("main")
-<div class="row">
+<div class="row mt-3">
     <div class="col-3">
         <p class="fs-3 text-primary text-center">Emploi du Temps</p>
     </div>
@@ -50,7 +50,7 @@
 @if(!isset($emploi))
 <h1>no emplois now</h1>
 @else
-<h2 class="mt-4 mb-4 text-center">{{ $emploi->filiere->name }} - {{ $emploi->semestre->name }}</h2>
+<h2 class="  text-center" style="margin-bottom: 30px;margin-top: 35px" >{{ $emploi->filiere->name }} - {{ $emploi->semestre->name }}</h2>
 <style>
     .same-height-td {
         min-height: 50px; /* Adjust the value as needed */
