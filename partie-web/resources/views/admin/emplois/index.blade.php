@@ -33,7 +33,7 @@
 
     <div class="col-3 ">
 {{--        <div class="row">--}}
-            <div class="d-flex gap-1">
+            <div class="d-flex gap-1    ">
                 <button type="button" class="btn btn-lg btn-primary me-2" data-bs-toggle="modal" data-bs-target="#periodesModal">
                     <i class='pe-1 bx bx-time-five'></i>
                     Periodes
@@ -50,7 +50,7 @@
 @if(!isset($emploi))
 <h1>no emplois now</h1>
 @else
-<h2 class="mt-4 mb-4">{{ $emploi->filiere->name }} - {{ $emploi->semestre->name }}</h2>
+<h2 class="mt-4 mb-4 text-center">{{ $emploi->filiere->name }} - {{ $emploi->semestre->name }}</h2>
 <style>
     .same-height-td {
         min-height: 50px; /* Adjust the value as needed */
@@ -73,7 +73,7 @@
     <tbody>
         @foreach ($days as $day)
         <tr class="" >
-            <td style="width: {{ 100 / (count($periodes) + 1) }}%;background-color: rgba(4, 37, 82, 0.2);"   class="  text-primary fa-bold  border border-2 rounded-3 text-center same-height-td">
+            <td style="width: {{ 100 / (count($periodes) + 1) }}%;background-color: rgba(4, 37, 82, 0.2);"   class="  text-primary fa-bold  border border-2 rounded-3 text-center same-height-td ">
 {{--                <span style="background-color: rgba(4, 37, 82, 0.2); padding-block: 23px;padding-inline: 30px" class="  " ></span>--}}
                 {{ $day }}
             </td>

@@ -63,7 +63,7 @@
             </div>
             <div class="col-7 bg-white vh-100 d-flex justify-content-center align-items-center" >
 
-                <form method="post" class="row bg-white w-50 px-5 border border-3 border-primary rounded-3 " action="{{route("login")}}">
+                <form method="post" class="row bg-white w-50  border border-3 border-primary " style="padding-inline: 20px;padding-block: 25px;border-radius: 7%" action="{{route("login")}}">
                     @csrf
                       <div class="col-12 p-5 " >
                           <h1 class="text-center text-primary" >Connexion</h1>

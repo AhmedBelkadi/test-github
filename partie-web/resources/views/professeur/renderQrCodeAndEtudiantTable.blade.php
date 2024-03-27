@@ -21,7 +21,7 @@
                             </button>
                         </li>
                     </ul>
-                    <div class="tab-content h-100">
+                    <div class="tab-content h-100" style="background-color: rgba(67, 89, 113, 0);border: 0">
                         <div class="tab-pane fade active show   h-100" id="codeQr" role="tabpanel">
                             <div class="d-flex justify-content-center align-items-center h-100" >
 

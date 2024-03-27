@@ -9,12 +9,12 @@
                     </div>
                     <div class="modal-footer">
 
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <form method="POST" class=" me-2" action="{{route("commentaires.destroy",$commentaire)}}" >
                             @csrf
                             @method("DELETE")
                             <input type="submit" class="btn btn-danger" value="suprimmer">
                         </form>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
 

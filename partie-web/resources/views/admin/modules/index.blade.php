@@ -37,6 +37,16 @@
                         <td class="text-center" >{{$module->semestre->name}}</td>
                         <td class="text-center" >
                             <button
+                            type="button"
+                            class="btn btn-success text-white"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modifierModal{{$module->id}}"
+                        >
+                                <i class="menu-icon tf-icons bx bx-pencil"></i>
+
+                            </button>
+                        @include('admin.modules.edit')
+                            <button
                                 type="button"
                                 class="btn btn-danger text-white"
                                 data-bs-toggle="modal"
@@ -48,16 +58,6 @@
                                  @include('admin.modules.delete')
 
 
-                            <button
-                            type="button"
-                            class="btn btn-success text-white"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modifierModal{{$module->id}}"
-                        >
-                                <i class="menu-icon tf-icons bx bx-pencil"></i>
-
-                            </button>
-                        @include('admin.modules.edit')
 
                         </td>
                     </tr>

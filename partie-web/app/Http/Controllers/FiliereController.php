@@ -20,7 +20,7 @@ class FiliereController extends Controller
      */
     public function index()
     {
-        $filieres = Filiere::paginate(5);
+        $filieres = Filiere::paginate(6);
         $professeurs = Professeur::all();
         $departements = Departement::all();
 

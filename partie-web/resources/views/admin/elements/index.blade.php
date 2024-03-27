@@ -30,16 +30,16 @@
                             {{ implode(" / ", $element->professeurs->pluck('user.name')->toArray()) }}
                         </td>
                         <td class="text-center" >
-                            <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#basicModal{{$element->id}}">
-                                <i class="menu-icon tf-icons bx bx-trash"></i>
-
-                            </button>
-                                 @include('admin.elements.delete')
                             <button type="button" class="btn btn-success text-white" data-bs-toggle="modal" data-bs-target="#modifierModal{{$element->id}}">
                                 <i class="menu-icon tf-icons bx bx-pencil"></i>
 
                             </button>
                               @include('admin.elements.edit')
+                            <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#basicModal{{$element->id}}">
+                                <i class="menu-icon tf-icons bx bx-trash"></i>
+
+                            </button>
+                                 @include('admin.elements.delete')
                         </td>
                     </tr>
                 @endforeach

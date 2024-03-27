@@ -8,7 +8,7 @@
         <div class="col p-0">
             <div class="">
                 @if(\Illuminate\Support\Facades\Auth::user()->role === "admin")
-                    <form method="post" class="row mx-0 mb-4" action="{{route("absences.chercher")}}">
+                    <form method="post" class="row mx-0 mb-4 " action="{{route("absences.chercher")}}">
                     @csrf
                     <div class="col-11 ps-0">
                         <div class="row">
@@ -191,16 +191,35 @@
                     </form>
                 @endif
 
-                <form method="post" class="row mb-3  mx-0 px-0" action="{{ route('absences.searchByStudent') }}">
+                <form method="post" class="row mb-3   " action="{{ route('absences.searchByStudent') }}">
                     @csrf
-                    <div class="row px-0">
-                        <div class="col-11">
-                            <input type="text" value="{{old("query")}}" name="query" id="nameBasic" class="form-control form-control-lg" placeholder="Rechercher par CIN ou CNE" />
+{{--                    <div class="row px-0 w-100 ">--}}
+                        <div class="col-10">
+                            <input type="text" value="{{old("query")}}" name="query" id="nameBasic" class="form-control form-control-lg " placeholder="Rechercher par CIN ou CNE" />
                         </div>
-                        <div class="col-1 pe-0   mx-0"  >
-                            <button class="btn btn-primary btn-lg w-100 " type="submit"><i class='bx bx-search-alt'></i></button>
+                        <div class="col-1  px-0"  >
+                            <button class="btn btn-primary btn-lg px-0 mx-0 w-100" style="" type="submit"><i class='bx bx-search-alt'></i></button>
                         </div>
-                    </div>
+                        <div class="col-1 btn-group">
+                            <button type="button" class="btn btn-warning dropdown-toggle w-100" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-export me-sm-1 "></i></button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{route("professeurs.exporter")}}" >
+                                        <button class="dropdown-item" type="submit"><i class="bx bx-file me-2"></i>csv</button>
+{{--                                                            <i class="bx bx-file "></i>--}}
+{{--                                                            <input class="dropdown-item" type="submit" value="csv">--}}
+                                    </form>
+                                </li>
+                                <li>
+                                    <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{ route("professeurs.exporter.pdf") }}" target="__blank" >
+                                        <button class="dropdown-item p-0" type="submit"><i class="bx bxs-file-pdf me-2"></i>pdf</button>
+{{--                                                            <input class="dropdown-item" type="submit" value="pdf">--}}
+                                    </form>
+{{--                                                    <a class="dropdown-item" href="#"><i class="bx bxs-file-pdf me-2"></i>pdf</a>--}}
+                                </li>
+                            </ul>
+                        </div>
+{{--                    </div>--}}
                     @error("query")<span class="text-danger">{{$message}}</span>@enderror
                 </form>
 
@@ -229,26 +248,26 @@
 {{--                    </div>--}}
 
 
-                    <div class="btn-group my-1 " style="width: 8%" >
-                        <button class="btn btn-secondary  btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bx bx-export me-1"></i> Exporter
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{ \Illuminate\Support\Facades\Auth::user()->role == "professeur" ? route("absences.exporter.professeur") : route("absences.exporter.admin") }}" >
-                                    <i class="bx bx-file "></i>
-                                    <input class="dropdown-item" type="submit" value="csv">
-                                </form>
-                            </li>
-                            <li>
-                                <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{ route("absences.exporter.pdf") }}" target="__blank" >
-                                    <i class="bx bxs-file-pdf me-2"></i>
-                                    <input class="dropdown-item" type="submit" value="pdf">
-                                </form>
+{{--                    <div class="btn-group my-1 " style="width: 8%" >--}}
+{{--                        <button class="btn btn-secondary  btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                            <i class="bx bx-export me-1"></i> Exporter--}}
+{{--                        </button>--}}
+{{--                        <ul class="dropdown-menu">--}}
+{{--                            <li>--}}
+{{--                                <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{ \Illuminate\Support\Facades\Auth::user()->role == "professeur" ? route("absences.exporter.professeur") : route("absences.exporter.admin") }}" >--}}
+{{--                                    <i class="bx bx-file "></i>--}}
+{{--                                    <input class="dropdown-item" type="submit" value="csv">--}}
+{{--                                </form>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <form  class="dropdown-item d-flex align-items-center" method="GET" action="{{ route("absences.exporter.pdf") }}" target="__blank" >--}}
+{{--                                    <i class="bx bxs-file-pdf me-2"></i>--}}
+{{--                                    <input class="dropdown-item" type="submit" value="pdf">--}}
+{{--                                </form>--}}
 {{--                                <a class="dropdown-item" href="#"><i class="bx bxs-file-pdf me-2"></i>pdf</a>--}}
-                            </li>
-                        </ul>
-                    </div>
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
 
                     <div class="table-responsive text-nowrap">
                         <table class="table table-hover table table-bordered">
