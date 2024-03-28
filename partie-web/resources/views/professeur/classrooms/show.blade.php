@@ -10,7 +10,7 @@
 
     <div class="card mb-4">
         <div class="w-100 h-25">
-            <img class="w-100 h-25" src="{{$classroom->image}}" alt="Card image cap">
+            <img class="w-100 h-25" src="{{asset("assets/img/avatars/img_reachout.jpg")}}" alt="Card image cap">
         </div>
         <div class="card-body h-75">
             <h5 class="card-title">{{$classroom->element->name}}</h5>

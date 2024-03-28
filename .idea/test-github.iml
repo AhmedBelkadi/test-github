@@ -134,6 +134,14 @@
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/php-flasher/flasher" />
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/php-flasher/flasher-laravel" />
       <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/yoeunes/toastr" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/barryvdh/laravel-debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/maximebf/debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/barryvdh/laravel-dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/dompdf/dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/masterminds/html5" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/phenx/php-font-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/phenx/php-svg-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/partie-web/vendor/sabberworm/php-css-parser" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

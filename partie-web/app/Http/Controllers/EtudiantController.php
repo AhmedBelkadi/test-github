@@ -276,21 +276,16 @@ class EtudiantController extends Controller
             $etudiants = Etudiant::where("id_filiere",$request->input("id_filiere"))->paginate(9);
             $data = $seance;
             $data["date_unique"] = Carbon::now()->format('y-m-d h:i:s');
-            $qrCode = QrCode::size(350)->generate($data);
+            $qrCode = QrCode::size(200)->generate($data);
             toastr()->success('Seance found in the emplois');
             return view("professeur.renderQrCodeAndEtudiantTable",compact("seance","etudiants","qrCode"));
         }
         toastr()->error('Seance not found in the emplois!');
         return view("professeur.index",compact("periodes","filieres","elements"));
     }
-
-    //            $sessionStartTime = now()->addMinutes(5);
-//            $seance->update(['expired' => false]);
-//            Cache::put('session_start_time_' . $seance->id, $sessionStartTime);
-
     public function exporter()
     {
-        toastr()->success('Etudiants exported successfully!');
+//        toastr()->success('Etudiants exported successfully!');
         return Excel::download(new EtudiantExport(), 'etudiants.xlsx');
     }
 

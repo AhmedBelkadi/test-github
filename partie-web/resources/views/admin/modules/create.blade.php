@@ -46,7 +46,7 @@ Ajouter un module
                             <select name="id_filiere_a" id="filiere" class="form-select form-select">
                                 <option selected disabled>select filiere</option>
                                 @foreach( $filieres as $filiere )
-                                    <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}" {{ old('id_filiere_a') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
+                                    <option  data-type="{{ $filiere->type .$filiere->promotion }}" {{ old('id_filiere_a') == $filiere->id ? 'selected' : '' }}>{{$filiere->name}}</option>
                                 @endforeach
                             </select>
                             @error("id_filiere_a")

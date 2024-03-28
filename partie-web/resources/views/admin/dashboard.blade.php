@@ -8,7 +8,7 @@
 <div class="vh-100">
 
     <div class="container h-100 container">
-    <h1 class="ps-2 pb-0 mb-0" >Bonjour mr/mme {{\Illuminate\Support\Facades\Auth::user()->name}}</h1>
+    <h1 class="ps-2 pb-0 mb-0" >Bonjour {{ \Illuminate\Support\Facades\Auth::user()->gender == "male" ? "Mr" : "Mme"}}  {{\Illuminate\Support\Facades\Auth::user()->name}}</h1>
         <div class="d-flex gap-3 align-items-center h-25 pt-0 pb-2">
             <div class="d-flex py-3 align-items-center justify-content-around w-25 border rounded-3" style="background-color: #A7AABC;
             ;">

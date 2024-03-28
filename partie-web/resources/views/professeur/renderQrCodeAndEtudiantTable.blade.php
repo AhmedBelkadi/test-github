@@ -3,101 +3,113 @@
 @section( "prof-dashboard-active" , "active" )
 
 @section("main")
-<x-sidebar />
+    <x-sidebar />
 
-    <div class="row  " style="height: 90%" >
-        <div class="col-12   " >
-
-                <div class="nav-align-top   h-100 p-3">
-                    <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
-                        <li class="nav-item">
-                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#codeQr" aria-controls="codeQr" aria-selected="true">
-                                <i class="tf-icons bx bx-home"></i> code qr
-                            </button>
-                        </li>
-                        <li class="nav-item">
-                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#etdsLists" aria-controls="etdsLists" aria-selected="false">
-                                <i class="tf-icons bx bx-user"></i> list of etudiant
-                            </button>
-                        </li>
-                    </ul>
-                    <div class="tab-content h-100" style="background-color: rgba(67, 89, 113, 0);border: 0">
-                        <div class="tab-pane fade active show   h-100" id="codeQr" role="tabpanel">
-                            <div class="d-flex justify-content-center align-items-center h-100" >
-
-                            {!! $qrCode !!}
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="etdsLists" role="tabpanel">
-                            <div class="mt-3 card">
-
-                                <div class="row">
-                                    <div class="col-12">
-                                        <form action="{{ route('mark.absences') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id_seance" value="{{$seance->id}}">
-
-                                            <div class="table-responsive text-nowrap">
-                                                <table class="table">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="text-center" >Name</th>
-                                                        <th class="text-center" >CIN</th>
-                                                        <th class="text-center" >Apogee</th>
-                                                        <th  class="text-center" >CNE</th>
-                                                        <th  class="text-center"  >Absence</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody id="etdsElm" class="table-border-bottom-0">
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-
-                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <button type="submit" class="btn btn-danger">Mark Absences</button>
-                                            </div>
-                                       </form>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
+    <div class="row my-3" style="height: 90%">
+        <div class="col-md-3 text-center">
+            <div class="d-flex justify-content-center mb-3">
+                <div id="timer" class="text-primary fs-1 fw-bold">00:00</div> <!-- Timer display -->
+            </div>
+            {!! $qrCode !!}
+        </div>
+        <div class="col-md-9 pt-3">
+            <form id="absenceForm" action="{{ route('mark.absences') }}" method="POST">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-3">
+                    <button id="markAbsencesBtn" type="submit" class="btn btn-danger">Mark Absences</button>
+                    <div id="loadingSpinner" class="spinner-border text-primary d-none" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
                 </div>
+                @csrf
+                <input type="hidden" name="id_seance" value="{{$seance->id}}">
 
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">CIN</th>
+                            <th class="text-center">Apogee</th>
+                            <th class="text-center">CNE</th>
+                            <th class="text-center">Absent</th>
+                        </tr>
+                        </thead>
+                        <tbody id="etdsElm">
 
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <div id="errorMessage" class="alert alert-danger mt-3 d-none" role="alert">
+                Error fetching data. Please try again.
+            </div>
         </div>
     </div>
 
 @endsection
+
 @section("scripts")
     <script>
-        const url = "http://172.20.10.14:8000/api/getNotScannedStudents/{{$seance->id}}";
+        const url = "http://127.0.0.1:8000/api/getNotScannedStudents/{{$seance->id}}";
         const etdsElm = document.querySelector("#etdsElm");
         let etudiants = [];
-        console.log(etudiants);
+        let elapsedTime = 0;
+        let isTimeExpired = false;
+        const timerDisplay = document.getElementById("timer");
+        const absenceForm = document.getElementById("absenceForm");
+        const markAbsencesBtn = document.getElementById("markAbsencesBtn");
+        const loadingSpinner = document.getElementById("loadingSpinner");
+        const errorMessage = document.getElementById("errorMessage");
+
+        function showLoadingSpinner() {
+            loadingSpinner.classList.remove("d-none");
+            markAbsencesBtn.setAttribute("disabled", "disabled");
+        }
+
+        function hideLoadingSpinner() {
+            loadingSpinner.classList.add("d-none");
+            markAbsencesBtn.removeAttribute("disabled");
+        }
+
+        function showError() {
+            errorMessage.classList.remove("d-none");
+        }
 
         fetch(url)
             .then(response => response.json())
             .then(data => {
                 etudiants = data.expectedStudents;
                 displayExpectedStudents(etudiants);
-                console.log(etudiants);
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error:', error);
+                showError();
+            });
 
-        setInterval(() => {
-            fetch(url)
-                .then(response => response.json())
-                .then(data => markAbsentStudents(data.notScannedStudents))
-                .catch(error => console.error('Error:', error));
-        }, 4000);
+        const f = setInterval(() => {
+            elapsedTime += 1000;
+            if (elapsedTime >= 60 * 1000) {
+                clearInterval(f);
+                isTimeExpired = true;
+            }
+            if (!isTimeExpired) {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        markAbsentStudents(data.notScannedStudents);
+                        hideLoadingSpinner();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showError();
+                    });
+            }
+            const minutes = Math.floor(elapsedTime / 60000);
+            const seconds = ((elapsedTime % 60000) / 1000).toFixed(0);
+            timerDisplay.textContent = `${minutes}:${(seconds < 10 ? '0' : '')}${seconds}`;
+        }, 1000);
 
         function markAbsentStudents(notScannedStudents) {
-            console.log(notScannedStudents);
             const checkboxes = document.querySelectorAll('input[name="absent_students[]"]');
             checkboxes.forEach(checkbox => {
                 const studentId = parseInt(checkbox.value);
@@ -107,22 +119,23 @@
         }
 
         function displayExpectedStudents(etds) {
-            etdsElm.innerHTML = ""; // Clear existing content
+            etdsElm.innerHTML = "";
             etds.forEach(({ id, cne, apogee, cin, name }) => {
                 etdsElm.innerHTML += `<tr>
-                                    <td class="text-center">${name}</td>
-                                    <td class="text-center">${cin}</td>
-                                    <td class="text-center">${apogee}</td>
-                                    <td class="text-center">${cne}</td>
-                                    <td class="text-center">
-                                        <input type="checkbox" class="form-check-input" name="absent_students[]" value="${id}">
-                                    </td>
-                                </tr>`;
+                <td class="text-center">${name}</td>
+                <td class="text-center">${cin}</td>
+                <td class="text-center">${apogee}</td>
+                <td class="text-center">${cne}</td>
+                <td class="text-center">
+                    <input type="checkbox" class="form-check-input" name="absent_students[]" value="${id}">
+                </td>
+            </tr>`;
             });
         }
-
     </script>
 @endsection
+
+
 
 {{--                                                    @forelse($etudiants as $etudiant )--}}
 {{--                                                        <tr>--}}
@@ -263,3 +276,62 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</div>--}}
+{{--                <div class="nav-align-top   h-100 p-3">--}}
+{{--                    <ul class="nav nav-pills mb-3 nav-fill" role="tablist">--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#codeQr" aria-controls="codeQr" aria-selected="true">--}}
+{{--                                <i class="tf-icons bx bx-home"></i> code qr--}}
+{{--                            </button>--}}
+{{--                        </li>--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#etdsLists" aria-controls="etdsLists" aria-selected="false">--}}
+{{--                                <i class="tf-icons bx bx-user"></i> list of etudiant--}}
+{{--                            </button>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                    <div class="tab-content h-100" style="background-color: rgba(67, 89, 113, 0);box-shadow: 0 0px 0px 0 white">--}}
+{{--                        <div class="tab-pane fade active show   h-100" id="codeQr" role="tabpanel">--}}
+{{--                            <div class="d-flex justify-content-center align-items-center h-100" >--}}
+
+{{--                            {!! $qrCode !!}--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="tab-pane fade" id="etdsLists" role="tabpanel">--}}
+{{--                            <div class="mt-3 card">--}}
+
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-12">--}}
+{{--                                        <form action="{{ route('mark.absences') }}" method="POST">--}}
+{{--                                            @csrf--}}
+{{--                                            <input type="hidden" name="id_seance" value="{{$seance->id}}">--}}
+
+{{--                                            <div class="table-responsive text-nowrap">--}}
+{{--                                                <table class="table">--}}
+{{--                                                    <thead>--}}
+{{--                                                    <tr>--}}
+{{--                                                        <th class="text-center" >Name</th>--}}
+{{--                                                        <th class="text-center" >CIN</th>--}}
+{{--                                                        <th class="text-center" >Apogee</th>--}}
+{{--                                                        <th  class="text-center" >CNE</th>--}}
+{{--                                                        <th  class="text-center"  >Absence</th>--}}
+{{--                                                    </tr>--}}
+{{--                                                    </thead>--}}
+{{--                                                    <tbody id="etdsElm" class="table-border-bottom-0">--}}
+
+{{--                                                    </tbody>--}}
+{{--                                                </table>--}}
+{{--                                            </div>--}}
+
+
+{{--                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">--}}
+{{--                                                <button type="submit" class="btn btn-danger">Mark Absences</button>--}}
+{{--                                            </div>--}}
+{{--                                       </form>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}

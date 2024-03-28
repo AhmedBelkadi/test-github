@@ -99,23 +99,32 @@
             const selectedFiliereOption = filiereSelect.options[filiereSelect.selectedIndex];
             const selectedFiliereType = selectedFiliereOption.getAttribute('data-type');
             semestreSelect.innerHTML = ''; // Clear previous options
-
-            if (selectedFiliereType === 'dut') {
+            console.log(selectedFiliereType)
+            if (selectedFiliereType === 'dutpremier annee') {
                 semestreSelect.disabled = false;
 
-                for (let i = 1; i <= 4; i++) {
+                for (let i = 1; i <= 2; i++) {
                     const option = document.createElement('option');
                     option.value = 'Semestre ' + i;
                     option.textContent = 'Semestre ' + i;
                     semestreSelect.appendChild(option);
                 }
-            } else if (selectedFiliereType === 'lp') {
+            } else if (selectedFiliereType === 'lppremier annee') {
                 semestreSelect.disabled = false;
 
                 for (let i = 5; i <= 6; i++) {
                     const option = document.createElement('option');
                     option.value = 'Semestre ' + i;
                     option.textContent = 'Semestre ' + i;
+                    semestreSelect.appendChild(option);
+                }
+            } else if (selectedFiliereType === 'dutdeuxieme annee') {
+                semestreSelect.disabled = false;
+
+                for (let i = 1; i <= 2; i++) {
+                    const option = document.createElement('option');
+                    option.value = 'Semestre ' + (i + 2);
+                    option.textContent = 'Semestre ' + (i + 2);
                     semestreSelect.appendChild(option);
                 }
             }

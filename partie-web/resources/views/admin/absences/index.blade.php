@@ -19,7 +19,7 @@
                                             <select name="id_filiere" id="filiere" class="form-select form-select-lg">
                                                 <option value="" selected disabled>Select Filiere</option>
                                                 @foreach($filieres as $filiere)
-                                                <option data-type="{{ $filiere->type }}" value="{{ $filiere->id }}">{{ $filiere->name }}</option>
+                                                <option  data-type="{{ $filiere->type .$filiere->promotion }}" value="{{ $filiere->id }}">{{ $filiere->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error("id_filiere")<span class="text-danger">{{$message}}</span>@enderror
@@ -355,33 +355,42 @@
             bootstrapModal.show();
         }
     });
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const filiereSelect = document.getElementById('filiere');
         const semestreSelect = document.getElementById('semestre');
         semestreSelect.disabled = true;
 
-        filiereSelect.addEventListener('change', function() {
+        filiereSelect.addEventListener('change', function () {
             const selectedFiliereId = filiereSelect.value;
             const selectedFiliereOption = filiereSelect.options[filiereSelect.selectedIndex];
             const selectedFiliereType = selectedFiliereOption.getAttribute('data-type');
             semestreSelect.innerHTML = ''; // Clear previous options
-
-            if (selectedFiliereType === 'dut') {
+            console.log(selectedFiliereType)
+            if (selectedFiliereType === 'dutpremier annee') {
                 semestreSelect.disabled = false;
 
-                for (let i = 1; i <= 4; i++) {
+                for (let i = 1; i <= 2; i++) {
                     const option = document.createElement('option');
                     option.value = 'Semestre ' + i;
                     option.textContent = 'Semestre ' + i;
                     semestreSelect.appendChild(option);
                 }
-            } else if (selectedFiliereType === 'lp') {
+            } else if (selectedFiliereType === 'lppremier annee') {
                 semestreSelect.disabled = false;
 
                 for (let i = 5; i <= 6; i++) {
                     const option = document.createElement('option');
                     option.value = 'Semestre ' + i;
                     option.textContent = 'Semestre ' + i;
+                    semestreSelect.appendChild(option);
+                }
+            } else if (selectedFiliereType === 'dutdeuxieme annee') {
+                semestreSelect.disabled = false;
+
+                for (let i = 1; i <= 2; i++) {
+                    const option = document.createElement('option');
+                    option.value = 'Semestre ' + (i + 2);
+                    option.textContent = 'Semestre ' + (i + 2);
                     semestreSelect.appendChild(option);
                 }
             }
